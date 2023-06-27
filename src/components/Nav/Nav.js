@@ -8,11 +8,11 @@ import './Nav.scss';
 
 const Nav = () => {
   return (
-    <nav className="nav">
-      <div className="container">
-        <div className="utilMenu">
-          <span className="mainLogo">배민배민배</span>
-          <span className="navMenu">
+    <div className="nav">
+      <div className="navContainer">
+        <span className="mainLogo">배민배민배</span>
+        <div className="navMenu">
+          <div className="link">
             <Link to="">
               <button className="menuBtn">전체</button>
             </Link>
@@ -31,15 +31,19 @@ const Nav = () => {
             <Link to="">
               <button className="menuBtn">명예의 전당</button>
             </Link>
-          </span>
-
-          <FontAwesomeIcon icon={faMagnifyingGlass} className="leadingGlass" />
-          <FontAwesomeIcon icon={faCartShopping} className="cart" />
-          <button className="loginBtn">로그인</button>
-          <FontAwesomeIcon icon={faBars} className="menuBar" />
+          </div>
+          <div className="icons">
+            <FontAwesomeIcon
+              icon={faMagnifyingGlass}
+              className="leadingGlass"
+            />
+            <FontAwesomeIcon icon={faCartShopping} className="cart" />
+            <button className="loginBtn">로그인</button>
+            <FontAwesomeIcon icon={faBars} className="bar" />
+          </div>
         </div>
       </div>
-    </nav>
+    </div>
   );
 };
 
