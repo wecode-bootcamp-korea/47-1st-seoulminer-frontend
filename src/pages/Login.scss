@@ -1,3 +1,44 @@
+@mixin inputLabel {
+  &.idInputLabel {
+    top: 35px;
+    font-size: 12px;
+  }
+  &.pwInputLabel {
+    top: 110px;
+    font-size: 12px;
+  }
+}
+
+@mixin colors {
+  &.green {
+    color: #2ac1bc;
+  }
+  &.red {
+    color: #f32321;
+  }
+}
+@mixin labelColor {
+  &.greenLabel {
+    border: solid 1px #2ac1bc;
+  }
+
+  &.redLabel {
+    border: solid 1px #f32321;
+  }
+}
+
+@mixin buttonColor {
+  &.greenButton {
+    background-color: #2ac1bc;
+    color: white;
+    &:hover {
+      border: #2ac1bc;
+      background-color: white;
+      color: #2ac1bc;
+    }
+  }
+}
+
 .login {
   display: flex;
   flex-direction: column;
@@ -6,49 +47,94 @@
   height: 100vh;
   gap: 10px;
   .title {
+    padding: 50px;
     font-size: 30px;
     font-weight: 700;
   }
   .inputContainer {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding: 20px;
+    gap: 15px;
+
+    .idLabel {
+      @include inputLabel;
+      position: absolute;
+      top: 45px;
+      left: 40px;
+      color: lightgray;
+      font-size: 14px;
+    }
+    .pwLabel {
+      @include inputLabel;
+      position: absolute;
+      top: 120px;
+      left: 40px;
+      color: lightgray;
+      font-size: 14px;
+    }
+
     .id {
+      @include colors;
       width: 400px;
-      height: 30px;
+      height: 60px;
       padding: 15px;
 
-      border: solid 1px;
+      border: solid 1px lightgray;
       border-radius: 7px;
+      outline: none;
+      color: lightgray;
     }
     .pw {
+      @include colors;
       width: 400px;
-      height: 30px;
+      height: 60px;
       padding: 15px;
 
-      border: solid 1px;
+      border: solid 1px lightgray;
       border-radius: 7px;
+      outline: none;
+      color: lightgray;
     }
-    p {
+    .hidden {
+      display: none;
       font-size: 13px;
     }
     .saveContainer {
       display: flex;
-      // gap: 5px;
+      align-items: center;
+      gap: 5px;
+
+      p {
+        color: gray;
+        font-size: 13px;
+      }
     }
   }
   .loginButton {
-    width: 430px;
+    width: 400px;
     height: 60px;
+    margin: 20px;
 
     border: solid 0px;
     border-radius: 7px;
+    opacity: 50%;
+    color: gray;
 
     font-size: 16px;
+    font-weight: 700;
   }
   .buttonContainer {
     display: flex;
-
+    gap: 15px;
+    p {
+      color: lightgray;
+    }
     button {
       border: solid 0px;
       background-color: white;
+      color: gray;
     }
   }
 }
