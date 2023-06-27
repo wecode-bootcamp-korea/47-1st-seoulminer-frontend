@@ -1,0 +1,54 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 10px;
+  .title {
+    font-size: 30px;
+    font-weight: 700;
+  }
+  .inputContainer {
+    .id {
+      width: 400px;
+      height: 30px;
+      padding: 15px;
+
+      border: solid 1px;
+      border-radius: 7px;
+    }
+    .pw {
+      width: 400px;
+      height: 30px;
+      padding: 15px;
+
+      border: solid 1px;
+      border-radius: 7px;
+    }
+    p {
+      font-size: 13px;
+    }
+    .saveContainer {
+      display: flex;
+      // gap: 5px;
+    }
+  }
+  .loginButton {
+    width: 430px;
+    height: 60px;
+
+    border: solid 0px;
+    border-radius: 7px;
+
+    font-size: 16px;
+  }
+  .buttonContainer {
+    display: flex;
+
+    button {
+      border: solid 0px;
+      background-color: white;
+    }
+  }
+}
