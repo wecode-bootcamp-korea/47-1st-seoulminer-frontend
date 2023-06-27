@@ -1,0 +1,48 @@
+.signInSecond {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 100vh;
+  .full {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .fullContainer {
+    display: flex;
+    flex-direction: column;
+    width: 430px;
+    .fullInput {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      .container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      h1 {
+        text-align: center;
+      }
+      input {
+        width: 400px;
+        height: 30px;
+        padding: 15px;
+
+        border: solid 1px;
+        border-radius: 7px;
+      }
+    }
+    button {
+      width: 430px;
+      height: 60px;
+
+      border: solid 0px;
+      border-radius: 7px;
+
+      font-size: 16px;
+    }
+  }
+}
