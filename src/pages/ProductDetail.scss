@@ -1,0 +1,86 @@
+/* stylelint-disable max-nesting-depth */
+.productDetail {
+  display: flex;
+  flex-direction: column;
+  .border {
+    border: solid 1px black;
+  }
+  .top {
+    display: flex;
+    justify-content: space-around;
+    .title {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 160px;
+    }
+    .fullImage {
+      display: flex;
+      align-items: center;
+      button {
+        width: 35px;
+        height: 35px;
+      }
+      .image {
+        // display: flex;
+        .productImage {
+          width: 300px;
+          height: 300px;
+
+          overflow: hidden;
+        }
+
+        .spot {
+          display: flex;
+          justify-content: center;
+          span {
+            font-size: 50px;
+          }
+        }
+      }
+    }
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .pinkbox {
+        display: flex;
+        flex-direction: column;
+
+        background-color: lightpink;
+        .price {
+          display: flex;
+          justify-content: space-between;
+          .countButton {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            button {
+              width: 20px;
+              height: 20px;
+            }
+            p {
+              width: 40px;
+              height: 20px;
+              border: solid 1px black;
+            }
+          }
+        }
+      }
+      .totalPrice {
+        display: flex;
+        justify-content: space-between;
+      }
+      .getButton {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+  .detail {
+    display: flex;
+    justify-content: center;
+    gap: 150px;
+  }
+}
