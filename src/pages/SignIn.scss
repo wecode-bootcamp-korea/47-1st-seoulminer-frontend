@@ -1,0 +1,57 @@
+.signIn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // height: 100vh;
+  .fullContainer {
+    width: 430px;
+  }
+
+  h1 {
+    text-align: center;
+  }
+  .border {
+    border: solid 1px lightgray;
+  }
+  .fullAgreement {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .full {
+    display: flex;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    .line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hidden {
+      width: 400px;
+      height: 200px;
+
+      overflow: scroll;
+
+      border: solid 1px black;
+    }
+  }
+
+  .phone {
+    width: 430px;
+    height: 60px;
+
+    border: solid 0px;
+    border-radius: 7px;
+
+    background-color: #2ac1bc;
+    color: white;
+
+    font-size: 16px;
+  }
+}
