@@ -1,4 +1,5 @@
 import './ProductDetail.scss';
+// import ProductOne from './ProductOne';
 
 const ProductDetail = () => {
   const name = '글림체 자음모음 붙임딱지';
@@ -15,7 +16,7 @@ const ProductDetail = () => {
           <button />
           <div className="image">
             <div className="productImage">
-              <img alt="product1" src="./images/IMG_7632.jpg" />
+              <img alt="product1" src="./images/IMG_7631 2.jpg" />
               <img alt="product2" src="./images/cat.jpeg" />
             </div>
             <div className="spot">
@@ -55,6 +56,10 @@ const ProductDetail = () => {
         </div>
       </div>
       <div className="border" />
+      {/* <h3 className="recommend">이건 어때요?</h3> */}
+      {/* <ProductOne /> */}
+      <div className="border" />
+
       <div className="detail">
         <p>상품정보</p>
         <p>|</p>
@@ -63,6 +68,7 @@ const ProductDetail = () => {
         <p>상품후기</p>
       </div>
       <div className="border" />
+
       <div className="table">
         <h3>상품상세정보</h3>
         <div className="table">표 들어갈 자리</div>
