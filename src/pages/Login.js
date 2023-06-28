@@ -1,70 +1,94 @@
-// import { Link } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import './Login.scss';
+
+// const INPUT_DATA = [
+//   { id: 1, name: 'id', placeholder: '아이디' },
+//   { id: 2, name: 'pw', placeholder: '비밀번호'},
+// ];
 
 const Login = () => {
   const [inputValue, setInputValue] = useState({});
   const [btnColor, setBtnColor] = useState(true);
-  const [inputClass, setInputclass] = useState(true);
+  const navigate = useNavigate();
 
-  const conditon =
-    inputValue?.id?.indexOf('@') !== -1 && inputValue?.pw?.length >= 5;
-
-  // function goToMain() {
-  //   navigate('/MainHoejin');
-  // }
+  const conditon = inputValue.id?.length > 0 && inputValue.pw?.length > 0;
 
   const handleInput = e => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
   };
 
-  const changeBtnColor = () => {
-    setBtnColor(!btnColor);
+  const data = () => {
+    fetch('http://10.58.52.109:3000/users/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: inputValue.id,
+        password: inputValue.pw,
+      }),
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        // console.log(data);
+        if (data.message === 'Login success') {
+          localStorage.setItem('token', data.accessToken);
+          navigate('/Main');
+        } else if (data.message === '잘못된정보') {
+          alert('아이디 혹은 비밀번호를 확인 해 주세요');
+        }
+      });
   };
 
   return (
     <div className="login">
       <p className="title">로그인</p>
-      <div className="inputContainer">
-        <label className="idLabel">아이디</label>
+      <form className="inputContainer">
         <input
           name="id"
-          className={`id ${inputValue.id?.length > 0 ? 'idInputLabel' : ''}`}
-          onClick={() => setInputclass(!inputClass)}
+          className={`id ${inputValue.id?.length > 0 ? 'color' : ''}`}
+          placeholder="아이디"
           onChange={e => {
             handleInput(e);
           }}
+          onInput={() => {
+            setInputValue(!btnColor);
+          }}
         />
-        <p className="hidden red">! 아이디를 입력해주세요.</p>
-        <label className="pwLabel">비밀번호</label>
         <input
           name="pw"
-          className="pw"
+          className={`pw ${inputValue.pw?.length > 0 ? 'color' : ''}`}
+          placeholder="비밀번호"
           type="password"
           onChange={e => {
             handleInput(e);
           }}
         />
-        <p className="hidden red">! 비밀번호를 입력해주세요.</p>
+
         <div className="saveContainer">
           <input className="checkbox" type="checkbox" />
           <p className="saveId">아이디 저장</p>
         </div>
-      </div>
+      </form>
       <button
-        className="loginButton"
+        className={`loginButton ${conditon ? 'greenButton' : ''}`}
         disabled={conditon ? false : true}
-        onChange={changeBtnColor}
-        // onClick={goToMain}
+        onChange={() => {
+          setBtnColor(!btnColor);
+        }}
+        onClick={data}
       >
         로그인
       </button>
       <div className="buttonContainer">
-        {/* <Link to={"./signIn.js"}> */}
-        <button className="admition">회원가입</button>
-        {/* </Link> */}
+        <Link to="./signIn.js">
+          <button className="admition">회원가입</button>
+        </Link>
         <p>|</p>
         {/* <Link to={"./signIn.js"}> */}
         <button className="findId">아이디 찾기</button>
