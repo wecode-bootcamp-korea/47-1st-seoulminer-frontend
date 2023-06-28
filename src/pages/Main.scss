@@ -1,3 +1,64 @@
+/* stylelint-disable selector-class-pattern */
+/* stylelint-disable block-no-empty */
 * {
   box-sizing: border-box;
+}
+.mainSlide {
+  position: relative;
+  .mainPicture {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: 50%;
+  }
+
+  .icons {
+    display: flex;
+    position: absolute;
+    top: 40%;
+    right: 0;
+    left: 0;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 30px;
+    transform: translateY(-50%);
+    color: lightgray;
+    font-size: 50px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.5;
+    }
+
+    .rightBtn {
+      margin-right: 30px;
+    }
+  }
+}
+
+.dots {
+  display: flex;
+  position: absolute;
+  top: 580px;
+  right: 0;
+  left: 0;
+  justify-content: center;
+  color: rgba($color: #000000, $alpha: 1);
+  cursor: default;
+}
+.dot {
+  margin-left: 10px;
+  color: gray;
+}
+
+.firstBanner {
+  position: relative;
+  top: 100px;
+  left: 150px;
+}
+
+.recommendItem {
+  width: 300px;
+  height: 400px;
+  border: 1px solid red;
 }
