@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "thumbnail_image": "/images/IMG_7632.jpg",
+    "hover_image": "/images/IMG_7631 2.jpg",
+    "name": "상품1",
+    "price": 3000
+  },
+  {
+    "id": 2,
+    "thumbnail_image": "/images/IMG_7632.jpg",
+    "hover_image": "/images/IMG_7631 2.jpg",
+    "name": "상품2",
+    "price": 30000
+  },
+  {
+    "id": 3,
+    "thumbnail_image": "/images/IMG_7632.jpg",
+
+    "hover_image": "/images/IMG_7631 2.jpg",
+    "name": "상품3",
+    "price": 300000
+  },
+  {
+    "id": 4,
+    "thumbnail_image": "/images/IMG_7632.jpg",
+
+    "hover_image": "/images/IMG_7631 2.jpg",
+    "name": "상품4",
+    "price": 100000
+  }
+]
