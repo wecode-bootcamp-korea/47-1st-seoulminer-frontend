@@ -8,7 +8,7 @@ import './Nav.scss';
 
 const Nav = () => {
   return (
-    <div className="nav">
+    <header className="nav">
       <div className="navContainer">
         <span className="mainLogo">배민배민배</span>
         <div className="navMenu">
@@ -43,7 +43,7 @@ const Nav = () => {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

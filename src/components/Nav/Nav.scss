@@ -1,8 +1,8 @@
 /* stylelint-disable selector-class-pattern */
 * {
   box-sizing: border-box;
-  margin-left: 10px;
 }
+
 .navContainer {
   display: flex;
   position: fixed;
@@ -13,28 +13,45 @@
   border-bottom: 1px solid lightgray;
   background-color: white;
   line-height: 100px;
+
   .mainLogo {
     margin-left: 30px;
     font-size: 30px;
     font-weight: 700;
+    cursor: pointer;
   }
+
   .navMenu {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     width: 80%;
   }
+
+  .link {
+    margin-left: 60px;
+  }
+
   .menuBtn {
     border: none;
     background-color: white;
     font-size: 20px;
+    cursor: pointer;
+    &:hover {
+      color: #2ac1bc;
+    }
   }
+
   .icons {
     margin-right: 50px;
     font-size: 25px;
+    cursor: pointer;
   }
+
   .bar {
     margin-left: 50px;
   }
+
   .cart {
     margin-left: 20px;
   }
@@ -48,5 +65,6 @@
     background-color: white;
     font-size: 15px;
     font-weight: 700;
+    cursor: pointer;
   }
 }
