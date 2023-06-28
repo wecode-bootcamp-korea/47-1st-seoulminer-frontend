@@ -1,3 +1,4 @@
+/* stylelint-disable max-nesting-depth */
 /* stylelint-disable selector-class-pattern */
 * {
   box-sizing: border-box;
@@ -26,45 +27,45 @@
     align-items: center;
     justify-content: space-between;
     width: 80%;
-  }
 
-  .link {
-    margin-left: 60px;
-  }
+    .link {
+      margin-left: 60px;
 
-  .menuBtn {
-    border: none;
-    background-color: white;
-    font-size: 20px;
-    cursor: pointer;
-    &:hover {
-      color: #2ac1bc;
+      .menuBtn {
+        border: none;
+        background-color: white;
+        font-size: 20px;
+        cursor: pointer;
+        &:hover {
+          color: #2ac1bc;
+        }
+      }
     }
-  }
 
-  .icons {
-    margin-right: 50px;
-    font-size: 25px;
-    cursor: pointer;
-  }
+    .icons {
+      margin-right: 50px;
+      font-size: 25px;
+      cursor: pointer;
 
-  .bar {
-    margin-left: 50px;
-  }
+      .bar {
+        margin-left: 50px;
+      }
 
-  .cart {
-    margin-left: 20px;
-  }
+      .cart {
+        margin-left: 20px;
+      }
 
-  .loginBtn {
-    width: 80px;
-    height: 40px;
-    margin-left: 30px;
-    border: 2px solid black;
-    border-radius: 30px;
-    background-color: white;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
+      .loginBtn {
+        width: 80px;
+        height: 40px;
+        margin-left: 30px;
+        border: 2px solid black;
+        border-radius: 30px;
+        background-color: white;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+    }
   }
 }

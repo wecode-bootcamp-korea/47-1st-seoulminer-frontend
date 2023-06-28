@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import NavData from './NavData';
 import './Nav.scss';
 
 const Nav = () => {
@@ -13,24 +14,11 @@ const Nav = () => {
         <span className="mainLogo">배민배민배</span>
         <div className="navMenu">
           <div className="link">
-            <Link to="">
-              <button className="menuBtn">전체</button>
-            </Link>
-            <Link to="">
-              <button className="menuBtn">문구</button>
-            </Link>
-            <Link to="">
-              <button className="menuBtn">리빙</button>
-            </Link>
-            <Link to="">
-              <button className="menuBtn">책/매거진F</button>
-            </Link>
-            <Link to="">
-              <button className="menuBtn">콜라보레이션</button>
-            </Link>
-            <Link to="">
-              <button className="menuBtn">명예의 전당</button>
-            </Link>
+            {NavData.map((link, index) => (
+              <Link to={link.path} key={index}>
+                <button className="menuBtn">{link.text}</button>
+              </Link>
+            ))}
           </div>
           <div className="icons">
             <FontAwesomeIcon
