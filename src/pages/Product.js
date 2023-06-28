@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import './Product.scss';
 
 const Product = ({ data }) => {
   const [isHover, setIsHover] = useState(false);
+  const { id, thumbnail_image, hover_image, name, price } = data;
   return (
     <div
       className="product"
-      key={data.id}
+      key={id}
       onMouseOver={() => {
         setIsHover(true);
       }}
@@ -19,13 +21,13 @@ const Product = ({ data }) => {
           <div className="itemImgContainer">
             <img
               className="itemImg"
-              src={isHover ? data.hover_image : data.thumbnail_image}
+              src={isHover ? hover_image : thumbnail_image}
               alt="itemImg"
             />
           </div>
           <div className="text">
-            <p className="title">{data.name}</p>
-            <p className="price">{data.price.toLocaleString()}</p>
+            <p className="title">{name}</p>
+            <p className="price">{price.toLocaleString()}</p>
           </div>
         </div>
       </Link>
