@@ -1,9 +1,5 @@
 /* stylelint-disable order/properties-order */
 /* stylelint-disable selector-class-pattern */
-* {
-  box-sizing: border-box;
-}
-
 .footer {
   position: fixed;
   bottom: 0;
@@ -19,12 +15,13 @@
 
     .footerInfo {
       display: flex;
+      justify-content: space-around;
       align-items: center;
 
-      h1 {
+      .footerLogo {
+        margin: 50px 0 0 50px;
         font-size: 40px;
         font-weight: 700;
-        margin: 50px 0 0 50px;
       }
 
       a {
@@ -34,16 +31,16 @@
         font-weight: 600;
         font-size: 20px;
         top: 30px;
-        left: 200px;
+        left: 10px;
         text-decoration: none;
         color: black;
       }
     }
   }
-  .tmi {
+  .information {
     position: relative;
     top: 20px;
-    left: 420px;
+    left: 390px;
     color: gray;
   }
 }
