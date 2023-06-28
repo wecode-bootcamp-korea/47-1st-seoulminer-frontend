@@ -21,30 +21,30 @@ const Login = () => {
     setInputValue({ ...inputValue, [name]: value });
   };
 
-  const data = () => {
-    fetch('http://10.58.52.109:3000/users/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: inputValue.id,
-        password: inputValue.pw,
-      }),
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        // console.log(data);
-        if (data.message === 'Login success') {
-          localStorage.setItem('token', data.accessToken);
-          navigate('/Main');
-        } else if (data.message === '잘못된정보') {
-          alert('아이디 혹은 비밀번호를 확인 해 주세요');
-        }
-      });
-  };
+  // const data = () => {
+  //   fetch('http://10.58.52.109:3000/users/login', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       email: inputValue.id,
+  //       password: inputValue.pw,
+  //     }),
+  //   })
+  //     .then(response => {
+  //       return response.json();
+  //     })
+  //     .then(data => {
+  //       // console.log(data);
+  //       if (data.message === 'Login success') {
+  //         localStorage.setItem('token', data.accessToken);
+  //         navigate('/Main');
+  //       } else if (data.message === '잘못된정보') {
+  //         alert('아이디 혹은 비밀번호를 확인 해 주세요');
+  //       }
+  //     });
+  // };
 
   return (
     <div className="login">
@@ -56,27 +56,12 @@ const Login = () => {
               key={data.id}
               name={data.name}
               placeholder={data.placeholder}
+              handle={e => {
+                return handleInput(e);
+              }}
             />
           );
         })}
-
-        <input
-          name="id"
-          className="id"
-          placeholder="아이디"
-          onChange={e => {
-            handleInput(e);
-          }}
-        />
-        <input
-          name="pw"
-          className="pw"
-          placeholder="비밀번호"
-          type="password"
-          onChange={e => {
-            handleInput(e);
-          }}
-        />
 
         <div className="saveContainer">
           <input className="checkbox" type="checkbox" />
@@ -89,7 +74,7 @@ const Login = () => {
         onChange={() => {
           setBtnColor(!btnColor);
         }}
-        onClick={data}
+        onClick={navigate('/Main')}
       >
         로그인
       </button>
