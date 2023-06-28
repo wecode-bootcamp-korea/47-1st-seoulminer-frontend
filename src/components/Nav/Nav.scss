@@ -31,11 +31,12 @@
     .link {
       margin-left: 60px;
 
-      .menuBtn {
+      .menuLink {
         border: none;
         background-color: white;
         font-size: 20px;
         cursor: pointer;
+
         &:hover {
           color: #2ac1bc;
         }
@@ -47,25 +48,29 @@
       font-size: 25px;
       cursor: pointer;
 
-      .bar {
-        margin-left: 50px;
-      }
-
       .cart {
         margin-left: 20px;
       }
-
-      .loginBtn {
-        width: 80px;
-        height: 40px;
-        margin-left: 30px;
-        border: 2px solid black;
-        border-radius: 30px;
-        background-color: white;
-        font-size: 15px;
-        font-weight: 700;
-        cursor: pointer;
-      }
     }
   }
+}
+
+.menuBtn {
+  border: none;
+  background-color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.loginBtn {
+  width: 80px;
+  height: 40px;
+  margin-right: 30px;
+  margin-left: 30px;
+  border: 2px solid black;
+  border-radius: 30px;
+  background-color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
 }
