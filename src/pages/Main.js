@@ -37,7 +37,45 @@ const Main = () => {
             alt="firstBanner"
           />
         </div>
-        <div className="recommendItem" />
+        <div className="bestSeller" />
+        <div className="product">
+          <div className="productList">
+            <img
+              src="/images/IMG_7632.jpg"
+              alt="productImg"
+              className="productImg"
+            />
+            <p className="productName">이름</p>
+            <p className="productPrice">11111원</p>
+          </div>
+          <div className="productList">
+            <img
+              src="/images/IMG_7632.jpg"
+              alt="productImg"
+              className="productImg"
+            />
+            <p className="productName">이름</p>
+            <p className="productPrice">11111원</p>
+          </div>
+          <div className="productList">
+            <img
+              src="/images/IMG_7632.jpg"
+              alt="productImg"
+              className="productImg"
+            />
+            <p className="productName">이름</p>
+            <p className="productPrice">11111원</p>
+          </div>
+          <div className="productList">
+            <img
+              src="/images/IMG_7632.jpg"
+              alt="productImg"
+              className="productImg"
+            />
+            <p className="productName">이름</p>
+            <p className="productPrice">11111원</p>
+          </div>
+        </div>
       </div>
     </div>
   );
