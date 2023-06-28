@@ -2,32 +2,30 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 const Product = ({ data }) => {
-  const [image, setImage] = useState(true);
+  const [isHover, setIsHover] = useState(false);
   return (
     <div
       className="product"
-      key={data?.id}
+      key={data.id}
       onMouseOver={() => {
-        setImage(!image);
+        setIsHover(true);
       }}
       onMouseOut={() => {
-        setImage(!image);
+        setIsHover(false);
       }}
     >
       <Link to="./productDetail" style={{ textDecorationLine: 'none' }}>
         <div className="container">
-          <div className="itemImg">
-            <img className="itemImgOne" src={data?.imgOne} alt="itemImg" />
+          <div className="itemImgContainer">
             <img
-              className="itemImgTwo"
-              src={data?.imgTwo}
+              className="itemImg"
+              src={isHover ? data.hover_image : data.thumbnail_image}
               alt="itemImg"
-              style={{ opacity: `${image ? '0' : '1'}` }}
             />
           </div>
           <div className="text">
-            <p className="title">{data?.title}</p>
-            <p className="price">{data?.price.toLocaleString()}</p>
+            <p className="title">{data.name}</p>
+            <p className="price">{data.price.toLocaleString()}</p>
           </div>
         </div>
       </Link>

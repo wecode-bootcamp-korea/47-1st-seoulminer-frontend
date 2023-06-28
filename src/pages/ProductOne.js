@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-
 import Product from './Product';
 import './ProductOne.scss';
 
-const ProductOne = () => {
+const Products = () => {
   const [datas, setData] = useState([]);
 
   useEffect(() => {
@@ -14,11 +13,11 @@ const ProductOne = () => {
 
   return (
     <div className="productOne">
-      {datas.map(data => (
-        <Product data={data} key={data.id} />
-      ))}
+      {datas.map(data => {
+        return <Product data={data} key={data.id} />;
+      })}
     </div>
   );
 };
 
-export default ProductOne;
+export default Products;

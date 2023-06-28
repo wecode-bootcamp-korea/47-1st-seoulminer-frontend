@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import Main from './pages/Main';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
-import ProductOne from './pages/ProductOne';
+import Products from './pages/ProductOne';
 // import '/data.json';
 
 const Router = () => {
@@ -11,7 +11,7 @@ const Router = () => {
     <BrowserRouter>
       <Nav />
       <Routes>
-        <Route path="/productOne" element={<ProductOne />} />
+        <Route path="/products" element={<Products />} />
       </Routes>
       <Footer />
     </BrowserRouter>
