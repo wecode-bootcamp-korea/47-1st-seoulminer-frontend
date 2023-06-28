@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import SignInput from './SignInput';
 import './Login.scss';
 
-// const INPUT_DATA = [
-//   { id: 1, name: 'id', placeholder: '아이디' },
-//   { id: 2, name: 'pw', placeholder: '비밀번호'},
-// ];
+const INPUT_DATA = [
+  { id: 1, name: 'id', placeholder: '아이디' },
+  { id: 2, name: 'pw', placeholder: '비밀번호' },
+];
 
 const Login = () => {
   const [inputValue, setInputValue] = useState({});
@@ -49,20 +50,27 @@ const Login = () => {
     <div className="login">
       <p className="title">로그인</p>
       <form className="inputContainer">
+        {INPUT_DATA.map(data => {
+          return (
+            <SignInput
+              key={data.id}
+              name={data.name}
+              placeholder={data.placeholder}
+            />
+          );
+        })}
+
         <input
           name="id"
-          className={`id ${inputValue.id?.length > 0 ? 'color' : ''}`}
+          className="id"
           placeholder="아이디"
           onChange={e => {
             handleInput(e);
           }}
-          onInput={() => {
-            setInputValue(!btnColor);
-          }}
         />
         <input
           name="pw"
-          className={`pw ${inputValue.pw?.length > 0 ? 'color' : ''}`}
+          className="pw"
           placeholder="비밀번호"
           type="password"
           onChange={e => {
@@ -86,7 +94,7 @@ const Login = () => {
         로그인
       </button>
       <div className="buttonContainer">
-        <Link to="./signIn.js">
+        <Link to="./SignIn.js">
           <button className="admition">회원가입</button>
         </Link>
         <p>|</p>
