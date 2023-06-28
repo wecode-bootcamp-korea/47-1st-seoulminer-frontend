@@ -4,7 +4,7 @@ import Main from './pages/Main';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 import Products from './pages/Products';
-// import '/data.json';
+import '/data.json';
 
 const Router = () => {
   return (
