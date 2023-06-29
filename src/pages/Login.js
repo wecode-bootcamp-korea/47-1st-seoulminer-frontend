@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import SignInput from './SignInput';
+import SignInput from '../components/SignInput';
 import './Login.scss';
 
 // const INPUT_DATA = [
@@ -13,6 +13,7 @@ const Login = () => {
   const [inputValue, setInputValue] = useState({});
   const [btnColor, setBtnColor] = useState(true);
   const [modalBtn, setModalBtn] = useState('none');
+
   const navigate = useNavigate();
 
   const conditon = inputValue.id?.length > 0 && inputValue.pw?.length > 0;
@@ -54,9 +55,10 @@ const Login = () => {
       localStorage.removeItem('ID');
     }
   };
-  useEffect(() => {
-    console.log(inputValue.checkbox);
-  }, []);
+
+  // useEffect(() => {
+  //   console.log(inputValue.checkbox);
+  // }, []);
 
   return (
     <div className="login">
@@ -85,6 +87,7 @@ const Login = () => {
             className="checkbox"
             type="checkbox"
             onClick={e => saveIdLocal(e)}
+            checked={localStorage.getItem('ID')}
           />
           <p className="saveId" name="checkbox">
             아이디 저장
