@@ -7,17 +7,12 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import NavData from './NavData';
 import './Nav.scss';
 
-const Nav = () => {
-  const [isOpen, setMenu] = useState(false);
-
-  const handleMenuToggle = () => {
-    setMenu(!isOpen);
-  };
+function Nav() {
   return (
     <header className="nav">
       <div className="navContainer">
         <span className="mainLogo">배민배민배</span>
-        <div className={`navMenu ${isOpen ? 'open' : 'closed'}`}>
+        <div className="navMenu">
           <div className="link">
             {NavData.map((link, index) => (
               <Link to={link.path} key={index}>
@@ -32,7 +27,7 @@ const Nav = () => {
             />
             <FontAwesomeIcon icon={faCartShopping} className="cart" />
             <button className="loginBtn">로그인</button>
-            <button className="menuBtn" onClick={handleMenuToggle}>
+            <button className="menuBtn">
               <FontAwesomeIcon icon={faBars} className="bar" />
             </button>
           </div>
@@ -40,6 +35,6 @@ const Nav = () => {
       </div>
     </header>
   );
-};
+}
 
 export default Nav;
