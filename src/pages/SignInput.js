@@ -1,5 +1,5 @@
 const SignInput = props => {
-  const { name, placeholder, handle, type } = props;
+  const { name, placeholder, handle, type, defaultValue } = props;
 
   return (
     <input
@@ -8,6 +8,7 @@ const SignInput = props => {
       placeholder={placeholder}
       onChange={handle}
       type={type}
+      defaultValue={defaultValue}
     />
   );
 };
