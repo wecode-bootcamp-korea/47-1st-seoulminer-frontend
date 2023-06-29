@@ -1,37 +1,117 @@
+/* stylelint-disable max-nesting-depth */
 /* stylelint-disable selector-class-pattern */
-.navToggleStyle {
-  display: flex;
-  position: fixed;
-  z-index: 1;
+.dimmedNav {
+  position: absolute;
+  z-index: 2;
   top: 0;
-  right: 0;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 380px;
-  height: 100%;
-  margin-right: 20px;
-  padding-top: 60px;
-  overflow: hidden;
-  transition: right 0.4s ease 0s;
-  border-left: 1px solid red;
-  background-color: rgb(255, 255, 255);
-}
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color: black, $alpha: 0.5);
 
-.headerLoginLink {
-  color: black;
-  font-size: 32px;
-  font-weight: 600;
-  line-height: 42px;
-  text-decoration: none;
-}
+  .navToggleStyle {
+    display: flex;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 380px;
+    height: 100%;
+    padding-top: 40px;
+    overflow: hidden;
+    transition: right 0.4s ease 0s;
+    background-color: rgb(255, 255, 255);
 
-.firstText {
-  font-size: 32px;
-  font-weight: 600;
-}
+    .closedBtn {
+      position: absolute;
+      top: 30px;
+      right: 50px;
+      border: none;
+      background-color: white;
+      font-size: 30px;
+      cursor: pointer;
+      &:hover {
+        color: #2ac1bc;
+      }
+    }
 
-.secondText,
-.thirdText {
-  color: rgb(153, 153, 153);
+    .headerLoginLink {
+      color: black;
+      font-size: 27px;
+      font-weight: 600;
+      line-height: 42px;
+      text-decoration: none;
+    }
+
+    .firstText {
+      margin-left: 30px;
+      font-size: 30px;
+      font-weight: 600;
+    }
+
+    .thirdText {
+      margin-top: 30px;
+      margin-left: 5px;
+      color: rgb(153, 153, 153);
+      font-size: 18px;
+    }
+    .secondText {
+      margin-top: 30px;
+      margin-left: 5px;
+      color: rgb(153, 153, 153);
+      font-size: 18px;
+    }
+
+    .theme {
+      margin-left: 30px;
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+      }
+
+      .loginMenuBtn,
+      .link {
+        &:hover {
+          color: #2ac1bc;
+        }
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        border: none;
+        background-color: white;
+        font-size: 20px;
+        font-weight: 500;
+        cursor: pointer;
+      }
+
+      .menuLink {
+        &:hover {
+          color: #2ac1bc;
+        }
+        margin-top: 20px;
+        border: none;
+        background-color: white;
+        font-size: 20px;
+        font-weight: 500;
+        cursor: pointer;
+      }
+    }
+  }
+  a {
+    text-decoration: none;
+  }
+
+  .qna,
+  .emailQna {
+    display: inline-block;
+    padding-top: 30px;
+    padding-left: 90px;
+    color: #666;
+    font-weight: 300;
+  }
 }
