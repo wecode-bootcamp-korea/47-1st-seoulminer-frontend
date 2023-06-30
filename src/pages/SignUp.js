@@ -1,4 +1,5 @@
 import './SignUp.scss';
+import { Link } from 'react-router-dom';
 import { AGREEMENT } from './AGREEMENT';
 import { useEffect, useState } from 'react';
 import AgreementMap from '../components/AgreementMap';
@@ -23,7 +24,12 @@ const SignUp = () => {
       checkedObj = { ...checkedObj, [AGREEMENT[i].id]: checked };
     }
     setIsChecked(checkedObj);
-    // setIsChecked({ 1: checked, 2: checked, 3: checked });
+  };
+
+  const GotoMain = e => {
+    if (setIsChecked({ 1: true, 2: true })) {
+      e.target.disabled = true;
+    }
   };
 
   useEffect(() => {
@@ -65,7 +71,11 @@ const SignUp = () => {
             />
           );
         })}
-        <button className="phone">다음 페이지로</button>
+        <Link to="/signUpSecond">
+          <button className="phone" onClick={GotoMain}>
+            다음 페이지로
+          </button>
+        </Link>
       </div>
     </div>
   );
