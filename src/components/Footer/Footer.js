@@ -20,7 +20,7 @@ const Footer = () => {
           | 통신판매업신고번호 : 2011-서울강남-0115 | 사업자정보확인
           <br /> 대표번호 : 1172-1902 | 이메일 : nnning21_se@jiwon.com | 주소 :
           서울특별시 강남구 테헤란로 1004-104 | 호스팅제공 : (주)배고픔졸림 |
-          <br /> © Woowa Brothers Corp. All rights reserved
+          <br /> © DukHwa Kim Corp. All rights reserved
         </div>
       </div>
     </footer>

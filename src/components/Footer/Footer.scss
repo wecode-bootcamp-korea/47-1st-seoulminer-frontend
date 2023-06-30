@@ -19,17 +19,15 @@
       align-items: center;
 
       .footerLogo {
-        margin: 50px 0 0 50px;
-        font-size: 40px;
+        margin: 50px 0 0 10px;
+        font-size: 30px;
         font-weight: 700;
       }
 
       a {
-        display: flex;
-        justify-content: space-between;
         position: relative;
         font-weight: 600;
-        font-size: 20px;
+        font-size: 15px;
         top: 30px;
         left: 10px;
         text-decoration: none;
@@ -40,7 +38,7 @@
   .information {
     position: relative;
     top: 20px;
-    left: 390px;
+    left: 350px;
     color: gray;
   }
 }
