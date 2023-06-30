@@ -1,18 +1,27 @@
-.signIn {
+.signUp {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  // height: 100vh;
+  padding: 30px;
+
   .fullContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     width: 430px;
   }
 
-  h1 {
+  .title {
+    font-size: 30px;
+    font-weight: 700;
     text-align: center;
   }
+  .subTitle {
+    font-size: 20px;
+  }
   .border {
-    border: solid 1px lightgray;
+    border: solisd 1px lightgray;
   }
   .fullAgreement {
     display: flex;
@@ -21,27 +30,12 @@
   }
   .full {
     display: flex;
-  }
-  .container {
-    display: flex;
-    flex-direction: column;
-
-    .line {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .hidden {
-      width: 400px;
-      height: 200px;
-
-      overflow: scroll;
-
-      border: solid 1px black;
+    align-items: center;
+    gap: 5px;
+    p {
+      color: #2ac1bc;
     }
   }
-
   .phone {
     width: 430px;
     height: 60px;
