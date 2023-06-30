@@ -4,11 +4,10 @@ const SignInSecond = () => {
   return (
     <div className="signInSecond">
       <div className="fullContainer">
-        <h1>회원가입</h1>
+        <p className="title">회원가입</p>
         <div className="border" />
         <div className="full">
           <h3>회원정보</h3>
-          <img alt="number" src="" />
         </div>
         <div className="fullInput">
           <input placeholder="아이디" />
