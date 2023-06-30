@@ -1,29 +1,26 @@
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import SignInput from '../components/SignInput';
 import './Login.scss';
 
-// const INPUT_DATA = [
-//   { id: 1, name: 'id', placeholder: '아이디', type: 'text' },
-//   { id: 2, name: 'pw', placeholder: '비밀번호', type: 'password' },
-// ];
-
 const Login = () => {
   const [inputValue, setInputValue] = useState({});
-  const [btnColor, setBtnColor] = useState(true);
-  const [modalBtn, setModalBtn] = useState('none');
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   const navigate = useNavigate();
 
-  const conditon = inputValue.id?.length > 0 && inputValue.pw?.length > 0;
+  const localSaveId =
+    localStorage.getItem('ID')?.length > 0 || inputValue.id?.length > 0;
+
+  const conditon = localSaveId && inputValue.pw?.length > 0;
 
   const handleInput = e => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
   };
 
-  const data = () => {
+  const userData = () => {
     fetch('http://10.58.52.109:3000/users/login', {
       method: 'POST',
       headers: {
@@ -55,10 +52,6 @@ const Login = () => {
       localStorage.removeItem('ID');
     }
   };
-
-  // useEffect(() => {
-  //   console.log(inputValue.checkbox);
-  // }, []);
 
   return (
     <div className="login">
@@ -97,10 +90,7 @@ const Login = () => {
       <button
         className={`loginButton ${conditon ? 'greenButton' : ''}`}
         disabled={conditon ? false : true}
-        onChange={() => {
-          setBtnColor(!btnColor);
-        }}
-        onClick={data}
+        onClick={userData}
       >
         로그인
       </button>
@@ -109,27 +99,22 @@ const Login = () => {
           <button className="admition">회원가입</button>
         </Link>
         <p>|</p>
-        {/* <Link to={"./signIn.js"}> */}
         <button className="findId">아이디 찾기</button>
-        {/* </Link> */}
         <p>|</p>
-        {/* <Link to={"./signIn.js"}> */}
         <button className="findPw">비밀번호 찾기</button>
-        {/* </Link> */}
       </div>
-      <div
-        className="modalBlack"
-        style={{ display: `${modalBtn ? 'block' : 'none'}` }}
-      >
-        <div className="modal">
-          <div className="text">
-            <p className="auch">앗!</p>
-            <p>회원정보를 찾을 수 없습니다.</p>
-            <p>아이디/비밀번호를 다시 확인해주세요.</p>
+      {isModalOpen && (
+        <div className="modalBlack">
+          <div className="modal">
+            <div className="text">
+              <p className="auch">앗!</p>
+              <p>회원정보를 찾을 수 없습니다.</p>
+              <p>아이디/비밀번호를 다시 확인해주세요.</p>
+            </div>
+            <button onClick={() => setIsModalOpen(false)}>확인</button>
           </div>
-          <button onClick={() => setModalBtn(!btnColor)}>확인</button>
         </div>
-      </div>
+      )}
     </div>
   );
 };
