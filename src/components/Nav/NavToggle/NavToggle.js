@@ -5,27 +5,21 @@ import NavToggleData from './NavToggleData';
 import './NavToggle.scss';
 
 const NavToggle = ({ isNavOpen, onClose, isLoggedIn }) => {
-  const getFirstText = () => {
-    if (isLoggedIn) {
-      return (
-        <h2 className="firstText">
-          O O O 님
-          <br />
-          반갑습니다 !
-        </h2>
-      );
-    } else {
-      return (
-        <h2 className="firstText">
-          일단 ..!
-          <br />
-          <Link to="/login" className="headerLoginLink">
-            로그인부터 하세요.
-          </Link>
-        </h2>
-      );
-    }
-  };
+  const firstText = isLoggedIn ? (
+    <h2 className="firstText">
+      O O O 님
+      <br />
+      반갑습니다 !
+    </h2>
+  ) : (
+    <h2 className="firstText">
+      일단 ..!
+      <br />
+      <Link to="/login" className="headerLoginLink">
+        로그인부터 하세요.
+      </Link>
+    </h2>
+  );
 
   return (
     <div className="dimmedNav">
@@ -35,7 +29,7 @@ const NavToggle = ({ isNavOpen, onClose, isLoggedIn }) => {
             <button className="closedBtn" onClick={onClose}>
               X
             </button>
-            {getFirstText()}
+            {firstText}
           </header>
           <nav className="theme">
             <h2 className="secondText">테마</h2>
