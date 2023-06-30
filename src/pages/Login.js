@@ -6,22 +6,21 @@ import './Login.scss';
 
 const Login = () => {
   const [inputValue, setInputValue] = useState({});
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
 
-  const localSaveId =
-    localStorage.getItem('ID')?.length > 0 || inputValue.id?.length > 0;
+  // const localSaveId = localStorage.getItem('ID')?.length > 0 ||
 
-  const conditon = localSaveId && inputValue.pw?.length > 0;
+  const conditon = inputValue.id?.length > 0 && inputValue.pw?.length > 0;
 
   const handleInput = e => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
   };
 
-  const userData = () => {
-    fetch('http://10.58.52.109:3000/users/login', {
+  const postUserData = () => {
+    fetch('http://10.58.52.88:3000/users/signin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -35,23 +34,22 @@ const Login = () => {
         return response.json();
       })
       .then(data => {
-        // console.log(data);
-        if (data.message === 'Login success') {
+        if (data.accessToken) {
           localStorage.setItem('token', data.accessToken);
           navigate('/Main');
-        } else if (data.message === '잘못된정보') {
-          alert('아이디 혹은 비밀번호를 확인 해 주세요');
+        } else {
+          setIsModalOpen(true);
         }
       });
   };
 
-  const saveIdLocal = e => {
-    if (e.target.checked === true) {
-      localStorage.setItem('ID', inputValue.id);
-    } else if (e.target.checked === false) {
-      localStorage.removeItem('ID');
-    }
-  };
+  // const saveIdLocal = e => {
+  //   if (e.target.checked === true) {
+  //     localStorage.setItem('ID', inputValue.id);
+  //   } else if (e.target.checked === false) {
+  //     localStorage.removeItem('ID');
+  //   }
+  // };
 
   return (
     <div className="login">
@@ -75,7 +73,7 @@ const Login = () => {
           }}
         />
 
-        <div className="saveContainer">
+        {/* <div className="saveContainer">
           <input
             className="checkbox"
             type="checkbox"
@@ -85,12 +83,12 @@ const Login = () => {
           <p className="saveId" name="checkbox">
             아이디 저장
           </p>
-        </div>
+        </div> */}
       </div>
       <button
         className={`loginButton ${conditon ? 'greenButton' : ''}`}
         disabled={conditon ? false : true}
-        onClick={userData}
+        onClick={postUserData}
       >
         로그인
       </button>
@@ -108,8 +106,8 @@ const Login = () => {
           <div className="modal">
             <div className="text">
               <p className="auch">앗!</p>
-              <p>회원정보를 찾을 수 없습니다.</p>
-              <p>아이디/비밀번호를 다시 확인해주세요.</p>
+              <p className="notFound">회원정보를 찾을 수 없습니다.</p>
+              <p className="notFound">아이디/비밀번호를 다시 확인해주세요.</p>
             </div>
             <button onClick={() => setIsModalOpen(false)}>확인</button>
           </div>
