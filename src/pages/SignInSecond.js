@@ -1,3 +1,4 @@
+import SignInput from '../components/SignInput';
 import './SignInSecond.scss';
 
 const SignInSecond = () => {
@@ -9,6 +10,17 @@ const SignInSecond = () => {
         <div className="full">
           <h3>회원정보</h3>
           <div className="fullInput">
+            {USER_SIGN_UP.map(data => {
+              <SignInput
+                key={data.id}
+                name={data.name}
+                placeholder={data.placeholder}
+                // handle={e => {
+                //   return handleInput(e);
+                // }}
+              />;
+            })}
+
             <input placeholder="아이디" />
             <input placeholder="비밀번호" />
             <input placeholder="비밀번호 확인" />
