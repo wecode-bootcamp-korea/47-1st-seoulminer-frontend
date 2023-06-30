@@ -4,7 +4,7 @@ import Main from './pages/Main';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 import Login from './pages/Login';
-import SignInSecond from './pages/SignInSecond';
+import SignUpSecond from './pages/SignUpSecond';
 
 const Router = () => {
   return (
@@ -12,7 +12,7 @@ const Router = () => {
       <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/signInSecond" element={<SignInSecond />} />
+        <Route path="/signUpSecond" element={<SignUpSecond />} />
         <Route path="/login" element={<Login />} />
       </Routes>
       <Footer />
