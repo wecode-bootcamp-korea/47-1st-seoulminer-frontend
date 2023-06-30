@@ -8,26 +8,27 @@ const SignInSecond = () => {
         <div className="border" />
         <div className="full">
           <h3>회원정보</h3>
-        </div>
-        <div className="fullInput">
-          <input placeholder="아이디" />
-          <div className="container">
+          <div className="fullInput">
+            <input placeholder="아이디" />
             <input placeholder="비밀번호" />
-
             <input placeholder="비밀번호 확인" />
-          </div>
-          <div className="container">
             <input placeholder="이름" />
-
             <input placeholder="휴대번호" />
+            <input placeholder="이메일" />
           </div>
-          <input placeholder="이메일" />
         </div>
-        <p>﹒아이디/비밀번호 찾기에 활용되므로 정확하게 입력해주세요.</p>
-        <button>가입하기</button>
+        <button className="singUp">가입하기</button>
       </div>
     </div>
   );
 };
 
 export default SignInSecond;
+
+export const USER_SIGN_UP = [
+  { id: 1, name: 'email', placeholder: '이메일' },
+  { id: 2, name: 'pw', placeholder: '비밀번호' },
+  { id: 3, name: 'check', placeholder: '비밀번호 확인' },
+  { id: 4, name: 'name', placeholder: '이름' },
+  { id: 5, name: 'phone', placeholder: '휴대번호' },
+];
