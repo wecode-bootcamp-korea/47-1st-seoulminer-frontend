@@ -2,9 +2,31 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import NavData from '../NavData';
 import NavToggleData from './NavToggleData';
-import './NavMenuToggle.scss';
+import './NavToggle.scss';
 
-const NavToggle = ({ isNavOpen, onClose }) => {
+const NavToggle = ({ isNavOpen, onClose, isLoggedIn }) => {
+  const getFirstText = () => {
+    if (isLoggedIn) {
+      return (
+        <h2 className="firstText">
+          O O O 님
+          <br />
+          반갑습니다 !
+        </h2>
+      );
+    } else {
+      return (
+        <h2 className="firstText">
+          일단 ..!
+          <br />
+          <Link to="/login" className="headerLoginLink">
+            로그인부터 하세요.
+          </Link>
+        </h2>
+      );
+    }
+  };
+
   return (
     <div className="dimmedNav">
       <div className={`navToggle ${isNavOpen ? 'open' : ''}`}>
@@ -13,13 +35,7 @@ const NavToggle = ({ isNavOpen, onClose }) => {
             <button className="closedBtn" onClick={onClose}>
               X
             </button>
-            <h2 className="firstText">
-              일단 ..!
-              <br />
-              <Link to="" className="headerLoginLink">
-                로그인부터 하세요.
-              </Link>
-            </h2>
+            {getFirstText()}
           </header>
           <nav className="theme">
             <h2 className="secondText">테마</h2>

@@ -5,11 +5,13 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import NavData from './NavData';
-import './Nav.scss';
 import NavToggle from './NavToggle/NavToggle';
+import LoginButtons from './LoginButtons/LoginBtn';
+import './Nav.scss';
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleOpen = () => {
     setIsOpen(!isOpen);
@@ -17,6 +19,15 @@ const Nav = () => {
 
   const handleClosed = () => {
     setIsOpen(false);
+  };
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem('TOKEN');
   };
 
   return (
@@ -32,19 +43,33 @@ const Nav = () => {
             ))}
           </div>
           <div className="icons">
-            <FontAwesomeIcon
-              icon={faMagnifyingGlass}
-              className="leadingGlass"
+            <Link to="">
+              <FontAwesomeIcon
+                icon={faMagnifyingGlass}
+                className="leadingGlass"
+              />
+            </Link>
+            <Link to="">
+              <FontAwesomeIcon icon={faCartShopping} className="cart" />
+            </Link>
+            <LoginButtons
+              isLoggedIn={isLoggedIn}
+              onLogin={handleLogin}
+              onLogout={handleLogout}
             />
-            <FontAwesomeIcon icon={faCartShopping} className="cart" />
-            <button className="loginBtn">로그인</button>
             <button className="menuBtn" onClick={handleOpen}>
               <FontAwesomeIcon icon={faBars} className="bar" />
             </button>
           </div>
         </div>
       </div>
-      {isOpen && <NavToggle isNavOpen={isOpen} onClose={handleClosed} />}
+      {isOpen && (
+        <NavToggle
+          isNavOpen={isOpen}
+          onClose={handleClosed}
+          isLoggedIn={isLoggedIn}
+        />
+      )}
     </header>
   );
 };
