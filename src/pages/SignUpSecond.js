@@ -1,24 +1,26 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SignInput from '../components/SignInput';
 import './SignUpSecond.scss';
 
 const SignUpSecond = () => {
   const [inputValue, setInputValue] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   let emailRegular =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
-  const emailCondition = inputValue.email?.length > 0;
-  const pwCondition = inputValue.pw?.length > 0;
-  const checkCondition = inputValue.check === inputValue.pw;
+  let pwRegular = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{10,16}$/;
+
+  const emailCondition = emailRegular.test(inputValue.email);
+  const pwCondition = pwRegular.test(inputValue.pw);
+  const pwCheckCondition = inputValue.pwCheck === inputValue.pw;
   const nameCondition = inputValue.name?.length > 0;
   const phoneCondition = inputValue.phone?.length === 11;
 
   const signUpCondition =
     emailCondition &&
     pwCondition &&
-    checkCondition &&
+    pwCheckCondition &&
     nameCondition &&
     phoneCondition;
 
@@ -48,14 +50,16 @@ const SignUpSecond = () => {
       .then(data => {
         if (data.message === 'CREATE_USER_SUCCESS!') {
           navigate('/Main');
+          setIsModalOpen(true);
+          setTimeout(() => setIsModalOpen(false), 3000);
         } else if (data.message === 'INVALID_EMAIL') {
-          alert('실패 이메일');
+          alert('이메일 형식에 맞지 않는 이메일입니다. 다시 확인해주세요.');
         } else if (data.message === 'INVALID_PASSWORD') {
-          alert('실패 비밀번호');
+          alert('비밀번호 형식에 맞지 않는 비밀번호입니다. 다시 확인해주세요.');
         } else if (data.message === 'EMAIL_EXIST') {
-          alert('실패 이미 회원 이메일');
+          alert('이미 회원인 이메일입니다. 아이디 찾기를 해주세요.');
         } else if (data.message === 'PHONE_NUMBER_EXIST') {
-          alert('실패 이미 회원 폰');
+          alert('이미 회원인 전화번호입니다. 아이디 찾기를 해주세요.');
         }
       });
   };
@@ -68,18 +72,46 @@ const SignUpSecond = () => {
         <div className="full">
           <p className="info">회원정보</p>
           <div className="fullInput">
-            {USER_SIGN_UP.map(data => {
-              return (
-                <SignInput
-                  key={data.id}
-                  name={data.name}
-                  placeholder={data.placeholder}
-                  handle={e => {
-                    return handleInput(e);
-                  }}
-                />
-              );
-            })}
+            <input
+              name="email"
+              placeholder="이메일"
+              className={`inputTag ${emailCondition ? '' : 'red'}`}
+              onInput={e => {
+                handleInput(e);
+              }}
+            />
+            <input
+              name="pw"
+              placeholder="비밀번호"
+              className={`inputTag ${pwCondition ? '' : 'red'}`}
+              onInput={e => {
+                handleInput(e);
+              }}
+            />
+            <input
+              name="pwCheck"
+              placeholder="비밀번호 확인"
+              className={`inputTag ${pwCheckCondition ? '' : 'red'}`}
+              onInput={e => {
+                handleInput(e);
+              }}
+            />
+            <input
+              name="name"
+              placeholder="이름"
+              className={`inputTag ${nameCondition ? '' : 'red'}`}
+              onInput={e => {
+                handleInput(e);
+              }}
+            />
+            <input
+              name="phone"
+              placeholder="휴대번호"
+              className={`inputTag ${phoneCondition ? '' : 'red'}`}
+              onInput={e => {
+                handleInput(e);
+              }}
+            />
           </div>
         </div>
         <button
@@ -89,17 +121,20 @@ const SignUpSecond = () => {
         >
           가입하기
         </button>
+        {isModalOpen && (
+          <div className="modalBlack">
+            <div className="welcom">
+              <p className="welcomTitle">환영합니다.</p>
+              <p className="welcomText">
+                <span className="textColor">꿀빵이와 앙꼬</span>의 회원이
+                되었습니다.
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
 export default SignUpSecond;
-
-export const USER_SIGN_UP = [
-  { id: 1, name: 'email', placeholder: '이메일' },
-  { id: 2, name: 'pw', placeholder: '비밀번호' },
-  { id: 3, name: 'check', placeholder: '비밀번호 확인' },
-  { id: 4, name: 'name', placeholder: '이름' },
-  { id: 5, name: 'phone', placeholder: '휴대번호' },
-];
