@@ -26,11 +26,7 @@ const SignUp = () => {
     setIsChecked(checkedObj);
   };
 
-  const GotoMain = e => {
-    if (setIsChecked({ 1: true, 2: true })) {
-      e.target.disabled = true;
-    }
-  };
+  const isValid = isChecked[1] === true && isChecked[2] === true;
 
   useEffect(() => {
     if (isAllChecked.length === 3) {
@@ -72,7 +68,11 @@ const SignUp = () => {
           );
         })}
         <Link to="/signUpSecond">
-          <button className="phone" onClick={GotoMain}>
+          <button
+            className="phone"
+            disabled={isValid ? false : true}
+            style={{ opacity: `${isValid ? 1 : 0.5}` }}
+          >
             다음 페이지로
           </button>
         </Link>
