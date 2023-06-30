@@ -29,11 +29,7 @@ const SignUp = () => {
   const isValid = isChecked[1] === true && isChecked[2] === true;
 
   useEffect(() => {
-    if (isAllChecked.length === 3) {
-      setIsAll(true);
-    } else {
-      setIsAll(false);
-    }
+    setIsAll(isAllChecked.length === 3);
   }, [isAllChecked]);
 
   return (
