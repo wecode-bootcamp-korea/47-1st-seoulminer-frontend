@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import './Error.scss';
+import './NotFound.scss';
 
-const Error = () => {
+const NotFound = () => {
   return (
-    <div className="error">
+    <div className="notFound">
       <div className="container">
         <p className="title">Error - 404</p>
         <p className="text">
@@ -13,7 +13,7 @@ const Error = () => {
         <p className="text">
           요청하신 페이지의 주소가 변경, 삭제되어 찾을 수 없습니다.
         </p>
-        <Link to="/main" className="link">
+        <Link to="/" className="link">
           <button className="goToMain">메인으로</button>
         </Link>
       </div>
@@ -21,4 +21,4 @@ const Error = () => {
   );
 };
 
-export default Error;
+export default NotFound;

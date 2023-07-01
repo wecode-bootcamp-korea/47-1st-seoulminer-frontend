@@ -1,22 +1,25 @@
-.error {
+.notFound {
   display: flex;
   align-items: center;
   justify-content: center;
-
   height: 100vh;
+
   .container {
     display: flex;
     flex-direction: column;
     gap: 20px;
+
     .title {
       color: #2ac1bc;
       font-size: 50px;
       font-weight: 700;
       text-align: center;
     }
+
     .text {
       text-align: center;
     }
+
     .link {
       .goToMain {
         width: 400px;
