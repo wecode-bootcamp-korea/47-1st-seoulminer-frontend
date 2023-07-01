@@ -17,35 +17,38 @@
     font-weight: 700;
     text-align: center;
   }
+
   .subTitle {
     font-size: 20px;
   }
+
   .border {
     border: solisd 1px lightgray;
   }
+
   .fullAgreement {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
+
   .full {
     display: flex;
     align-items: center;
     gap: 5px;
+
     p {
       color: #2ac1bc;
     }
   }
+
   .phone {
     width: 430px;
     height: 60px;
-
     border: solid 0px;
     border-radius: 7px;
-
     background-color: #2ac1bc;
     color: white;
-
     font-size: 16px;
   }
 }

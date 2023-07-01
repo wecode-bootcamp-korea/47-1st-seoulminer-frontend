@@ -26,7 +26,7 @@ const SignUp = () => {
     setIsChecked(checkedObj);
   };
 
-  const isValid = isChecked[1] === true && isChecked[2] === true;
+  const isValid = isChecked[1] && isChecked[2];
 
   useEffect(() => {
     setIsAll(isAllChecked.length === 3);
