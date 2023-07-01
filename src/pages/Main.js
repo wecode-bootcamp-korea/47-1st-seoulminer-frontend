@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import MainSlide from './MainSlide';
 import Product from './Product';
-// import './Product.scss';
+import './Product.scss';
 import './Main.scss';
 
 const Main = () => {
@@ -33,6 +33,25 @@ const Main = () => {
           className="firstMainBanner"
           src="/images/firstBanner.jpg"
           alt="firstBanner"
+        />
+      </div>
+      <div className="recommendItem">
+        {mainData.map(product => (
+          <Product
+            key={product.id}
+            data={product}
+            image={{
+              thumbnail: product.thumbnail_image,
+              hover: product.hover_image,
+            }}
+          />
+        ))}
+      </div>
+      <div className="secondBanner">
+        <img
+          className="secondMainBanner"
+          src="/images/secondBanner.jpg"
+          alt="secondBanner"
         />
       </div>
       <div className="recommendItem">

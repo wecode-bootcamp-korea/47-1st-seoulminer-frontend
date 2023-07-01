@@ -17,6 +17,7 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
+      max-width: 90%;
 
       .footerLogo {
         margin: 50px 0 0 10px;
@@ -36,9 +37,10 @@
     }
   }
   .information {
+    max-width: 70%;
     position: relative;
     top: 20px;
-    left: 350px;
+    left: 21%;
     color: gray;
   }
 }

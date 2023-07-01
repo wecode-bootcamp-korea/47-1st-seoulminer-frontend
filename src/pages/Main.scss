@@ -63,10 +63,11 @@
   }
 }
 
-.firstBanner {
+.firstBanner,
+.secondBanner {
   display: flex;
   justify-content: center;
-  margin-top: 5%;
+  margin-top: 10%;
 }
 
 .bestSeller {
@@ -77,4 +78,12 @@
   height: 300px;
   margin: 5% auto;
   border: 1px solid red;
+}
+.recommendItem {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10%;
+  gap: 40px;
 }
