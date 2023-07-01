@@ -1,30 +1,34 @@
 import './ProductDetail.scss';
-// import ProductOne from './ProductOne';
 
 const ProductDetail = () => {
   const name = '글림체 자음모음 붙임딱지';
   const price = 3500;
   const number = 1;
+
   return (
     <div className="productDetail">
       <div className="top">
         <div className="title">
-          <h2>{name}</h2>
+          <p className="titleName">{name}</p>
           <p>{price.toLocaleString()}원</p>
         </div>
         <div className="fullImage">
-          <button />
+          <button className="next">next</button>
           <div className="image">
             <div className="productImage">
-              <img alt="product1" src="./images/IMG_7631 2.jpg" />
-              <img alt="product2" src="./images/cat.jpeg" />
-            </div>
-            <div className="spot">
-              <span>﹒</span>
-              <span>﹒</span>
+              <img
+                className="productImg"
+                alt="product1"
+                src="./images/IMG_7631 2.jpg"
+              />
+              <img
+                className="productImg"
+                alt="product2"
+                src="./images/IMG_7632.jpeg"
+              />
             </div>
           </div>
-          <button />
+          <button className="next">next</button>
         </div>
         <div className="right">
           <div className="border" />
@@ -34,7 +38,7 @@ const ProductDetail = () => {
             <p>오후 1시 당일배송마감</p>
           </div>
           <div className="border" />
-          <div className="pinkbox">
+          <div className="box">
             <p>{name}</p>
             <div className="price">
               <div className="countButton">
@@ -50,16 +54,15 @@ const ProductDetail = () => {
             <p>{(price * number).toLocaleString()}원</p>
           </div>
           <div className="getButton">
-            <button>장바구니</button>
-            <button>바로 구매하기</button>
+            <button className="cart">장바구니</button>
+            <button className="get">바로 구매하기</button>
           </div>
         </div>
       </div>
       <div className="border" />
       {/* <h3 className="recommend">이건 어때요?</h3> */}
-      {/* <ProductOne /> */}
+      {/* <Products /> */}
       <div className="border" />
-
       <div className="detail">
         <p>상품정보</p>
         <p>|</p>
@@ -68,13 +71,49 @@ const ProductDetail = () => {
         <p>상품후기</p>
       </div>
       <div className="border" />
-
-      <div className="table">
+      <div className="tableFull">
         <h3>상품상세정보</h3>
-        <div className="table">표 들어갈 자리</div>
+        <div className="tables">
+          {DETAIL_INFO.map(data => {
+            return (
+              <div className="table" key={data.id}>
+                <div className="name">{data.name}</div>
+                <div className="right">{data.explanation}</div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
 };
 
 export default ProductDetail;
+
+export const DETAIL_INFO = [
+  {
+    id: 1,
+    name: '제품명',
+    explanation: '상품상세설명참조',
+  },
+  {
+    id: 2,
+    name: '크기',
+    explanation: '상품상세설명참조',
+  },
+  {
+    id: 3,
+    name: '제조사 및 수입자명',
+    explanation: '상품상세설명참조',
+  },
+  {
+    id: 4,
+    name: '제조국',
+    explanation: '상품상세설명참조',
+  },
+  {
+    id: 5,
+    name: '사용연령',
+    explanation: '상품상세설명참조',
+  },
+];
