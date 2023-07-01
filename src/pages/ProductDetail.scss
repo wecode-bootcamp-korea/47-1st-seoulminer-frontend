@@ -10,6 +10,7 @@
   .top {
     display: flex;
     justify-content: space-around;
+    height: 400px;
 
     .title {
       display: flex;
@@ -17,8 +18,10 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
-      width: 200px;
+      width: 330px;
+      padding: 70px;
       .titleName {
+        color: #2ac1bc;
         font-size: 30px;
         font-weight: 700;
       }
@@ -61,15 +64,18 @@
       .delivery {
         display: flex;
         flex-direction: column;
-        padding: 10px;
-        gap: 5px;
+        padding: 20px 0px;
+        gap: 10px;
+        .delivaryTitle {
+          font-weight: 700;
+        }
       }
       .box {
         display: flex;
         flex-direction: column;
-        padding: 10px;
-        gap: 5px;
-        background-color: rgb(235, 235, 235);
+        padding: 20px 0px;
+        gap: 15px;
+
         .price {
           display: flex;
           justify-content: space-between;
@@ -77,14 +83,21 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            button {
+            .count {
               width: 20px;
               height: 20px;
+              border: solid 1px lightgray;
+              border-radius: 3px;
+              background-color: white;
+              color: grey;
             }
-            p {
+            .number {
               width: 40px;
               height: 20px;
-              border: solid 1px black;
+              padding: 2px;
+              border: solid 1px lightgray;
+              border-radius: 3px;
+              text-align: center;
             }
           }
         }
@@ -92,36 +105,104 @@
       .totalPrice {
         display: flex;
         justify-content: space-between;
-        padding: 10px;
+        padding: 17px 0px;
+        .total {
+          font-size: 20px;
+          font-weight: 700;
+        }
       }
       .getButton {
         display: flex;
         justify-content: space-between;
 
         .cart {
-          width: 70px;
-          height: 70px;
+          width: 60px;
+          height: 60px;
           border: 0;
+          border-radius: 7px;
           background-color: #2ac1bc;
+          color: white;
+
+          &:hover {
+            border: solid 1px #2ac1bc;
+            background-color: white;
+            color: #2ac1bc;
+          }
         }
         .get {
-          width: 270px;
+          width: 260px;
+          border: 0;
+          border-radius: 7px;
+          background-color: #2ac1bc;
+          color: white;
+
+          &:hover {
+            border: solid 1px #2ac1bc;
+            background-color: white;
+            color: #2ac1bc;
+          }
         }
       }
     }
   }
-  .recommend {
-    font-size: 30px;
-    text-align: center;
+  .recommendProducts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .recommend {
+      font-size: 30px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .products {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 30px;
+    }
   }
+
   .detail {
     display: flex;
     justify-content: center;
-    gap: 150px;
+    gap: 15%;
+    .gray {
+      color: lightgray;
+    }
   }
+
+  .wrap {
+    font-size: 700px;
+    text-align: center;
+  }
+
   .tableFull {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    .tableName {
+      color: #2ac1bc;
+      font-size: 20px;
+      font-weight: 700;
+    }
     .tables {
+      width: 500px;
       border: solid 1px lightgray;
+      border-bottom: 0;
+      .table {
+        display: flex;
+        border-bottom: solid 1px lightgray;
+        .name {
+          width: 150px;
+          padding: 10px;
+          border-right: solid 1px lightgray;
+          text-align: center;
+        }
+        .right {
+          padding: 10px;
+        }
+      }
     }
   }
 }

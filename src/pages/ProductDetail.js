@@ -1,9 +1,19 @@
+import { useEffect, useState } from 'react';
+import Product from '../components/Product/Product';
 import './ProductDetail.scss';
 
 const ProductDetail = () => {
   const name = '글림체 자음모음 붙임딱지';
   const price = 3500;
   const number = 1;
+
+  const [carouselDatas, setCarouselData] = useState([]);
+
+  useEffect(() => {
+    fetch('./data/MainData.json')
+      .then(response => response.json())
+      .then(data => setCarouselData(data));
+  }, []);
 
   return (
     <div className="productDetail">
@@ -33,7 +43,7 @@ const ProductDetail = () => {
         <div className="right">
           <div className="border" />
           <div className="delivery">
-            <p>배송정보</p>
+            <p className="delivaryTitle">배송정보</p>
             <p>3,000원 (30,000원 이상 구매 시 무료)</p>
             <p>오후 1시 당일배송마감</p>
           </div>
@@ -42,16 +52,16 @@ const ProductDetail = () => {
             <p>{name}</p>
             <div className="price">
               <div className="countButton">
-                <button>-</button>
-                <p>{number}</p>
-                <button>+</button>
+                <button className="count">-</button>
+                <p className="number">{number}</p>
+                <button className="count">+</button>
               </div>
               <p>{price.toLocaleString()}원</p>
             </div>
           </div>
           <div className="totalPrice">
             <p>총 금액</p>
-            <p>{(price * number).toLocaleString()}원</p>
+            <p className="total">{(price * number).toLocaleString()}원</p>
           </div>
           <div className="getButton">
             <button className="cart">장바구니</button>
@@ -60,19 +70,30 @@ const ProductDetail = () => {
         </div>
       </div>
       <div className="border" />
-      {/* <h3 className="recommend">이건 어때요?</h3> */}
-      {/* <Products /> */}
+      <div className="recommendProducts">
+        <h3 className="recommend">이건 어때요?</h3>
+        <div className="products">
+          {carouselDatas.map(data => {
+            return (
+              <Product data={data} key={data.id} width={200} height={200} />
+            );
+          })}
+        </div>
+      </div>
       <div className="border" />
       <div className="detail">
         <p>상품정보</p>
-        <p>|</p>
+        <p className="gray">|</p>
         <p>기본정보</p>
-        <p>|</p>
+        <p className="gray">|</p>
         <p>상품후기</p>
       </div>
       <div className="border" />
+
+      <p className="wrap">상세설명</p>
+
       <div className="tableFull">
-        <h3>상품상세정보</h3>
+        <p className="tableName">상품상세정보</p>
         <div className="tables">
           {DETAIL_INFO.map(data => {
             return (
