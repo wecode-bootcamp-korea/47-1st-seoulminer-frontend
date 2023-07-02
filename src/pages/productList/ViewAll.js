@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Product from '../Product';
+import SortProducts from './SortProducts';
+import TopButton from '../TopButton';
 import './ViewAll.scss';
 
 const ViewAll = () => {
@@ -22,21 +23,10 @@ const ViewAll = () => {
       <div className="productInfo">
         <p>여기에 다 있을걸요 ?</p>
       </div>
-      <div className="productsList">
-        {mainData.map(data => (
-          <Product data={data} key={data.id} />
-        ))}
+      <div className="toggle">
+        <SortProducts products={mainData} />
       </div>
-      <div className="productsList">
-        {mainData.map(data => (
-          <Product data={data} key={data.id} />
-        ))}
-      </div>
-      <div className="productsList">
-        {mainData.map(data => (
-          <Product data={data} key={data.id} />
-        ))}
-      </div>
+      <TopButton />
     </div>
   );
 };

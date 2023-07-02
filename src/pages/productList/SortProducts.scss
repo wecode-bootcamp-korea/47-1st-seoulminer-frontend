@@ -1,0 +1,18 @@
+.toggle {
+  button {
+    padding: 10px;
+    border: none;
+    background-color: white;
+    font-size: 15px;
+    &:hover {
+      color: #2ac1bc;
+    }
+  }
+
+  .toggleContent {
+    position: absolute;
+    width: 100px;
+    height: 130px;
+    border: 1px solid lightgrey;
+  }
+}
