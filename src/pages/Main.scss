@@ -7,6 +7,7 @@
 
 .mainSlide {
   position: relative;
+  top: 100px;
   max-width: 100%;
 
   & .mainPicture1 {
@@ -46,7 +47,7 @@
 .dots {
   display: flex;
   position: absolute;
-  top: 580px;
+  top: 700px;
   right: 0;
   left: 0;
   justify-content: center;
@@ -64,10 +65,12 @@
 }
 
 .firstBanner,
-.secondBanner {
+.secondBanner,
+.thirdBanner {
   display: flex;
   justify-content: center;
-  margin-top: 10%;
+  margin-top: 15%;
+  margin-bottom: 10%;
 }
 
 .bestSeller {

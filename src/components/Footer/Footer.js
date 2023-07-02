@@ -8,7 +8,13 @@ const Footer = () => {
     <footer className="footer">
       <div className="footerContainer">
         <div className="footerInfo">
-          <p className="footerLogo">꿀빵 앙꼬</p>
+          <span className="logo">
+            <img
+              className="footerLogo"
+              src="/images/logo.png"
+              alt="footerLogo"
+            />
+          </span>
           {footerInfoData.map((item, index) => (
             <Link key={index} to={item.path}>
               <span>{item.text}</span>

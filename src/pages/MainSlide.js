@@ -11,7 +11,6 @@ const slideImages = [
   '/images/MainSlide3.png',
   '/images/MainSlide4.png',
   '/images/MainSlide5.png',
-  '/images/MainSlide6.png',
 ];
 
 const MainSlide = () => {

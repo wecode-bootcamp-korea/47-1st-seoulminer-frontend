@@ -33,7 +33,9 @@ const Nav = () => {
   return (
     <header className="nav">
       <div className="navContainer">
-        <span className="mainLogo">꿀빵 앙꼬</span>
+        <span className="logo">
+          <img className="mainLogo" src="/images/logo.png" alt="navLogo" />
+        </span>
         <div className="navMenu">
           <div className="link">
             {NavData.map((link, index) => (

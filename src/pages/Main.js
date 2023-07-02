@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import MainSlide from './MainSlide';
 import Product from './Product';
+import TopButton from './TopButton';
 import './Product.scss';
 import './Main.scss';
 
@@ -28,10 +29,11 @@ const Main = () => {
           <FontAwesomeIcon icon={faCircle} className="dot" />
         </button>
       </div>
+      <TopButton />
       <div className="firstBanner">
         <img
           className="firstMainBanner"
-          src="/images/firstBanner.jpg"
+          src="/images/firstBanner.png"
           alt="firstBanner"
         />
       </div>
@@ -50,7 +52,7 @@ const Main = () => {
       <div className="secondBanner">
         <img
           className="secondMainBanner"
-          src="/images/secondBanner.jpg"
+          src="/images/secondBanner.png"
           alt="secondBanner"
         />
       </div>
@@ -65,6 +67,13 @@ const Main = () => {
             }}
           />
         ))}
+      </div>
+      <div className="thirdBanner">
+        <img
+          className="thirdMainBanner"
+          src="/images/thirdBanner.png"
+          alt="thirdBanner"
+        />
       </div>
     </div>
   );
