@@ -1,0 +1,37 @@
+.productListTitle {
+  display: flex;
+  justify-content: space-between;
+}
+.titleContainer {
+  display: flex;
+  padding-top: 180px;
+  padding-left: 10px;
+  gap: 10px;
+}
+.title {
+  padding-left: 140px;
+  font-size: 45px;
+  font-weight: 700;
+}
+.secondTitle {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.productInfo {
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 30px;
+  padding-bottom: 80px;
+  padding-left: 10px;
+  border-bottom: 1px solid lightgray;
+}
+.productsList {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10%;
+  gap: 40px;
+}

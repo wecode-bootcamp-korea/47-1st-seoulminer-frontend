@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './pages/Main';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
-import Products from './pages/Products';
+import ViewAll from './pages/productList/ViewAll';
+import ProductList from './pages/productList/ViewAll';
 
 const Router = () => {
   return (
@@ -11,7 +12,8 @@ const Router = () => {
       <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/ViewAll" element={<ViewAll />} />
+        <Route path="/ProductList" element={<ProductList />} />
       </Routes>
       <Footer />
     </BrowserRouter>
