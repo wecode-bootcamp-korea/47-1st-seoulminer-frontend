@@ -4,9 +4,11 @@
   flex-direction: column;
   padding: 50px;
   gap: 20px;
+
   .border {
     border-top: solid 1px lightgray;
   }
+
   .top {
     display: flex;
     justify-content: space-around;
@@ -20,12 +22,14 @@
       gap: 10px;
       width: 330px;
       padding: 70px;
+
       .titleName {
         color: #2ac1bc;
         font-size: 30px;
         font-weight: 700;
       }
     }
+
     .fullImage {
       display: flex;
       align-items: center;
@@ -41,7 +45,6 @@
       }
 
       .image {
-        // display: flex;
         .productImage {
           width: 400px;
           height: 400px;
@@ -61,15 +64,18 @@
       justify-content: center;
       width: 350px;
       gap: 15px;
+
       .delivery {
         display: flex;
         flex-direction: column;
         padding: 20px 0px;
         gap: 10px;
+
         .delivaryTitle {
           font-weight: 700;
         }
       }
+
       .box {
         display: flex;
         flex-direction: column;
@@ -79,10 +85,12 @@
         .price {
           display: flex;
           justify-content: space-between;
+
           .countButton {
             display: flex;
             align-items: center;
             gap: 5px;
+
             .count {
               width: 20px;
               height: 20px;
@@ -91,6 +99,7 @@
               background-color: white;
               color: grey;
             }
+
             .number {
               width: 40px;
               height: 20px;
@@ -106,11 +115,13 @@
         display: flex;
         justify-content: space-between;
         padding: 17px 0px;
+
         .total {
           font-size: 20px;
           font-weight: 700;
         }
       }
+
       .getButton {
         display: flex;
         justify-content: space-between;
@@ -129,6 +140,7 @@
             color: #2ac1bc;
           }
         }
+
         .get {
           width: 260px;
           border: 0;
@@ -149,11 +161,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     .recommend {
       font-size: 30px;
       font-weight: 700;
       text-align: center;
     }
+
     .products {
       display: flex;
       justify-content: center;
@@ -166,6 +180,7 @@
     display: flex;
     justify-content: center;
     gap: 15%;
+
     .gray {
       color: lightgray;
     }
@@ -181,24 +196,29 @@
     flex-direction: column;
     align-items: center;
     gap: 15px;
+
     .tableName {
       color: #2ac1bc;
       font-size: 20px;
       font-weight: 700;
     }
+
     .tables {
       width: 500px;
       border: solid 1px lightgray;
       border-bottom: 0;
+
       .table {
         display: flex;
         border-bottom: solid 1px lightgray;
+
         .name {
           width: 150px;
           padding: 10px;
           border-right: solid 1px lightgray;
           text-align: center;
         }
+
         .right {
           padding: 10px;
         }
