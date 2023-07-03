@@ -1,10 +1,10 @@
 const NavData = [
-  { text: '전체', path: '/ViewAll' },
-  { text: '문구', path: '' },
-  { text: '리빙', path: '' },
-  { text: '책/매거진F', path: '' },
-  { text: '콜라보레이션', path: '' },
-  { text: '명예의 전당', path: '' },
+  { text: '전체', path: '/all' },
+  { text: '문구', path: '/toy' },
+  { text: '리빙', path: '/living' },
+  { text: '책/매거진F', path: '/books' },
+  { text: '의류', path: '/closets' },
+  { text: '콜라보레이션', path: '/collaboration' },
 ];
 
 export default NavData;
