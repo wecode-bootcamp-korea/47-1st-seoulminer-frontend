@@ -4,7 +4,7 @@ import Main from './pages/Main';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 import Login from './pages/Login';
-import Products from './pages/Products';
+import ProductDetail from './pages/ProductDetail';
 import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
 
@@ -14,7 +14,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="" element={<Main />} />
-          <Route path="products" element={<Products />} />
+          <Route path="productDetail" element={<ProductDetail />} />
           <Route path="login" element={<Login />} />
           <Route path="/signUp" element={<SignUp />} />
         </Route>
