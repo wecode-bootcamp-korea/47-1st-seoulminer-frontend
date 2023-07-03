@@ -26,33 +26,5 @@
     "hover_image": "/images/IMG_7631 2.jpg",
     "name": "상품4",
     "price": 100000
-  },
-  {
-    "id": 5,
-    "thumbnail_image": "/images/IMG_7632.jpg",
-    "hover_image": "/images/IMG_7631 2.jpg",
-    "name": "상품5",
-    "price": 300000
-  },
-  {
-    "id": 6,
-    "thumbnail_image": "/images/IMG_7632.jpg",
-    "hover_image": "/images/IMG_7631 2.jpg",
-    "name": "상품6",
-    "price": 300000
-  },
-  {
-    "id": 7,
-    "thumbnail_image": "/images/IMG_7632.jpg",
-    "hover_image": "/images/IMG_7631 2.jpg",
-    "name": "상품7",
-    "price": 300000
-  },
-  {
-    "id": 8,
-    "thumbnail_image": "/images/IMG_7632.jpg",
-    "hover_image": "/images/IMG_7631 2.jpg",
-    "name": "상품8",
-    "price": 300000
   }
 ]
