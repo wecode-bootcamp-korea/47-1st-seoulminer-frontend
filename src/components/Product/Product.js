@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import './Product.scss';
 
-const Product = ({ data }) => {
+const Product = ({ data, width, height }) => {
   const [isHover, setIsHover] = useState(false);
   const { id, thumbnail_image, hover_image, name, price } = data;
   return (
@@ -21,6 +21,10 @@ const Product = ({ data }) => {
           <div className="itemImgContainer">
             <img
               className="itemImg"
+              style={{
+                width: width ? width : 300,
+                height: height ? height : 300,
+              }}
               src={isHover ? hover_image : thumbnail_image}
               alt="itemImg"
             />
