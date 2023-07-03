@@ -9,7 +9,7 @@ const SignUpSecond = () => {
   let emailRegular =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
-  let pwRegular = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{10,16}$/;
+  let pwRegular = /^(?=.*[a-zA-Z])(?=.*[?!@#$%^*+=-])(?=.*[0-9]).{10,16}$/;
 
   const emailCondition = emailRegular.test(inputValue.email);
   const passwordCondition = pwRegular.test(inputValue.password);
@@ -59,6 +59,33 @@ const SignUpSecond = () => {
       });
   };
 
+  const INPUT_DATA = [
+    { id: 1, name: 'email', placeholder: '이메일', className: emailCondition },
+    {
+      id: 2,
+      name: 'password',
+      placeholder: '비밀번호',
+      className: passwordCondition,
+    },
+    {
+      id: 3,
+      name: 'pwCheck',
+      placeholder: '비밀번호 확인',
+      className: pwCheckCondition,
+    },
+    { id: 4, name: 'name', placeholder: '이름', className: nameCondition },
+    {
+      id: 5,
+      name: 'phoneNumber',
+      placeholder: '휴대번호',
+      className: phoneNumberCondition,
+    },
+  ];
+
+  const makeClassName = className => {
+    return className ? 'inputTag' : 'inputTag red';
+  };
+
   return (
     <div className="signUpSecond">
       <div className="fullContainer">
@@ -67,46 +94,17 @@ const SignUpSecond = () => {
         <div className="full">
           <p className="info">회원정보</p>
           <div className="fullInput">
-            <input
-              name="email"
-              placeholder="이메일"
-              className={`inputTag ${emailCondition ? '' : 'red'}`}
-              onInput={e => {
-                handleInput(e);
-              }}
-            />
-            <input
-              name="password"
-              placeholder="비밀번호"
-              className={`inputTag ${passwordCondition ? '' : 'red'}`}
-              onInput={e => {
-                handleInput(e);
-              }}
-            />
-            <input
-              name="pwCheck"
-              placeholder="비밀번호 확인"
-              className={`inputTag ${pwCheckCondition ? '' : 'red'}`}
-              onInput={e => {
-                handleInput(e);
-              }}
-            />
-            <input
-              name="name"
-              placeholder="이름"
-              className={`inputTag ${nameCondition ? '' : 'red'}`}
-              onInput={e => {
-                handleInput(e);
-              }}
-            />
-            <input
-              name="phoneNumber"
-              placeholder="휴대번호"
-              className={`inputTag ${phoneNumberCondition ? '' : 'red'}`}
-              onInput={e => {
-                handleInput(e);
-              }}
-            />
+            {INPUT_DATA.map(({ id, name, placeholder, className }) => {
+              return (
+                <input
+                  key={id}
+                  name={name}
+                  placeholder={placeholder}
+                  className={makeClassName(className)}
+                  onChange={handleInput}
+                />
+              );
+            })}
           </div>
         </div>
         <button
