@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import SortProducts from './SortProducts';
 import TopButton from '../TopButton';
 import './ViewAll.scss';
+import ProductListData from './ProductListData';
 
 const ViewAll = () => {
   const [mainData, setMainData] = useState([]);
@@ -13,21 +14,25 @@ const ViewAll = () => {
   }, []);
 
   return (
-    <div className="productListHeader">
-      <div className="productListTitle">
-        <div className="titleContainer">
-          <p className="title">전체</p>
-          <p className="secondTitle"> | 백만 개 보다는 적음</p>
+    <>
+      {ProductListData.map((data, index) => (
+        <div className="productListHeader" key={index}>
+          <div className="productListTitle">
+            <div className="titleContainer">
+              <p className="title">{data.title}</p>
+              <p className="secondTitle"> | {data.secondTitle}</p>
+            </div>
+          </div>
+          <div className="productInfo">
+            <p>{data.productInfo}</p>
+          </div>
+          <div className="toggle">
+            <SortProducts products={mainData} />
+          </div>
+          <TopButton />
         </div>
-      </div>
-      <div className="productInfo">
-        <p>여기에 다 있을걸요 ?</p>
-      </div>
-      <div className="toggle">
-        <SortProducts products={mainData} />
-      </div>
-      <TopButton />
-    </div>
+      ))}
+    </>
   );
 };
 

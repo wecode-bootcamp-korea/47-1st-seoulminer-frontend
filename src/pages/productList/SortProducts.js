@@ -8,6 +8,12 @@ const SortProducts = ({ products }) => {
   const [isToggleOpen, setIsToggleOpen] = useState(false);
   const [selectedSort, setSelectedSort] = useState('');
 
+  // useEffect(() => {
+  //   fetch('/data/MainData.json')
+  //     .then(response => response.json())
+  //     .then(data => setSortedData(data));
+  // }, []);
+
   useEffect(() => {
     setSortedData([...products]);
   }, [products]);
