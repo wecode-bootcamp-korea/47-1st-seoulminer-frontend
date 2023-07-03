@@ -5,6 +5,7 @@ import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 import Login from './pages/Login';
 import Products from './pages/Products';
+import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
 
 const Router = () => {
@@ -15,6 +16,7 @@ const Router = () => {
           <Route path="" element={<Main />} />
           <Route path="products" element={<Products />} />
           <Route path="login" element={<Login />} />
+          <Route path="/signUp" element={<SignUp />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

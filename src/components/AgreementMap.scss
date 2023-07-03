@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #2ac1bc;
+
+    .full {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+
+  .hidden {
+    width: 430px;
+    height: 100px;
+    padding: 10px;
+    overflow: scroll;
+    border: solid 1px #2ac1bc;
+  }
+}
