@@ -4,8 +4,9 @@ import Main from './pages/Main';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 import Login from './pages/Login';
-import SignUpSecond from './pages/SignUpSecond';
+import ProductDetail from './pages/ProductDetail';
 import SignUp from './pages/SignUp';
+import SignUpSecond from './pages/SignUpSecond';
 import NotFound from './pages/NotFound';
 
 const Router = () => {
@@ -14,9 +15,10 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="" element={<Main />} />
-          <Route path="signUpSecond" element={<SignUpSecond />} />
+          <Route path="productDetail" element={<ProductDetail />} />
           <Route path="login" element={<Login />} />
           <Route path="/signUp" element={<SignUp />} />
+          <Route path="signUpSecond" element={<SignUpSecond />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
