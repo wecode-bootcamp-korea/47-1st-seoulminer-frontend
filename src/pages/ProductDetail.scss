@@ -181,16 +181,27 @@
     justify-content: center;
     gap: 15%;
 
+    .detailBtn {
+      border: 0;
+      background-color: white;
+      color: #2ac1bc;
+      font-size: 25px;
+    }
     .gray {
       color: lightgray;
     }
   }
 
   .wrap {
+    padding: 20px;
     font-size: 700px;
     text-align: center;
   }
-
+  .non {
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
   .tableFull {
     display: flex;
     flex-direction: column;

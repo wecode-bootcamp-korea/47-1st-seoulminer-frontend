@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Product from '../components/Product/Product';
+import RegularInfo from '../components/RegularInfo';
 import './ProductDetail.scss';
 
 const ProductDetail = () => {
@@ -8,6 +9,7 @@ const ProductDetail = () => {
   const number = 1;
 
   const [carouselDatas, setCarouselData] = useState([]);
+  const [currentTab, setCurrentTab] = useState('First');
 
   useEffect(() => {
     fetch('./data/MainData.json')
@@ -82,15 +84,20 @@ const ProductDetail = () => {
       </div>
       <div className="border" />
       <div className="detail">
-        <p>상품정보</p>
+        <button className="detailBtn" onClick={() => setCurrentTab('First')}>
+          상품정보
+        </button>
         <p className="gray">|</p>
-        <p>기본정보</p>
+        <button className="detailBtn" onClick={() => setCurrentTab('Second')}>
+          기본정보
+        </button>
         <p className="gray">|</p>
-        <p>상품후기</p>
+        <button className="detailBtn" onClick={() => setCurrentTab('Third')}>
+          상품후기
+        </button>
       </div>
       <div className="border" />
-
-      <p className="wrap">상세설명</p>
+      <div className="contents">{MAPPING_OBJ[currentTab]}</div>
 
       <div className="tableFull">
         <p className="tableName">상품상세정보</p>
@@ -110,6 +117,12 @@ const ProductDetail = () => {
 };
 
 export default ProductDetail;
+
+const MAPPING_OBJ = {
+  First: <p className="wrap">상세설명</p>,
+  Second: <RegularInfo />,
+  Third: <p className="non">앗!! 후기가 없어요 ㅠㅠ</p>,
+};
 
 export const DETAIL_INFO = [
   {
