@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SignUpSecond.scss';
+import SignInput from '../components/SignInput';
 
 const SignUpSecond = () => {
   const [inputValue, setInputValue] = useState({});
@@ -37,12 +38,7 @@ const SignUpSecond = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        email: inputValue.email,
-        password: inputValue.pw,
-        name: inputValue.name,
-        phoneNumber: inputValue.phone,
-      }),
+      body: JSON.stringify(inputValue),
     })
       .then(response => {
         return response.json();
@@ -72,6 +68,22 @@ const SignUpSecond = () => {
         <div className="full">
           <p className="info">회원정보</p>
           <div className="fullInput">
+            {SIGN_UP_INPUT_DATA.map(data => {
+              const { id, name, placeholder, className, type } = data;
+              return (
+                <SignInput
+                  key={id}
+                  name={name}
+                  placeholder={placeholder}
+                  className={className}
+                  handle={e => {
+                    handleInput(e);
+                  }}
+                  type={type}
+                  emailCondition={emailCondition}
+                />
+              );
+            })}
             <input
               name="email"
               placeholder="이메일"
@@ -81,7 +93,7 @@ const SignUpSecond = () => {
               }}
             />
             <input
-              name="pw"
+              name="password"
               placeholder="비밀번호"
               className={`inputTag ${pwCondition ? '' : 'red'}`}
               onInput={e => {
@@ -105,7 +117,7 @@ const SignUpSecond = () => {
               }}
             />
             <input
-              name="phone"
+              name="phoneNumber"
               placeholder="휴대번호"
               className={`inputTag ${phoneCondition ? '' : 'red'}`}
               onInput={e => {
@@ -138,3 +150,41 @@ const SignUpSecond = () => {
 };
 
 export default SignUpSecond;
+
+export const SIGN_UP_INPUT_DATA = [
+  {
+    id: 1,
+    name: 'email',
+    placeholder: '이메일',
+    className: "`inputTag ${emailCondition ? '' : 'red'}`",
+    type: 'text',
+  },
+  {
+    id: 2,
+    name: 'password',
+    placeholder: '비밀번호',
+    className: "{`inputTag ${pwCondition ? '' : 'red'}`}",
+    type: 'text',
+  },
+  {
+    id: 3,
+    name: 'pwCheck',
+    placeholder: '비밀번호 확인',
+    className: "{`inputTag ${pwCheckCondition ? '' : 'red'}`}",
+    type: 'text',
+  },
+  {
+    id: 4,
+    name: 'name',
+    placeholder: '이름',
+    className: "{`inputTag ${nameCondition ? '' : 'red'}`}",
+    type: 'text',
+  },
+  {
+    id: 5,
+    name: 'phoneNumber',
+    placeholder: '전화번호',
+    className: "{`inputTag ${phoneCondition ? '' : 'red'}`}",
+    type: 'text',
+  },
+];
