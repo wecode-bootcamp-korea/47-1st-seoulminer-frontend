@@ -1,46 +1,133 @@
 import { useEffect, useState } from 'react';
 import Product from '../components/Product/Product';
 import RegularInfo from '../components/RegularInfo';
+import Count from '../components/Count/Count';
+import ProductInfo from '../components/ProductInfo';
+import { useParams } from 'react-router-dom';
 import './ProductDetail.scss';
 
 const ProductDetail = () => {
-  const name = '글림체 자음모음 붙임딱지';
-  const price = 3500;
-  const number = 1;
+  const params = useParams();
+  const productID = params.id;
+
+  const token = localStorage.getItem('accessToken');
 
   const [carouselDatas, setCarouselData] = useState([]);
+  const [product, setProduct] = useState([]);
   const [currentTab, setCurrentTab] = useState('First');
+  const [imgChange, setImgChange] = useState(false);
+  const [number, setNumber] = useState(1);
 
   useEffect(() => {
-    fetch('./data/MainData.json')
+    fetch('/data/MainData.json')
+      // fetch('http://10.58.52.154:3000/products/list')
       .then(response => response.json())
-      .then(data => setCarouselData(data));
+      .then(result => setCarouselData(result));
+    // .then(result => setCarouselData(result.data));
   }, []);
+
+  useEffect(() => {
+    fetch('/data/DetailData.json')
+      // fetch(`http://10.58.52.154:3000/products/${productID}`)
+      .then(response => response.json())
+      .then(result => setProduct(result));
+    // .then(result => setProduct(result.data));
+  }, []);
+  // }, [productID]);
+
+  // console.log(carouselDatas);
+  const goToCart = () => {
+    fetch('./carts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token,
+      },
+      body: JSON.stringify({
+        productId: product.productId,
+        quantity: number,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === 'Product Added to Cart') {
+          alert('상품 추가 성공');
+        } else if (data.message === 'TOKEN_NOT_FOUND') {
+          alert('토큰값이 request안에 없음');
+        } else if (data.message === 'USER_NOT_FOUND') {
+          alert('토큰값에 해당하는 유저가 존재하지 않음');
+        } else if (data.message === 'INVALID_TOKEN') {
+          alert('토큰값이 올바르지 않음');
+        } else if (data.message === 'FAILED_TO_UPDATE_CART') {
+          alert('상품 추가 실패 시');
+        } else if (data.message === 'KEY_ERROR') {
+          alert('키에러');
+        }
+      });
+  };
+
+  const goToBuy = () => {
+    fetch('./carts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem('accessToken'),
+      },
+      body: JSON.stringify({
+        productId: product.productId,
+        quantity: number,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === '구매성공') {
+          alert('상품 구매 성공');
+        }
+      });
+  };
+
+  // if (product) return null;
+
+  let totalPrice = 0;
+  let price = 0;
+
+  if (product.length > 0) {
+    totalPrice = Math.floor(product[0].productPrice * number).toLocaleString();
+    price = Math.floor(product[0].productPrice).toLocaleString();
+  }
 
   return (
     <div className="productDetail">
       <div className="top">
         <div className="title">
-          <p className="titleName">{name}</p>
-          <p>{price.toLocaleString()}원</p>
+          <p className="titleName">{product?.productName}</p>
+          <p>{price}원</p>
         </div>
         <div className="fullImage">
           <button className="next">next</button>
           <div className="image">
-            <div className="productImage">
+            <div className="allImage">
               <img
-                className="productImg"
+                className="tumbnailImg"
                 alt="product1"
-                src="./images/IMG_7631 2.jpg"
+                src={product[0]?.productThumbnailImage}
               />
               <img
-                className="productImg"
+                className="hoverImg"
+                style={{ opacity: imgChange ? 1 : 0 }}
                 alt="product2"
-                src="./images/IMG_7632.jpeg"
+                src={product[0]?.productHoverImage}
               />
             </div>
           </div>
-          <button className="next">next</button>
+          <button
+            className="next"
+            onClick={() => {
+              setImgChange(!imgChange);
+            }}
+          >
+            next
+          </button>
         </div>
         <div className="right">
           <div className="border" />
@@ -51,23 +138,30 @@ const ProductDetail = () => {
           </div>
           <div className="border" />
           <div className="box">
-            <p>{name}</p>
+            <p>{product.productName}</p>
             <div className="price">
               <div className="countButton">
-                <button className="count">-</button>
-                <p className="number">{number}</p>
-                <button className="count">+</button>
+                <Count number={number} setNumber={setNumber} />
               </div>
-              <p>{price.toLocaleString()}원</p>
+              <p>{price}원</p>
             </div>
           </div>
           <div className="totalPrice">
             <p>총 금액</p>
-            <p className="total">{(price * number).toLocaleString()}원</p>
+            <p className="total">{totalPrice}원</p>
           </div>
           <div className="getButton">
-            <button className="cart">장바구니</button>
-            <button className="get">바로 구매하기</button>
+            <button className="cart" onClick={() => goToCart()}>
+              장바구니
+            </button>
+            <button
+              className="get"
+              onClick={() => {
+                goToBuy();
+              }}
+            >
+              바로 구매하기
+            </button>
           </div>
         </div>
       </div>
@@ -75,11 +169,17 @@ const ProductDetail = () => {
       <div className="recommendProducts">
         <h3 className="recommend">이건 어때요?</h3>
         <div className="products">
-          {carouselDatas.map(data => {
-            return (
-              <Product data={data} key={data.id} width={200} height={200} />
-            );
-          })}
+          {carouselDatas.length > 0 &&
+            carouselDatas.slice(0, 4).map(data => {
+              return (
+                <Product
+                  data={data}
+                  key={`datas-${data.productId}`}
+                  width={200}
+                  height={200}
+                />
+              );
+            })}
         </div>
       </div>
       <div className="border" />
@@ -98,20 +198,6 @@ const ProductDetail = () => {
       </div>
       <div className="border" />
       <div className="contents">{MAPPING_OBJ[currentTab]}</div>
-
-      <div className="tableFull">
-        <p className="tableName">상품상세정보</p>
-        <div className="tables">
-          {DETAIL_INFO.map(data => {
-            return (
-              <div className="table" key={data.id}>
-                <div className="name">{data.name}</div>
-                <div className="right">{data.explanation}</div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
     </div>
   );
 };
@@ -119,35 +205,7 @@ const ProductDetail = () => {
 export default ProductDetail;
 
 const MAPPING_OBJ = {
-  First: <p className="wrap">상세설명</p>,
+  First: <ProductInfo />,
   Second: <RegularInfo />,
   Third: <p className="non">앗!! 후기가 없어요 ㅠㅠ</p>,
 };
-
-export const DETAIL_INFO = [
-  {
-    id: 1,
-    name: '제품명',
-    explanation: '상품상세설명참조',
-  },
-  {
-    id: 2,
-    name: '크기',
-    explanation: '상품상세설명참조',
-  },
-  {
-    id: 3,
-    name: '제조사 및 수입자명',
-    explanation: '상품상세설명참조',
-  },
-  {
-    id: 4,
-    name: '제조국',
-    explanation: '상품상세설명참조',
-  },
-  {
-    id: 5,
-    name: '사용연령',
-    explanation: '상품상세설명참조',
-  },
-];

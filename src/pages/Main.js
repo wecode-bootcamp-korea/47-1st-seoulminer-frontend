@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import MainSlide from './MainSlide';
-import Product from './Product';
+import Product from '../components/Product/Product';
 import TopButton from './TopButton';
-import './Product.scss';
 import './Main.scss';
 
 const Main = () => {
