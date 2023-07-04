@@ -1,106 +1,23 @@
 import { useEffect, useState } from 'react';
 import Product from '../components/Product/Product';
 import RegularInfo from '../components/RegularInfo';
-import Count from '../components/Count/Count';
-import ProductInfo from '../components/ProductInfo';
-import { useParams } from 'react-router-dom';
 import './ProductDetail.scss';
 
 const ProductDetail = () => {
-  const params = useParams();
-  const productID = params.id;
-
-  const token = localStorage.getItem('accessToken');
-
   const [carouselDatas, setCarouselData] = useState([]);
-  const [product, setProduct] = useState([]);
   const [currentTab, setCurrentTab] = useState('First');
-  const [imgChange, setImgChange] = useState(false);
-  const [number, setNumber] = useState(1);
 
   useEffect(() => {
-    fetch('/data/MainData.json')
-      // fetch('http://10.58.52.154:3000/products/list')
+    fetch('./data/MainData.json')
       .then(response => response.json())
-      .then(result => setCarouselData(result));
-    // .then(result => setCarouselData(result.data));
+      .then(data => setCarouselData(data));
   }, []);
-
-  useEffect(() => {
-    fetch('/data/DetailData.json')
-      // fetch(`http://10.58.52.154:3000/products/${productID}`)
-      .then(response => response.json())
-      .then(result => setProduct(result));
-    // .then(result => setProduct(result.data));
-  }, []);
-  // }, [productID]);
-
-  // console.log(carouselDatas);
-  const goToCart = () => {
-    fetch('./carts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: token,
-      },
-      body: JSON.stringify({
-        productId: product.productId,
-        quantity: number,
-      }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.message === 'Product Added to Cart') {
-          alert('상품 추가 성공');
-        } else if (data.message === 'TOKEN_NOT_FOUND') {
-          alert('토큰값이 request안에 없음');
-        } else if (data.message === 'USER_NOT_FOUND') {
-          alert('토큰값에 해당하는 유저가 존재하지 않음');
-        } else if (data.message === 'INVALID_TOKEN') {
-          alert('토큰값이 올바르지 않음');
-        } else if (data.message === 'FAILED_TO_UPDATE_CART') {
-          alert('상품 추가 실패 시');
-        } else if (data.message === 'KEY_ERROR') {
-          alert('키에러');
-        }
-      });
-  };
-
-  const goToBuy = () => {
-    fetch('./carts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem('accessToken'),
-      },
-      body: JSON.stringify({
-        productId: product.productId,
-        quantity: number,
-      }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.message === '구매성공') {
-          alert('상품 구매 성공');
-        }
-      });
-  };
-
-  // if (product) return null;
-
-  let totalPrice = 0;
-  let price = 0;
-
-  if (product.length > 0) {
-    totalPrice = Math.floor(product[0].productPrice * number).toLocaleString();
-    price = Math.floor(product[0].productPrice).toLocaleString();
-  }
 
   return (
     <div className="productDetail">
       <div className="top">
         <div className="title">
-          <p className="titleName">{product?.productName}</p>
+          <p className="titleName">{product[0]?.productName}</p>
           <p>{price}원</p>
         </div>
         <div className="fullImage">
@@ -138,7 +55,7 @@ const ProductDetail = () => {
           </div>
           <div className="border" />
           <div className="box">
-            <p>{product.productName}</p>
+            <p>{product[0].productName}</p>
             <div className="price">
               <div className="countButton">
                 <Count number={number} setNumber={setNumber} />
@@ -169,17 +86,11 @@ const ProductDetail = () => {
       <div className="recommendProducts">
         <h3 className="recommend">이건 어때요?</h3>
         <div className="products">
-          {carouselDatas.length > 0 &&
-            carouselDatas.slice(0, 4).map(data => {
-              return (
-                <Product
-                  data={data}
-                  key={`datas-${data.productId}`}
-                  width={200}
-                  height={200}
-                />
-              );
-            })}
+          {carouselDatas.map(data => {
+            return (
+              <Product data={data} key={data.id} width={200} height={200} />
+            );
+          })}
         </div>
       </div>
       <div className="border" />
@@ -205,7 +116,7 @@ const ProductDetail = () => {
 export default ProductDetail;
 
 const MAPPING_OBJ = {
-  First: <ProductInfo />,
+  First: <p className="wrap">상세설명</p>,
   Second: <RegularInfo />,
   Third: <p className="non">앗!! 후기가 없어요 ㅠㅠ</p>,
 };
