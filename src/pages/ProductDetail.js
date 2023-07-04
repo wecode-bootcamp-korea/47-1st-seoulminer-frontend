@@ -20,17 +20,20 @@ const ProductDetail = () => {
 
   useEffect(() => {
     fetch('/data/MainData.json')
+      // fetch('http://10.58.52.154:3000/products/list')
       .then(response => response.json())
-      .then(data => setCarouselData(data));
+      .then(result => setCarouselData(result));
+    // .then(result => setCarouselData(result.data));
   }, []);
 
   useEffect(() => {
     fetch('/data/DetailData.json')
+      // fetch(`http://10.58.52.154:3000/products/${productID}`)
       .then(response => response.json())
-      .then(result => {
-        setProduct(result[0]);
-      });
+      .then(result => setProduct(result));
+    // .then(result => setProduct(result.data));
   }, []);
+  // }, [productID]);
 
   const goToCart = () => {
     fetch('./carts', {
@@ -82,10 +85,13 @@ const ProductDetail = () => {
       });
   };
 
-  if (!product) return null;
+  let totalPrice = 0;
+  let price = 0;
 
-  const totalPrice = (product.productPrice * number).toLocaleString();
-  const price = product?.productPrice?.toLocaleString();
+  if (product.length > 0) {
+    totalPrice = Math.floor(product[0].productPrice * number).toLocaleString();
+    price = Math.floor(product[0].productPrice).toLocaleString();
+  }
 
   return (
     <div className="productDetail">
@@ -101,13 +107,13 @@ const ProductDetail = () => {
               <img
                 className="tumbnailImg"
                 alt="product1"
-                src={product?.productThumbnailImage}
+                src={product[0]?.productThumbnailImage}
               />
               <img
                 className="hoverImg"
                 style={{ opacity: imgChange ? 1 : 0 }}
                 alt="product2"
-                src={product?.productHoverImage}
+                src={product[0]?.productHoverImage}
               />
             </div>
           </div>
@@ -160,16 +166,17 @@ const ProductDetail = () => {
       <div className="recommendProducts">
         <h3 className="recommend">이건 어때요?</h3>
         <div className="products">
-          {carouselDatas.map(data => {
-            return (
-              <Product
-                data={data}
-                key={`data-${data.id}`}
-                width={200}
-                height={200}
-              />
-            );
-          })}
+          {carouselDatas.length > 0 &&
+            carouselDatas.slice(0, 4).map(data => {
+              return (
+                <Product
+                  data={data}
+                  key={`datas-${data.productId}`}
+                  width={200}
+                  height={200}
+                />
+              );
+            })}
         </div>
       </div>
       <div className="border" />
