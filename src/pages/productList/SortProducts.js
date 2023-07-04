@@ -3,7 +3,6 @@ import Product from '../Product';
 import './SortProducts.scss';
 
 const SortProducts = () => {
-  // const [mainData, setMainData] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedButton, setSelectedButton] = useState('최신순');
   const [sortedData, setSortedData] = useState([]);
@@ -12,13 +11,12 @@ const SortProducts = () => {
   //   fetch('/backend-api-endpoint')
   //     .then(response => response.json())
   //     .then(data => {
-  //       setMainData(data);
   //       setSortedData(data);
   //     });
   // }, []);
 
   const toggleContent = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(isOpen => !isOpen);
   };
 
   const sortProducts = sortBy => {
@@ -40,6 +38,10 @@ const SortProducts = () => {
     setIsOpen(false);
   };
 
+  const toggleCondition = condition => {
+    return selectedButton === condition ? 'sortBtn selected' : 'sortBtn';
+  };
+
   return (
     <div className="toggleContainer">
       <div className="toggle">
@@ -50,9 +52,7 @@ const SortProducts = () => {
           <ul className="toggleContent">
             <li>
               <button
-                className={`sortBtn ${
-                  selectedButton === '높은 가격순' ? 'selected' : ''
-                }`}
+                className={toggleCondition('높은 가격순')}
                 onClick={() => sortProducts('높은 가격순')}
               >
                 높은 가격순
@@ -60,9 +60,7 @@ const SortProducts = () => {
             </li>
             <li>
               <button
-                className={`sortBtn ${
-                  selectedButton === '낮은 가격순' ? 'selected' : ''
-                }`}
+                className={toggleCondition('낮은 가격순')}
                 onClick={() => sortProducts('낮은 가격순')}
               >
                 낮은 가격순
@@ -70,9 +68,7 @@ const SortProducts = () => {
             </li>
             <li>
               <button
-                className={`sortBtn ${
-                  selectedButton === '최신순' ? 'selected' : ''
-                }`}
+                className={toggleCondition('최신순')}
                 onClick={() => sortProducts('최신순')}
               >
                 최신순

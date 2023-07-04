@@ -5,7 +5,7 @@ import SortProducts from './SortProducts';
 import './ProductList.scss';
 
 const ProductList = () => {
-  const [ProductListData, setProductListData] = useState([]);
+  const [productListData, setProductListData] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const ProductList = () => {
   return (
     <div>
       <div className="productListHeader">
-        {ProductListData.map(product => (
+        {productListData.map(product => (
           <div key={product.id} className="productListTitle">
             <div className="titleContainer">
               <p className="title">{product.title}</p>
@@ -26,7 +26,7 @@ const ProductList = () => {
         ))}
         <div className="borderBottom" />
       </div>
-      <SortProducts products={ProductListData} />
+      <SortProducts products={productListData} />
       <TopButton />
     </div>
   );
