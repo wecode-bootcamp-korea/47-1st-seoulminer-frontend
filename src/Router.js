@@ -8,6 +8,7 @@ import ProductDetail from './pages/ProductDetail';
 import SignUp from './pages/SignUp';
 import SignUpSecond from './pages/SignUpSecond';
 import NotFound from './pages/NotFound';
+import Purchase from './pages/Purchase';
 
 const Router = () => {
   return (
@@ -19,6 +20,7 @@ const Router = () => {
           <Route path="login" element={<Login />} />
           <Route path="/signUp" element={<SignUp />} />
           <Route path="signUpSecond" element={<SignUpSecond />} />
+          <Route path="/purchase" element={<Purchase />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
