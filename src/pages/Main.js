@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import MainSlide from './MainSlide';
@@ -78,5 +77,4 @@ const Main = () => {
     </div>
   );
 };
-
 export default Main;

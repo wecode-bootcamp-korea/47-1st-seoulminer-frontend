@@ -44,7 +44,7 @@
 .dots {
   display: flex;
   position: absolute;
-  top: 80%;
+  top: 700px;
   right: 0;
   left: 0;
   justify-content: center;
@@ -85,9 +85,7 @@
   position: relative;
   flex-wrap: wrap;
   justify-content: center;
-  width: 100%;
   margin-top: 10%;
-  margin-left: 1%;
   gap: 40px;
   padding-bottom: 5%;
   border-bottom: 1px solid lightgray;
