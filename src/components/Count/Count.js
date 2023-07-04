@@ -20,7 +20,7 @@ const Count = props => {
         <button
           className="countBtn"
           onClick={() => {
-            downNumber(number);
+            downNumber();
           }}
         >
           -
@@ -29,7 +29,7 @@ const Count = props => {
         <button
           className="countBtn"
           onClick={() => {
-            upNumber(number);
+            upNumber();
           }}
         >
           +

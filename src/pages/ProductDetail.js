@@ -10,8 +10,9 @@ const ProductDetail = () => {
   const params = useParams();
   const productID = params.id;
 
+  const token = localStorage.getItem('accessToken');
+
   const [carouselDatas, setCarouselData] = useState([]);
-  // const [goToCart, setGoToCart] = useState([]);
   const [product, setProduct] = useState([]);
   const [currentTab, setCurrentTab] = useState('First');
   const [imgChange, setImgChange] = useState(false);
@@ -31,15 +32,12 @@ const ProductDetail = () => {
       });
   }, []);
 
-  // console.log('product', product);
-  // console.log(carouselDatas);
-
   const goToCart = () => {
     fetch('./carts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: localStorage.getItem('accessToken'),
+        Authorization: token,
       },
       body: JSON.stringify({
         productId: product.productId,
@@ -86,14 +84,15 @@ const ProductDetail = () => {
 
   if (!product) return null;
 
-  const totalPrice = product?.productPrice * number;
+  const totalPrice = (product.productPrice * number).toLocaleString();
+  const price = product?.productPrice?.toLocaleString();
 
   return (
     <div className="productDetail">
       <div className="top">
         <div className="title">
           <p className="titleName">{product?.productName}</p>
-          <p>{product?.productPrice?.toLocaleString()}원</p>
+          <p>{price}원</p>
         </div>
         <div className="fullImage">
           <button className="next">next</button>
@@ -135,12 +134,12 @@ const ProductDetail = () => {
               <div className="countButton">
                 <Count number={number} setNumber={setNumber} />
               </div>
-              <p>{product?.productPrice.toLocaleString()}원</p>
+              <p>{price}원</p>
             </div>
           </div>
           <div className="totalPrice">
             <p>총 금액</p>
-            <p className="total">{totalPrice?.toLocaleString()}원</p>
+            <p className="total">{totalPrice}원</p>
           </div>
           <div className="getButton">
             <button className="cart" onClick={() => goToCart()}>
