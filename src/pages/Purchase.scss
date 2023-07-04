@@ -1,0 +1,101 @@
+.purchase {
+  display: flex;
+  position: relative;
+  justify-content: space-around;
+  padding: 50px;
+  .border {
+    border-top: solid 1px lightgrey;
+  }
+  .left {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    width: 600px;
+    .title {
+      font-size: 30px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .subtitle {
+      color: #2ac1bc;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .address {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      input {
+        height: 40px;
+        border: solid 1px lightgray;
+        border-radius: 7px;
+      }
+    }
+    .products {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      .product {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+    .buy {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      .howTo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+    }
+  }
+  .modal {
+    display: flex;
+    position: sticky;
+    top: 15px;
+    right: 10px;
+    flex-direction: column;
+    width: 300px;
+    height: 460px;
+    padding: 40px;
+    border-radius: 7px;
+    background-color: rgb(237, 237, 237);
+    gap: 25px;
+
+    .price {
+      display: flex;
+      justify-content: space-between;
+    }
+    .agremment {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 10px;
+        .checkbox {
+          margin: 0;
+        }
+      }
+    }
+  }
+  .button {
+    height: 50px;
+    border: 0;
+    border-radius: 7px;
+    background-color: #2ac1bc;
+    color: white;
+
+    &:hover {
+      border: solid 1px #2ac1bc;
+      background-color: white;
+      color: #2ac1bc;
+    }
+  }
+}
