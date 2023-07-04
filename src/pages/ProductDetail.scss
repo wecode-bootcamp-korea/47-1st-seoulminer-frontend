@@ -45,14 +45,26 @@
       }
 
       .image {
-        .productImage {
+        .allImage {
+          position: relative;
           width: 400px;
           height: 400px;
           overflow: hidden;
 
-          .productImg {
+          .tumbnailImg {
             width: 400px;
             height: 400px;
+          }
+          .hoverImg {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 400px;
+            height: 400px;
+            opacity: 0;
+          }
+          .btnImg {
+            opacity: 1;
           }
         }
       }
@@ -85,30 +97,6 @@
         .price {
           display: flex;
           justify-content: space-between;
-
-          .countButton {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-
-            .count {
-              width: 20px;
-              height: 20px;
-              border: solid 1px lightgray;
-              border-radius: 3px;
-              background-color: white;
-              color: grey;
-            }
-
-            .number {
-              width: 40px;
-              height: 20px;
-              padding: 2px;
-              border: solid 1px lightgray;
-              border-radius: 3px;
-              text-align: center;
-            }
-          }
         }
       }
       .totalPrice {
@@ -135,6 +123,7 @@
           color: white;
 
           &:hover {
+            padding: 0;
             border: solid 1px #2ac1bc;
             background-color: white;
             color: #2ac1bc;
@@ -189,51 +178,14 @@
     }
     .gray {
       color: lightgray;
+      font-size: 40px;
+      font-weight: 300;
     }
   }
 
-  .wrap {
-    padding: 20px;
-    font-size: 700px;
-    text-align: center;
-  }
   .non {
     padding: 20px;
     font-size: 30px;
     text-align: center;
-  }
-  .tableFull {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-
-    .tableName {
-      color: #2ac1bc;
-      font-size: 20px;
-      font-weight: 700;
-    }
-
-    .tables {
-      width: 500px;
-      border: solid 1px lightgray;
-      border-bottom: 0;
-
-      .table {
-        display: flex;
-        border-bottom: solid 1px lightgray;
-
-        .name {
-          width: 150px;
-          padding: 10px;
-          border-right: solid 1px lightgray;
-          text-align: center;
-        }
-
-        .right {
-          padding: 10px;
-        }
-      }
-    }
   }
 }
