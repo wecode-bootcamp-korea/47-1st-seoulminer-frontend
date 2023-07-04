@@ -56,6 +56,7 @@ const Login = () => {
       <p className="title">로그인</p>
       <div className="inputContainer">
         <SignInput
+          className="id"
           name="id"
           placeholder="아이디"
           type="text"
@@ -65,6 +66,7 @@ const Login = () => {
           }}
         />
         <SignInput
+          className="pw"
           name="pw"
           placeholder="비밀번호"
           type="password"

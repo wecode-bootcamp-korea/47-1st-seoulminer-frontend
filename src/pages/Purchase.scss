@@ -1,7 +1,8 @@
 .purchase {
   display: flex;
   position: relative;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 80px;
   padding: 50px;
 
   .border {
@@ -33,6 +34,7 @@
 
       input {
         height: 40px;
+        padding: 15px;
         border: solid 1px lightgray;
         border-radius: 7px;
       }
@@ -59,11 +61,17 @@
         display: flex;
         align-items: center;
         gap: 10px;
+
+        .radio {
+          width: 18px;
+          height: 18px;
+          margin: 0;
+        }
       }
     }
   }
 
-  .modal {
+  .rightBox {
     display: flex;
     position: sticky;
     top: 15px;
@@ -110,6 +118,47 @@
       border: solid 1px #2ac1bc;
       background-color: white;
       color: #2ac1bc;
+    }
+  }
+  .modalBlack {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+
+    .modal {
+      display: flex;
+      position: absolute;
+      top: 40%;
+      left: 40%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      width: 300px;
+      height: 200px;
+      border-radius: 7px;
+      background-color: white;
+
+      .text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        color: #2ac1bc;
+      }
+
+      .ok {
+        width: 60px;
+        height: 30px;
+        border: 0;
+        border-radius: 5px;
+        background-color: #2ac1bc;
+        color: white;
+      }
     }
   }
 }

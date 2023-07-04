@@ -3,7 +3,7 @@ import Product from '../components/Product/Product';
 import RegularInfo from '../components/RegularInfo';
 import Count from '../components/Count/Count';
 import ProductInfo from '../components/ProductInfo';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './ProductDetail.scss';
 
 const ProductDetail = () => {
@@ -80,7 +80,7 @@ const ProductDetail = () => {
       .then(response => response.json())
       .then(data => {
         if (data.message === '구매성공') {
-          alert('상품 구매 성공');
+          <Link to="./purchase" />;
         }
       });
   };
