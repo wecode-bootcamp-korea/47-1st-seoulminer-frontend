@@ -1,33 +1,22 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import TopButton from '../TopButton';
-// import SortProducts from './SortProducts';
+import SortProducts from './SortProducts';
 import './ProductList.scss';
 
 const ProductList = () => {
-  const [ProductData, setProductData] = useState([]);
+  const [ProductListData, setProductListData] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
     fetch('/data/ProductListData.json')
       .then(response => response.json())
-      .then(data => setProductData(data));
+      .then(data => setProductListData(data));
   }, []);
-
-  // const renderTag = () => {
-  //   console.log(2);
-  //   LIST_MENT.map(data => {
-  //     console.log(3);
-  //     return (
-  //       <div className="abc" key={data.id}>
-  //         {data.ment}
-  //       </div>
-  //     );
-  //   });
-  // };
-
   return (
     <div>
       <div className="productListHeader">
-        {ProductData.map(product => (
+        {ProductListData.map(product => (
           <div key={product.id} className="productListTitle">
             <div className="titleContainer">
               <p className="title">{product.title}</p>
@@ -35,22 +24,12 @@ const ProductList = () => {
             </div>
           </div>
         ))}
-        {/* {renderTag()} */}
         <div className="borderBottom" />
       </div>
-      {/* <SortProducts products={ProductData} /> */}
+      <SortProducts products={ProductListData} />
       <TopButton />
     </div>
   );
 };
 
 export default ProductList;
-
-// const LIST_MENT = [
-//   { id: 1, ment: '전체' },
-//   { id: 2, ment: '전체' },
-//   { id: 3, ment: '전체' },
-//   { id: 4, ment: '전체' },
-//   { id: 5, ment: '전체' },
-//   { id: 6, ment: '전체' },
-// ];

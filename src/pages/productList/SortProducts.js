@@ -1,78 +1,90 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Product from '../Product';
 import './SortProducts.scss';
 
-const SortProducts = ({ products }) => {
+const SortProducts = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedButton, setSelectedButton] = useState('최신순');
   const [sortedData, setSortedData] = useState([]);
-  const [isSorting, setIsSorting] = useState(false);
-  const [isToggleOpen, setIsToggleOpen] = useState(false);
-  const [selectedSort, setSelectedSort] = useState('');
 
-  // useEffect(() => {
-  //   fetch('/data/MainData.json')
-  //     .then(response => response.json())
-  //     .then(data => setSortedData(data));
-  // }, []);
-
-  useEffect(() => {
-    setSortedData([...products]);
-  }, [products]);
-
-  const handleSortChange = () => {
-    setIsSorting(!isSorting);
-    const sorted = [...sortedData];
-    sorted.sort((a, b) => {
-      if (isSorting) {
-        return a.price - b.price;
-      } else {
-        return b.price - a.price;
-      }
-    });
-    setSortedData(sorted);
-    setIsToggleOpen(false);
+  const toggleContent = () => {
+    setIsOpen(!isOpen);
   };
 
-  const handleToggleClick = () => {
-    setIsToggleOpen(!isToggleOpen);
-  };
+  const sortProducts = sortBy => {
+    setSelectedButton(sortBy);
 
-  const handleOptionSelect = option => {
-    setSelectedSort(option);
-    handleSortChange();
+    let sortedProducts = [...sortedData];
+
+    if (sortBy === '높은 가격순') {
+      sortedProducts.sort((a, b) => b.price - a.price);
+    } else if (sortBy === '낮은 가격순') {
+      sortedProducts.sort((a, b) => a.price - b.price);
+    } else if (sortBy === '최신순') {
+      sortedProducts.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+    }
+
+    setSortedData(sortedProducts);
+    setIsOpen(false);
   };
 
   return (
     <div className="toggleContainer">
       <div className="toggle">
-        <button onClick={handleToggleClick}>
-          {selectedSort ? selectedSort : '👇'}
+        <button className="toggleBtn" onClick={toggleContent}>
+          {isOpen ? selectedButton : '최신순'}
         </button>
-        {isToggleOpen && (
+        {isOpen && (
           <ul className="toggleContent">
             <li>
-              <button onClick={() => handleOptionSelect('최신순')}>
+              <button
+                className={`sortBtn ${
+                  selectedButton === '높은 가격순' ? 'selected' : ''
+                }`}
+                onClick={() => sortProducts('높은 가격순')}
+              >
+                높은 가격순
+              </button>
+            </li>
+            <li>
+              <button
+                className={`sortBtn ${
+                  selectedButton === '낮은 가격순' ? 'selected' : ''
+                }`}
+                onClick={() => sortProducts('낮은 가격순')}
+              >
+                낮은 가격순
+              </button>
+            </li>
+            <li>
+              <button
+                className={`sortBtn ${
+                  selectedButton === '최신순' ? 'selected' : ''
+                }`}
+                onClick={() => sortProducts('최신순')}
+              >
                 최신순
-              </button>
-            </li>
-            <li>
-              <button onClick={() => handleOptionSelect('가격 낮은순')}>
-                가격 낮은순
-              </button>
-            </li>
-            <li>
-              <button onClick={() => handleOptionSelect('가격 높은순')}>
-                가격 높은순
               </button>
             </li>
           </ul>
         )}
       </div>
       <div className="productsList">
-        {sortedData.map(data => (
-          <Product data={data} key={data.id} />
+        {sortedData.map(product => (
+          <Product
+            key={product.id}
+            data={product}
+            image={{
+              thumbnail: product.thumbnail_image,
+              hover: product.hover_image,
+            }}
+          />
         ))}
       </div>
     </div>
   );
 };
+
 export default SortProducts;
