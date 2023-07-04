@@ -12,6 +12,18 @@ const ProductList = () => {
       .then(data => setProductData(data));
   }, []);
 
+  // const renderTag = () => {
+  //   console.log(2);
+  //   LIST_MENT.map(data => {
+  //     console.log(3);
+  //     return (
+  //       <div className="abc" key={data.id}>
+  //         {data.ment}
+  //       </div>
+  //     );
+  //   });
+  // };
+
   return (
     <div>
       <div className="productListHeader">
@@ -23,6 +35,7 @@ const ProductList = () => {
             </div>
           </div>
         ))}
+        {/* {renderTag()} */}
         <div className="borderBottom" />
       </div>
       {/* <SortProducts products={ProductData} /> */}
@@ -32,3 +45,12 @@ const ProductList = () => {
 };
 
 export default ProductList;
+
+// const LIST_MENT = [
+//   { id: 1, ment: '전체' },
+//   { id: 2, ment: '전체' },
+//   { id: 3, ment: '전체' },
+//   { id: 4, ment: '전체' },
+//   { id: 5, ment: '전체' },
+//   { id: 6, ment: '전체' },
+// ];
