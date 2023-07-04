@@ -1,17 +1,97 @@
 import { useEffect, useState } from 'react';
 import Product from '../components/Product/Product';
 import RegularInfo from '../components/RegularInfo';
+import Count from '../components/Count/Count';
+import ProductInfo from '../components/ProductInfo';
+import { useParams } from 'react-router-dom';
 import './ProductDetail.scss';
 
 const ProductDetail = () => {
   const [carouselDatas, setCarouselData] = useState([]);
+  const [product, setProduct] = useState([]);
   const [currentTab, setCurrentTab] = useState('First');
+  const [imgChange, setImgChange] = useState(false);
+  const [number, setNumber] = useState(1);
+
+  const params = useParams();
+  const productID = params.id;
+
+  const token = localStorage.getItem('accessToken');
 
   useEffect(() => {
-    fetch('./data/MainData.json')
+    fetch('/data/MainData.json')
+      // fetch('http://10.58.52.154:3000/products/list')
       .then(response => response.json())
-      .then(data => setCarouselData(data));
+      .then(result => setCarouselData(result));
+    // .then(result => setCarouselData(result.data));
   }, []);
+
+  useEffect(() => {
+    fetch('/data/DetailData.json')
+      // fetch(`http://10.58.52.154:3000/products/${productID}`)
+      .then(response => response.json())
+      .then(result => setProduct(result));
+    // .then(result => setProduct(result.data));
+  }, []);
+  // }, [productID]);
+
+  const goToCart = () => {
+    fetch('./carts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token,
+      },
+      body: JSON.stringify({
+        productId: product.productId,
+        quantity: number,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === 'Product Added to Cart') {
+          alert('상품 추가 성공');
+        } else if (data.message === 'TOKEN_NOT_FOUND') {
+          alert('토큰값이 request안에 없음');
+        } else if (data.message === 'USER_NOT_FOUND') {
+          alert('토큰값에 해당하는 유저가 존재하지 않음');
+        } else if (data.message === 'INVALID_TOKEN') {
+          alert('토큰값이 올바르지 않음');
+        } else if (data.message === 'FAILED_TO_UPDATE_CART') {
+          alert('상품 추가 실패 시');
+        } else if (data.message === 'KEY_ERROR') {
+          alert('키에러');
+        }
+      });
+  };
+
+  const goToBuy = () => {
+    fetch('./carts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem('accessToken'),
+      },
+      body: JSON.stringify({
+        productId: product.productId,
+        quantity: number,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === '구매성공') {
+          alert('상품 구매 성공');
+        }
+      });
+  };
+
+  let totalPrice = 0;
+  let price = 0;
+
+  if (product.length > 0) {
+    totalPrice = Math.floor(product[0].productPrice * number).toLocaleString();
+    price = Math.floor(product[0].productPrice).toLocaleString();
+  }
 
   return (
     <div className="productDetail">
@@ -86,11 +166,12 @@ const ProductDetail = () => {
       <div className="recommendProducts">
         <h3 className="recommend">이건 어때요?</h3>
         <div className="products">
-          {carouselDatas.map(data => {
-            return (
-              <Product data={data} key={data.id} width={200} height={200} />
-            );
-          })}
+          {carouselDatas.length > 0 &&
+            carouselDatas.slice(0, 4).map(ele => {
+              return (
+                <Product key={ele.id} data={ele} width={200} height={200} />
+              );
+            })}
         </div>
       </div>
       <div className="border" />
@@ -116,7 +197,7 @@ const ProductDetail = () => {
 export default ProductDetail;
 
 const MAPPING_OBJ = {
-  First: <p className="wrap">상세설명</p>,
+  First: <ProductInfo />,
   Second: <RegularInfo />,
   Third: <p className="non">앗!! 후기가 없어요 ㅠㅠ</p>,
 };
