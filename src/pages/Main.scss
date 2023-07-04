@@ -44,12 +44,13 @@
 .dots {
   display: flex;
   position: absolute;
-  top: 80%;
+  top: 700px;
   right: 0;
   left: 0;
   justify-content: center;
   color: rgba($color: #000000, $alpha: 1);
   cursor: pointer;
+
   .dotsBtn {
     border: none;
     background: none;
@@ -84,8 +85,8 @@
   position: relative;
   flex-wrap: wrap;
   justify-content: center;
-  width: 80%;
   margin-top: 10%;
-  margin-left: 11%;
   gap: 40px;
+  padding-bottom: 5%;
+  border-bottom: 1px solid lightgray;
 }
