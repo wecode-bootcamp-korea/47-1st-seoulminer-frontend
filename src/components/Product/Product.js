@@ -4,11 +4,10 @@ import './Product.scss';
 
 const Product = ({ data, width, height }) => {
   const [isHover, setIsHover] = useState(false);
-  const { id, thumbnail_image, hover_image, name, price } = data;
+  const { thumbnail_image, hover_image, name, price } = data;
   return (
     <div
       className="product"
-      key={id}
       onMouseOver={() => {
         setIsHover(true);
       }}
@@ -31,7 +30,7 @@ const Product = ({ data, width, height }) => {
           </div>
           <div className="text">
             <p className="title">{name}</p>
-            <p className="price">{price.toLocaleString()}</p>
+            <p className="price">{price?.toLocaleString()}</p>
           </div>
         </div>
       </Link>
