@@ -39,27 +39,35 @@
         padding-bottom: 15px;
         border-top: 1px solid lightgray;
         border-bottom: 1px solid lightgray;
+        .checkboxCompo {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          height: 100%;
+        }
       }
-
       .dataNone {
-        margin-left: 45%;
-      }
-
-      .title {
-        font-size: 54px;
-        font-weight: 700;
-        letter-spacing: -1px;
-        line-height: 60px;
-      }
-
-      .text {
-        margin-top: 20px;
-        font-size: 18px;
-        line-height: 27px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        .title {
+          font-size: 54px;
+          font-weight: 700;
+          letter-spacing: -1px;
+          line-height: 60px;
+        }
+        .text {
+          margin-top: 20px;
+          font-size: 18px;
+          line-height: 27px;
+        }
       }
     }
   }
 }
+
 .paymentArea {
   position: absolute;
   z-index: 1;
@@ -120,4 +128,30 @@
     border-radius: 15px;
     color: white;
   }
+}
+
+.selectCheckbox {
+  position: relative;
+  bottom: 15%;
+}
+
+.deleteText {
+  position: absolute;
+  bottom: 101%;
+  left: 85%;
+  border: none;
+  background-color: white;
+  color: rgb(180, 180, 180);
+  font-size: 13px;
+  cursor: pointer;
+  &:hover {
+    color: black;
+  }
+}
+.selectText {
+  position: relative;
+  top: 50%;
+  left: 35%;
+  color: rgb(180, 180, 180);
+  font-size: 13px;
 }
