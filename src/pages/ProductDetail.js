@@ -7,16 +7,16 @@ import { useParams } from 'react-router-dom';
 import './ProductDetail.scss';
 
 const ProductDetail = () => {
-  const params = useParams();
-  const productID = params.id;
-
-  const token = localStorage.getItem('accessToken');
-
   const [carouselDatas, setCarouselData] = useState([]);
   const [product, setProduct] = useState([]);
   const [currentTab, setCurrentTab] = useState('First');
   const [imgChange, setImgChange] = useState(false);
   const [number, setNumber] = useState(1);
+
+  const params = useParams();
+  const productID = params.id;
+
+  const token = localStorage.getItem('accessToken');
 
   useEffect(() => {
     fetch('/data/MainData.json')
@@ -97,7 +97,7 @@ const ProductDetail = () => {
     <div className="productDetail">
       <div className="top">
         <div className="title">
-          <p className="titleName">{product?.productName}</p>
+          <p className="titleName">{product[0]?.productName}</p>
           <p>{price}원</p>
         </div>
         <div className="fullImage">
@@ -135,7 +135,7 @@ const ProductDetail = () => {
           </div>
           <div className="border" />
           <div className="box">
-            <p>{product.productName}</p>
+            <p>{product[0].productName}</p>
             <div className="price">
               <div className="countButton">
                 <Count number={number} setNumber={setNumber} />
@@ -167,14 +167,9 @@ const ProductDetail = () => {
         <h3 className="recommend">이건 어때요?</h3>
         <div className="products">
           {carouselDatas.length > 0 &&
-            carouselDatas.slice(0, 4).map(data => {
+            carouselDatas.slice(0, 4).map(ele => {
               return (
-                <Product
-                  data={data}
-                  key={`datas-${data.productId}`}
-                  width={200}
-                  height={200}
-                />
+                <Product key={ele.id} data={ele} width={200} height={200} />
               );
             })}
         </div>
