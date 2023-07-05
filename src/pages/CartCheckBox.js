@@ -45,6 +45,7 @@ const CartCheckBox = () => {
               선택삭제
             </button>
           </div>
+          <div className="cartCheckBox" />
         </div>
       </div>
       {checkBoxes.map((checked, index) => (

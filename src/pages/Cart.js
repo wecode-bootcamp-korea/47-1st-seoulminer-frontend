@@ -50,6 +50,7 @@ const Cart = () => {
                   </button>
                 </div>
                 <CartCheckBox />
+                <div className="cartBorder" />
               </div>
             )}
           </div>
