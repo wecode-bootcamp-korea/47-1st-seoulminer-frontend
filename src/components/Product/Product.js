@@ -21,10 +21,7 @@ const Product = ({ data, width, height }) => {
         setIsHover(false);
       }}
     >
-      <Link
-        to={`/productDetail/${productId}`}
-        style={{ textDecorationLine: 'none' }}
-      >
+      <Link to={`/productDetail/${productId}`} className="linkToProduct">
         <div className="container">
           <div className="itemImgContainer">
             <img

@@ -6,7 +6,7 @@ const Purchase = () => {
   const [checkboxValue, setCheckboxValue] = useState({});
   const [isAllValue, setIsAllValue] = useState({});
   const [isAll, setIsAll] = useState(false);
-  const [productData, setProductData] = useState([]);
+  const [productDatas, setProductData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -57,8 +57,8 @@ const Purchase = () => {
 
   const lastPrice = () => {
     let total = 0;
-    for (let i = 0; i < productData.length; i++) {
-      let price = productData[i].price * productData[i].count;
+    for (let i = 0; i < productDatas.length; i++) {
+      let price = productDatas[i].productPrice * productDatas[i].productCount;
       total = price + total;
     }
     return total;
@@ -73,12 +73,12 @@ const Purchase = () => {
         <div className="address">
           <p className="subtitle">배송지</p>
           <div className="border" />
-          {DELIVARY_INFO.map(data => {
+          {DELIVARY_INFO.map(delivatyData => {
             return (
               <input
-                key={data.id}
-                name={data.name}
-                placeholder={data.placeholder}
+                key={delivatyData.id}
+                name={delivatyData.name}
+                placeholder={delivatyData.placeholder}
                 onChange={handleInput}
               />
             );
@@ -87,11 +87,12 @@ const Purchase = () => {
         <div className="products">
           <p className="subtitle">주문상품</p>
           <div className="border" />
-          {productData.map(data => {
+          {productDatas.map(productData => {
+            const { productId, productName, productCount } = productData;
             return (
-              <div className="product" key={data.id}>
-                <p>{data.name}</p>
-                <p>{data.count}개</p>
+              <div className="product" key={productId}>
+                <p>{productName}</p>
+                <p>{productCount}개</p>
               </div>
             );
           })}
@@ -99,17 +100,17 @@ const Purchase = () => {
         <div className="buy">
           <p className="subtitle">결제수단</p>
           <div className="border" />
-          {TO_BUY.map(data => {
+          {TO_BUY.map(buyData => {
             return (
-              <div className="howTo" key={data.id}>
+              <div className="howTo" key={buyData.id}>
                 <input
                   className="radio"
                   type="radio"
-                  id={data.id}
-                  name={data.name}
+                  id={buyData.id}
+                  name={buyData.name}
                   onClick={handleBuyCheckbox}
                 />
-                <p>{data.text}</p>
+                <p>{buyData.text}</p>
               </div>
             );
           })}
@@ -141,28 +142,26 @@ const Purchase = () => {
             />
             <p>전체동의</p>
           </div>
-          {AGREEMENT_BUY.map(data => {
+          {AGREEMENT_BUY.map(areementData => {
             return (
-              <div className="container" key={data.id}>
+              <div className="container" key={areementData.id}>
                 <input
                   className="checkbox"
                   type="checkbox"
-                  name={data.name}
-                  checked={isAllValue[data.name]}
+                  name={areementData.name}
+                  checked={isAllValue[areementData.name]}
                   onChange={handleAllCheckbox}
                 />
-                <p>{data.text}</p>
+                <p>{areementData.text}</p>
               </div>
             );
           })}
         </div>
         <button
           className="button"
-          disabled={isValid ? false : true}
+          disabled={!isValid}
           style={{ opacity: `${isValid ? 1 : 0.5}` }}
-          onClick={() => {
-            setIsModalOpen(!isModalOpen);
-          }}
+          onClick={() => setIsModalOpen(true)}
         >
           결제하기
         </button>
@@ -177,7 +176,7 @@ const Purchase = () => {
             <button
               className="ok"
               onClick={() => {
-                setIsModalOpen(!isModalOpen);
+                setIsModalOpen(false);
               }}
             >
               확인
@@ -196,12 +195,6 @@ const DELIVARY_INFO = [
   { id: 2, name: 'phone', placeholder: '전화번호' },
   { id: 3, name: 'address', placeholder: '주소' },
 ];
-
-// const PRODUCTS = [
-//   { id: 1, name: '잘 붙는 스티커', count: 1 },
-//   { id: 2, name: '딱딱한 지우개', count: 2 },
-//   { id: 3, name: '향기없는 샴푸', count: 3 },
-// ];
 
 const TO_BUY = [
   { id: 1, name: 'pay', text: '신용카드/체크카드' },
