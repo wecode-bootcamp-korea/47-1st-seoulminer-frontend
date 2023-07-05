@@ -122,7 +122,7 @@ const Purchase = () => {
         </div>
         <div className="price">
           <p>배송비</p>
-          <p>+{(3000).toLocaleString()}원</p>
+          <p>+ 3,000원</p>
         </div>
         <div className="border" />
         <div className="price">

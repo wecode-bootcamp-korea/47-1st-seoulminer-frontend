@@ -107,9 +107,10 @@
       display: flex;
       position: absolute;
       z-index: 100;
-      top: 27%;
+      top: 35%;
       left: 40.5%;
       flex-direction: column;
+      height: 220px;
       border: solid lightgray 1px;
       border-radius: 7px;
       background-color: white;
@@ -127,11 +128,13 @@
         }
 
         .notFound {
+          height: 100%;
           text-align: center;
         }
       }
 
       button {
+        height: 40px;
         padding: 20px;
         border: 0;
         border-radius: 7px;

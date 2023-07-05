@@ -4,7 +4,7 @@ const NavData = [
   { text: '리빙', path: '' },
   { text: '책/매거진F', path: '' },
   { text: '콜라보레이션', path: '' },
-  { text: '명예의 전당', path: '' },
+  { text: '의류', path: '' },
 ];
 
 export default NavData;

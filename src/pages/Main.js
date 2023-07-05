@@ -11,8 +11,10 @@ const Main = () => {
 
   useEffect(() => {
     fetch('/data/MainData.json')
+      // fetch('http://10.58.52.154:3000/products/list')
       .then(response => response.json())
       .then(data => setMainData(data));
+    // .then(data => setMainData(data.data));
   }, []);
 
   return (
@@ -36,15 +38,8 @@ const Main = () => {
         />
       </div>
       <div className="recommendItem">
-        {mainData.map(product => (
-          <Product
-            key={product.id}
-            data={product}
-            image={{
-              thumbnail: product.thumbnail_image,
-              hover: product.hover_image,
-            }}
-          />
+        {mainData.slice(0, 3).map(product => (
+          <Product key={product.productId} data={product} />
         ))}
       </div>
       <div className="secondBanner">
@@ -55,15 +50,8 @@ const Main = () => {
         />
       </div>
       <div className="recommendItem">
-        {mainData.map(product => (
-          <Product
-            key={product.id}
-            data={product}
-            image={{
-              thumbnail: product.thumbnail_image,
-              hover: product.hover_image,
-            }}
-          />
+        {mainData.slice(0, 3).map(product => (
+          <Product key={product.productId} data={product} />
         ))}
       </div>
       <div className="thirdBanner">

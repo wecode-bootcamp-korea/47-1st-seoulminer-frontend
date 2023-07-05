@@ -4,7 +4,12 @@ import './Product.scss';
 
 const Product = ({ data, width, height }) => {
   const [isHover, setIsHover] = useState(false);
-  const { thumbnail_image, hover_image, name, price } = data;
+  const {
+    productThumbnailImage,
+    productHoverImage,
+    productName,
+    productPrice,
+  } = data;
   return (
     <div
       className="product"
@@ -24,13 +29,13 @@ const Product = ({ data, width, height }) => {
                 width: width ? width : 300,
                 height: height ? height : 300,
               }}
-              src={isHover ? hover_image : thumbnail_image}
+              src={isHover ? productHoverImage : productThumbnailImage}
               alt="itemImg"
             />
           </div>
           <div className="text">
-            <p className="title">{name}</p>
-            <p className="price">{price?.toLocaleString()}</p>
+            <p className="title">{productName}</p>
+            <p className="price">{productPrice?.toLocaleString()}</p>
           </div>
         </div>
       </Link>
