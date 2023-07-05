@@ -29,11 +29,11 @@ const Nav = () => {
   };
 
   const handleLogout = () => {
-    // if (localStorage.getItem('token')) {
-    setIsLoggedIn(false);
-    localStorage.removeItem('token');
-    navigate('');
-    // }
+    if (localStorage.getItem('token')) {
+      setIsLoggedIn(false);
+      localStorage.removeItem('token');
+      navigate('');
+    }
   };
 
   return (

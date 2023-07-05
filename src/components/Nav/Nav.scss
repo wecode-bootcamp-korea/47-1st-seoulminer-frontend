@@ -2,6 +2,7 @@
   position: sticky;
   z-index: 10;
   top: 0px;
+
   .navContainer {
     display: flex;
     justify-content: space-around;
@@ -49,6 +50,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+
       .cart {
         margin: 0;
         padding-right: 10px;
@@ -56,6 +58,7 @@
         font-size: 22px;
         cursor: pointer;
       }
+
       .leadingGlass {
         padding-right: 10px;
         color: black;

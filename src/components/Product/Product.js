@@ -34,8 +34,20 @@ const Product = ({ data, width, height }) => {
               alt="itemImg"
             />
           </div>
-          <div className="eachProductText">
-            <p className="componentTitle">{productName}</p>
+          <div
+            className="eachProductText"
+            style={{
+              width: width ? width : 300,
+            }}
+          >
+            <p
+              className="componentTitle"
+              style={{
+                width: width ? width : 300,
+              }}
+            >
+              {productName}
+            </p>
             <p className="price">
               {Math.floor(productPrice).toLocaleString()}원
             </p>

@@ -18,9 +18,11 @@
   .eachProductText {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 15px;
+    width: 300px;
     color: black;
+    gap: 15px;
 
     &:hover {
       color: #2ac1bc;
@@ -29,6 +31,7 @@
     .componentTitle {
       font-size: 20px;
       font-weight: 700;
+      text-align: center;
     }
   }
 }
