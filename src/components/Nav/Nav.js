@@ -33,38 +33,32 @@ const Nav = () => {
   return (
     <header className="nav">
       <div className="navContainer">
-        <span className="logo">
+        <Link to="">
           <img className="mainLogo" src="/images/logo.png" alt="navLogo" />
-        </span>
+        </Link>
         <div className="navMenu">
-          <div className="link">
-            {NavData.map((link, index) => (
-              <Link to={link.path} key={index}>
-                <button className="menuLink">{link.text}</button>
-              </Link>
-            ))}
-          </div>
-          <div className="icons">
-            <Link to="">
-              <FontAwesomeIcon
-                icon={faMagnifyingGlass}
-                className="leadingGlass"
-              />
+          {NavData.map((link, index) => (
+            <Link to={link.path} key={index}>
+              <button className="menuLink">{link.text}</button>
             </Link>
-            <Link to="">
-              <FontAwesomeIcon icon={faCartShopping} className="cart" />
-            </Link>
-            <LoginButtons
-              isLoggedIn={isLoggedIn}
-              onLogin={handleLogin}
-              onLogout={handleLogout}
-            />
-            <button className="menuBtn" onClick={handleOpen}>
-              <FontAwesomeIcon icon={faBars} className="bar" />
-            </button>
-          </div>
+          ))}
+        </div>
+        <div className="icons">
+          <FontAwesomeIcon icon={faMagnifyingGlass} className="leadingGlass" />
+          <Link to="/cart">
+            <FontAwesomeIcon icon={faCartShopping} className="cart" />
+          </Link>
+          <LoginButtons
+            isLoggedIn={isLoggedIn}
+            onLogin={handleLogin}
+            onLogout={handleLogout}
+          />
+          <button className="menuBtn" onClick={handleOpen}>
+            <FontAwesomeIcon icon={faBars} className="bar" />
+          </button>
         </div>
       </div>
+
       {isOpen && (
         <NavToggle
           isNavOpen={isOpen}

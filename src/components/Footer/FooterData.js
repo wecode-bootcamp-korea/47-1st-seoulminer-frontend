@@ -27,7 +27,7 @@ export const footerInfoData = [
     text: (
       <>
         <FontAwesomeIcon icon={faInstagram} />
-        baemin
+        BBang
       </>
     ),
   },

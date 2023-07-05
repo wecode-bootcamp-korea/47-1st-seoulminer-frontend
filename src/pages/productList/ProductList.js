@@ -6,13 +6,15 @@ import './ProductList.scss';
 
 const ProductList = () => {
   const [productListData, setProductListData] = useState([]);
-  const { id } = useParams();
+  const params = useParams();
+  const listId = params.listId;
 
   useEffect(() => {
-    fetch('/data/ProductListData.json')
+    fetch(`/products/list?category=${listId}`)
       .then(response => response.json())
       .then(data => setProductListData(data));
-  }, []);
+  }, [listId]);
+
   return (
     <div>
       <div className="productListHeader">

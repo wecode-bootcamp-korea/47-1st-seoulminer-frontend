@@ -35,7 +35,7 @@ const Product = ({ data, width, height }) => {
             />
           </div>
           <div className="text">
-            <p className="title">{productName}</p>
+            <p className="componentTitle">{productName}</p>
             <p className="price">{productPrice?.toLocaleString()}</p>
           </div>
         </div>
