@@ -19,21 +19,21 @@ const ProductDetail = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    // fetch('/data/MainData.json')
-    fetch('http://10.58.52.154:3000/products/list')
+    fetch('/data/MainData.json')
+      // fetch('http://10.58.52.154:3000/products/list')
       .then(response => response.json())
-      // .then(result => setCarouselData(result));
-      .then(result => setCarouselData(result.data));
+      .then(result => setCarouselData(result));
+    // .then(result => setCarouselData(result.data));
   }, []);
 
   useEffect(() => {
-    // fetch('/data/DetailData.json')
-    fetch(`http://10.58.52.154:3000/products/${4}`)
+    fetch('/data/DetailData.json')
+      // fetch(`http://10.58.52.154:3000/products/${4}`)
       .then(response => response.json())
-      // .then(result => setProduct(result));
-      .then(result => setProduct(result.data));
-    // }, []);
-  }, [productID]);
+      .then(result => setProduct(result));
+    // .then(result => setProduct(result.data));
+  }, []);
+  // }, [productID]);
 
   const goToCart = () => {
     fetch('http://10.58.52.154:3000/carts', {
@@ -103,7 +103,14 @@ const ProductDetail = () => {
           <p>{price}원</p>
         </div>
         <div className="fullImage">
-          <button className="next">next</button>
+          <button
+            className="next"
+            onClick={() => {
+              setImgChange(!imgChange);
+            }}
+          >
+            next
+          </button>
           <div className="image">
             <div className="allImage">
               <img

@@ -5,6 +5,7 @@ import './Product.scss';
 const Product = ({ data, width, height }) => {
   const [isHover, setIsHover] = useState(false);
   const {
+    productId,
     productThumbnailImage,
     productHoverImage,
     productName,
@@ -20,7 +21,10 @@ const Product = ({ data, width, height }) => {
         setIsHover(false);
       }}
     >
-      <Link to="./productDetail" style={{ textDecorationLine: 'none' }}>
+      <Link
+        to={`/productDetail/${productId}`}
+        style={{ textDecorationLine: 'none' }}
+      >
         <div className="container">
           <div className="itemImgContainer">
             <img

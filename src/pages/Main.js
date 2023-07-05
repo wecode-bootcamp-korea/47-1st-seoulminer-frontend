@@ -20,15 +20,6 @@ const Main = () => {
   return (
     <div className="main">
       <MainSlide />
-      <div className="dots">
-        <button className="dotsBtn">
-          <FontAwesomeIcon icon={faCircle} />
-          <FontAwesomeIcon icon={faCircle} className="dot" />
-          <FontAwesomeIcon icon={faCircle} className="dot" />
-          <FontAwesomeIcon icon={faCircle} className="dot" />
-          <FontAwesomeIcon icon={faCircle} className="dot" />
-        </button>
-      </div>
       <TopButton />
       <div className="firstBanner">
         <img
@@ -53,13 +44,6 @@ const Main = () => {
         {mainData.slice(0, 3).map(product => (
           <Product key={product.productId} data={product} />
         ))}
-      </div>
-      <div className="thirdBanner">
-        <img
-          className="thirdMainBanner"
-          src="/images/thirdBanner.png"
-          alt="thirdBanner"
-        />
       </div>
     </div>
   );

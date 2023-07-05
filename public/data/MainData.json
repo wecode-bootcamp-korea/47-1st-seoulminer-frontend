@@ -2,28 +2,28 @@
   {
     "productId": 1,
     "productThumbnailImage": "/images/IMG_7632.jpg",
-    "producßtHoverImage": "/images/IMG_7631 2.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
     "productName": "상품1",
     "productPrice": 3000
   },
   {
     "productId": 2,
     "productThumbnailImage": "/images/IMG_7632.jpg",
-    "productHoverImage": "/images/IMG_7631 2.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
     "productName": "상품2",
     "productPrice": 30000
   },
   {
     "productId": 3,
     "productThumbnailImage": "/images/IMG_7632.jpg",
-    "productHoverImage": "/images/IMG_7631 2.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
     "productName": "상품3",
     "productPrice": 300000
   },
   {
     "productId": 4,
     "productThumbnailImage": "/images/IMG_7632.jpg",
-    "productHoverImage": "/images/IMG_7631 2.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
     "productName": "상품4",
     "productPrice": 100000
   }
