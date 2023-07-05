@@ -1,30 +1,30 @@
 [
   {
-    "id": 1,
-    "thumbnail_image": "/images/IMG_7632.jpg",
-    "hover_image": "/images/IMG_7631 2.jpg",
-    "name": "상품1",
-    "price": 3000
+    "productId": 1,
+    "productThumbnailImage": "/images/IMG_7632.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
+    "productName": "상품1",
+    "productPrice": 3000
   },
   {
-    "id": 2,
-    "thumbnail_image": "/images/IMG_7632.jpg",
-    "hover_image": "/images/IMG_7631 2.jpg",
-    "name": "상품2",
-    "price": 30000
+    "productId": 2,
+    "productThumbnailImage": "/images/IMG_7632.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
+    "productName": "상품2",
+    "productPrice": 30000
   },
   {
-    "id": 3,
-    "thumbnail_image": "/images/IMG_7632.jpg",
-    "hover_image": "/images/IMG_7631 2.jpg",
-    "name": "상품3",
-    "price": 300000
+    "productId": 3,
+    "productThumbnailImage": "/images/IMG_7632.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
+    "productName": "상품3",
+    "productPrice": 300000
   },
   {
-    "id": 4,
-    "thumbnail_image": "/images/IMG_7632.jpg",
-    "hover_image": "/images/IMG_7631 2.jpg",
-    "name": "상품4",
-    "price": 100000
+    "productId": 4,
+    "productThumbnailImage": "/images/IMG_7632.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
+    "productName": "상품4",
+    "productPrice": 100000
   }
 ]

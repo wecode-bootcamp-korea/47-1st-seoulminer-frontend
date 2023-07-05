@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import TopButton from '../TopButton';
-// import SortProducts from './SortProducts';
+import SortProducts from './SortProducts';
 import './ProductList.scss';
 
 const ProductList = () => {
-  const [ProductData, setProductData] = useState([]);
+  const [productListData, setProductListData] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
     fetch('/data/ProductListData.json')
       .then(response => response.json())
-      .then(data => setProductData(data));
+      .then(data => setProductListData(data));
   }, []);
-
   return (
     <div>
       <div className="productListHeader">
-        {ProductData.map(product => (
+        {productListData.map(product => (
           <div key={product.id} className="productListTitle">
             <div className="titleContainer">
               <p className="title">{product.title}</p>
@@ -25,7 +26,7 @@ const ProductList = () => {
         ))}
         <div className="borderBottom" />
       </div>
-      {/* <SortProducts products={ProductData} /> */}
+      <SortProducts products={productListData} />
       <TopButton />
     </div>
   );

@@ -1,0 +1,146 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 100px;
+
+  .title {
+    padding: 50px;
+    font-size: 30px;
+    font-weight: 700;
+  }
+
+  .inputContainer {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding: 20px;
+    gap: 15px;
+
+    .id {
+      width: 400px;
+      height: 60px;
+      padding: 15px;
+      border: solid 1px lightgray;
+      border-radius: 7px;
+      outline: none;
+
+      &:focus {
+        border: solid 1px #2ac1bc;
+      }
+    }
+
+    .pw {
+      width: 400px;
+      height: 60px;
+      padding: 15px;
+      border: solid 1px lightgray;
+      border-radius: 7px;
+      outline: none;
+
+      &:focus {
+        border: solid 1px #2ac1bc;
+      }
+    }
+
+    .saveContainer {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      p {
+        color: gray;
+        font-size: 13px;
+      }
+    }
+  }
+
+  .loginButton {
+    width: 400px;
+    height: 60px;
+    margin: 20px;
+    border: solid 0px;
+    border-radius: 7px;
+    background-color: rgb(236, 234, 234);
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .greenButton {
+    background-color: #2ac1bc;
+    color: white;
+
+    &:hover {
+      border: solid 1px #2ac1bc;
+      background-color: white;
+      color: #2ac1bc;
+    }
+  }
+
+  .buttonContainer {
+    display: flex;
+    gap: 15px;
+
+    p {
+      color: lightgray;
+    }
+
+    button {
+      border: solid 0px;
+      background-color: white;
+      color: gray;
+    }
+  }
+
+  .modalBlack {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+
+    .modal {
+      display: flex;
+      position: absolute;
+      z-index: 100;
+      top: 35%;
+      left: 40.5%;
+      flex-direction: column;
+      height: 220px;
+      border: solid lightgray 1px;
+      border-radius: 7px;
+      background-color: white;
+
+      .text {
+        display: flex;
+        flex-direction: column;
+        padding: 40px;
+        border-bottom: solid lightgray 1px;
+        gap: 10px;
+
+        .auch {
+          font-size: 25px;
+          text-align: center;
+        }
+
+        .notFound {
+          height: 100%;
+          text-align: center;
+        }
+      }
+
+      button {
+        height: 40px;
+        padding: 20px;
+        border: 0;
+        border-radius: 7px;
+        background-color: white;
+        font-size: 16px;
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LoginBtn = ({ isLoggedIn, onLogin, onLogout }) => {
   return isLoggedIn ? (
@@ -6,9 +7,11 @@ const LoginBtn = ({ isLoggedIn, onLogin, onLogout }) => {
       로그아웃
     </button>
   ) : (
-    <button className="loginBtn" onClick={onLogin}>
-      로그인
-    </button>
+    <Link to="/login">
+      <button className="loginBtn" onClick={onLogin}>
+        로그인
+      </button>
+    </Link>
   );
 };
 
