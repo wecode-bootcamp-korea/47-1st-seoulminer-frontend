@@ -9,11 +9,13 @@ import SignUp from './pages/SignUp';
 import SignUpSecond from './pages/SignUpSecond';
 import NotFound from './pages/NotFound';
 import Purchase from './pages/Purchase';
+import Cart from './pages/Cart';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/cart" element={<Cart />} />
         <Route path="/" element={<Layout />}>
           <Route path="" element={<Main />} />
           <Route path="productDetail/:id" element={<ProductDetail />} />

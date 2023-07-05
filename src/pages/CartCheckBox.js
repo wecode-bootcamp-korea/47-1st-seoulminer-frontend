@@ -63,6 +63,7 @@ const CartCheckBox = () => {
               alt="productImg"
             />
           </div>
+          <p>qqqqwwwweeee1112233</p>
         </div>
       ))}
     </div>
