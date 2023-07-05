@@ -11,9 +11,30 @@ const ProductList = () => {
   const location = useLocation();
   const queryString = location.search;
 
+  const titleText = () => {
+    if (productListData.length > 0) {
+      if (
+        productListData[0].productCategoryId === 1 &&
+        productListData.length === 50
+      ) {
+        return '전체';
+      } else if (productListData[0].productCategoryId === 1) {
+        return '문구';
+      } else if (productListData[0].productCategoryId === 2) {
+        return '리빙';
+      } else if (productListData[0].productCategoryId === 3) {
+        return '책/매거진F';
+      } else if (productListData[0].productCategoryId === 4) {
+        return '의류';
+      } else if (productListData[0].productCategoryId === 5) {
+        return '콜라보레이션';
+      }
+    }
+  };
+
   useEffect(() => {
     fetch('/data/MainData.json')
-      // fetch(`http://10.58.52.59:3000/products/list${queryString}`)
+      // fetch(`http://10.58.52.59:3000/products/list${queryString}&limit=50`)
       .then(response => response.json())
       .then(data => setProductListData(data));
     // .then(data => setProductListData(data.data));
@@ -25,7 +46,7 @@ const ProductList = () => {
     <div>
       <div className="productsLists">
         <div className="titleContainer">
-          <p className="title">전체</p>
+          <p className="title">{titleText()}</p>
           <SortProducts productListData={productListData} />
         </div>
         <div className="border" />
