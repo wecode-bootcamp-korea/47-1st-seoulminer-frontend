@@ -1,0 +1,41 @@
+.toggle {
+  position: relative;
+  bottom: 200px;
+  left: 85%;
+  .toggleBtn {
+    display: flex;
+    border: none;
+    background-color: white;
+    font-size: 15px;
+    &:hover {
+      color: #2ac1bc;
+    }
+  }
+  .sortBtn {
+    padding: 10px;
+    border: none;
+    background-color: white;
+    font-size: 15px;
+    &:hover {
+      color: #2ac1bc;
+    }
+  }
+  .toggleContent {
+    position: absolute;
+    width: 100px;
+    height: 130px;
+    border: 1px solid lightgrey;
+  }
+}
+.productsList {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10%;
+  margin-left: 1%;
+  gap: 40px;
+  padding-bottom: 5%;
+  border-bottom: 1px solid lightgray;
+}
