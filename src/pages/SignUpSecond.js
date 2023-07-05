@@ -32,7 +32,7 @@ const SignUpSecond = () => {
   };
 
   const postUserSignUpData = () => {
-    fetch('http://10.58.52.154:3000/users/signup', {
+    fetch('http://10.58.52.175:3000/users/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ const SignUpSecond = () => {
   return (
     <div className="signUpSecond">
       <div className="fullContainer">
-        <p className="title">회원가입</p>
+        <p className="signUpTitle">회원가입</p>
         <div className="border" />
         <div className="full">
           <p className="info">회원정보</p>

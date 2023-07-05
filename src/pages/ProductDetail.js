@@ -19,24 +19,24 @@ const ProductDetail = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch('/data/DetailData.json')
-      // fetch(`http://10.58.52.154:3000/products/${productID}`)
+    // fetch('/data/DetailData.json')
+    fetch(`http://10.58.52.175:3000/products/${productID}`)
       .then(response => response.json())
-      .then(result => setProduct(result));
-    // .then(result => setProduct(result.data));
-  }, []);
-  // }, [productID]);
+      // .then(result => setProduct(result));
+      .then(result => setProduct(result.data));
+    // }, []);
+  }, [productID]);
 
   useEffect(() => {
-    fetch('/data/MainData.json')
-      // fetch(
-      //   `http://10.58.52.175:3000/products/list?offset=0&limit=4&category=${product.productCategoryId}`
-      // )
+    // fetch('/data/MainData.json')
+    fetch(
+      `http://10.58.52.175:3000/products/list?offset=0&limit=4&category=${product.productCategoryId}`
+    )
       .then(response => response.json())
-      .then(results => setCarouselData(results));
-    // .then(result => setCarouselData(result.result));
-    // }, [product]);
-  }, []);
+      // .then(results => setCarouselData(results));
+      .then(result => setCarouselData(result.data));
+  }, [product]);
+  // }, []);
 
   const goToCart = () => {
     fetch('http://10.58.52.175:3000/carts', {
@@ -53,7 +53,7 @@ const ProductDetail = () => {
     })
       .then(response => response.json())
       .then(data => {
-        if (data.message === 'Product Added to Cart') {
+        if (data.message === 'CART_ADD_SUCCESS') {
           alert('상품 추가 성공');
         } else if (data.message === 'TOKEN_NOT_FOUND') {
           alert('토큰값이 request안에 없음');
@@ -61,10 +61,16 @@ const ProductDetail = () => {
           alert('토큰값에 해당하는 유저가 존재하지 않음');
         } else if (data.message === 'INVALID_TOKEN') {
           alert('토큰값이 올바르지 않음');
-        } else if (data.message === 'FAILED_TO_UPDATE_CART') {
-          alert('상품 추가 실패 시');
         } else if (data.message === 'KEY_ERROR') {
           alert('키에러');
+        } else if (data.message === 'INVALID_PRODUCT') {
+          alert('상품 추가 실패 시 (없는 상품)');
+        } else if (data.message === 'PRODUCT_OUT_OF_STOCK') {
+          alert('상품 추가 실패 시 (inventory = 0)');
+        } else if (data.message === 'QUANTITY_EXCEEDS_INVENTORY') {
+          alert('상품 추가 실패 시 (quantity > inventory)');
+        } else if (data.message === 'QUANTITY_CANNOT_BE_0') {
+          alert('상품 추가 실패 시 (quantity < 0)');
         }
       });
   };

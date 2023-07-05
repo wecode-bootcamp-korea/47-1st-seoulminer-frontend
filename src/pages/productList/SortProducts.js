@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Product from '../../components/Product/Products';
 import './SortProducts.scss';
 
@@ -6,14 +6,6 @@ const SortProducts = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedButton, setSelectedButton] = useState('최신순');
   const [sortedData, setSortedData] = useState([]);
-
-  // useEffect(() => {
-  //   fetch('/backend-api-endpoint')
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       setSortedData(data);
-  //     });
-  // }, []);
 
   const toggleContent = () => {
     setIsOpen(isOpen => !isOpen);

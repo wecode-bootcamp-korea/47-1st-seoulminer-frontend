@@ -23,17 +23,17 @@ const Nav = () => {
   };
 
   const handleLogin = () => {
-    if (!localStorage.getItem('token')) {
-      setIsLoggedIn(true);
-    }
+    // if (!localStorage.getItem('token')) {
+    setIsLoggedIn(true);
+    // }
   };
 
   const handleLogout = () => {
-    if (localStorage.getItem('token')) {
-      setIsLoggedIn(false);
-      localStorage.removeItem('token');
-      navigate('');
-    }
+    // if (localStorage.getItem('token')) {
+    setIsLoggedIn(false);
+    localStorage.removeItem('token');
+    navigate('');
+    // }
   };
 
   return (

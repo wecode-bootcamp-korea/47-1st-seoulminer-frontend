@@ -36,7 +36,9 @@ const Product = ({ data, width, height }) => {
           </div>
           <div className="eachProductText">
             <p className="componentTitle">{productName}</p>
-            <p className="price">{productPrice?.toLocaleString()}</p>
+            <p className="price">
+              {Math.floor(productPrice).toLocaleString()}원
+            </p>
           </div>
         </div>
       </Link>
