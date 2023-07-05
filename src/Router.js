@@ -18,12 +18,12 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="" element={<Main />} />
-          <Route path="productDetail/:id" element={<ProductDetail />} />
-          <Route path="login" element={<Login />} />
+          <Route path="/productDetail/:id" element={<ProductDetail />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/signUp" element={<SignUp />} />
-          <Route path="signUpSecond" element={<SignUpSecond />} />
+          <Route path="/signUpSecond" element={<SignUpSecond />} />
           <Route path="/purchase" element={<Purchase />} />
-          <Route path="/productList/:listId" element={<ProductList />} />
+          <Route path="/productList" element={<ProductList />} />
           <Route path="/cart" element={<CartLayout />} />
         </Route>
         <Route path="*" element={<NotFound />} />

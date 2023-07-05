@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
@@ -12,6 +12,7 @@ import './Nav.scss';
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const handleOpen = () => {
     setIsOpen(!isOpen);
@@ -22,12 +23,17 @@ const Nav = () => {
   };
 
   const handleLogin = () => {
-    setIsLoggedIn(true);
+    if (!localStorage.getItem('token')) {
+      setIsLoggedIn(true);
+    }
   };
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
-    localStorage.removeItem('TOKEN');
+    if (localStorage.getItem('token')) {
+      setIsLoggedIn(false);
+      localStorage.removeItem('token');
+      navigate('');
+    }
   };
 
   return (

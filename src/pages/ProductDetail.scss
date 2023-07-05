@@ -14,7 +14,7 @@
     justify-content: space-around;
     height: 400px;
 
-    .title {
+    .productDetailTitle {
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
@@ -114,7 +114,7 @@
         display: flex;
         justify-content: space-between;
 
-        .cart {
+        .cartBtn {
           width: 60px;
           height: 60px;
           border: 0;
@@ -130,7 +130,7 @@
           }
         }
 
-        .get {
+        .buyBtn {
           width: 260px;
           border: 0;
           border-radius: 7px;

@@ -34,7 +34,7 @@ const Product = ({ data, width, height }) => {
               alt="itemImg"
             />
           </div>
-          <div className="text">
+          <div className="eachProductText">
             <p className="componentTitle">{productName}</p>
             <p className="price">{productPrice?.toLocaleString()}</p>
           </div>

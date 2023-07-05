@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import TopButton from '../TopButton';
 import SortProducts from './SortProducts';
 import './ProductList.scss';
 
 const ProductList = () => {
   const [productListData, setProductListData] = useState([]);
-  const params = useParams();
-  const listId = params.listId;
+
+  const location = useLocation();
+  const queryString = location.search;
 
   useEffect(() => {
-    fetch(`/products/list?category=${listId}`)
+    fetch(`http://10.58.52.154:3000/products/list${queryString}`)
       .then(response => response.json())
       .then(data => setProductListData(data));
-  }, [listId]);
+  }, [queryString]);
 
   return (
     <div>

@@ -69,7 +69,7 @@ const Purchase = () => {
   return (
     <div className="purchase">
       <div className="left">
-        <p className="title">주문서</p>
+        <p className="purchaseTitle">주문서</p>
         <div className="address">
           <p className="subtitle">배송지</p>
           <div className="border" />
@@ -84,13 +84,13 @@ const Purchase = () => {
             );
           })}
         </div>
-        <div className="products">
+        <div className="purchaseProducts">
           <p className="subtitle">주문상품</p>
           <div className="border" />
           {productDatas.map(productData => {
             const { productId, productName, productCount } = productData;
             return (
-              <div className="product" key={productId}>
+              <div className="purchaseProduct" key={productId}>
                 <p>{productName}</p>
                 <p>{productCount}개</p>
               </div>
@@ -116,7 +116,7 @@ const Purchase = () => {
           })}
         </div>
       </div>
-      <div className="rightBox">
+      <div className="purchaseRightBox">
         <div className="price">
           <p>주문 금액</p>
           <p> {Number(lastPrice()).toLocaleString()}원</p>
@@ -168,8 +168,8 @@ const Purchase = () => {
       </div>
       {isModalOpen && (
         <div className="modalBlack">
-          <div className="modal">
-            <div className="text">
+          <div className="purchaseModal">
+            <div className="purchaseModalText">
               <p>상품 주문이 완료되었습니다.</p>
               <p>주문페이지로 넘어갑니다.</p>
             </div>

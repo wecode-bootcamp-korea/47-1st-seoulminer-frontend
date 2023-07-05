@@ -19,24 +19,27 @@ const ProductDetail = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch('/data/MainData.json')
-      // fetch('http://10.58.52.154:3000/products/list')
-      .then(response => response.json())
-      .then(result => setCarouselData(result));
-    // .then(result => setCarouselData(result.data));
-  }, []);
-
-  useEffect(() => {
     fetch('/data/DetailData.json')
-      // fetch(`http://10.58.52.154:3000/products/${4}`)
+      // fetch(`http://10.58.52.154:3000/products/${productID}`)
       .then(response => response.json())
       .then(result => setProduct(result));
     // .then(result => setProduct(result.data));
   }, []);
   // }, [productID]);
 
+  useEffect(() => {
+    fetch('/data/MainData.json')
+      // fetch(
+      //   `http://10.58.52.175:3000/products/list?offset=0&limit=4&category=${product.productCategoryId}`
+      // )
+      .then(response => response.json())
+      .then(results => setCarouselData(results));
+    // .then(result => setCarouselData(result.result));
+    // }, [product]);
+  }, []);
+
   const goToCart = () => {
-    fetch('http://10.58.52.154:3000/carts', {
+    fetch('http://10.58.52.175:3000/carts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -67,7 +70,7 @@ const ProductDetail = () => {
   };
 
   const goToBuy = () => {
-    fetch('http://10.58.52.163:3000/orders', {
+    fetch('http://10.58.52.175:3000/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -102,7 +105,7 @@ const ProductDetail = () => {
   return (
     <div className="productDetail">
       <div className="top">
-        <div className="title">
+        <div className="productDetailTitle">
           <p className="titleName">{product?.productName}</p>
           <p>{price}원</p>
         </div>
@@ -162,7 +165,7 @@ const ProductDetail = () => {
           </div>
           <div className="getButton">
             <button
-              className="cart"
+              className="cartBtn"
               disabled={noItem}
               style={{ opacity: noItem ? 0.5 : 1 }}
               onClick={() => goToCart()}
@@ -170,7 +173,7 @@ const ProductDetail = () => {
               장바구니
             </button>
             <button
-              className="get"
+              className="buyBtn"
               disabled={noItem}
               style={{ opacity: noItem ? 0.5 : 1 }}
               onClick={() => {
@@ -194,7 +197,7 @@ const ProductDetail = () => {
       <div className="recommendProducts">
         <h3 className="recommend">이건 어때요?</h3>
         <div className="products">
-          {carouselDatas.length > 0 &&
+          {carouselDatas?.length > 0 &&
             carouselDatas.slice(0, 4).map(ele => {
               return (
                 <Product key={ele.id} data={ele} width={200} height={200} />
