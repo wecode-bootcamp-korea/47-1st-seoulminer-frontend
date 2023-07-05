@@ -1,0 +1,199 @@
+.cartContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 80px 0 200px 0;
+
+  .orderStep {
+    padding: 20px 0 70px 0;
+  }
+
+  .cartText {
+    display: flex;
+    align-items: center;
+    margin-top: 5%;
+    margin-left: 30%;
+    font-size: 52px;
+    font-weight: 700;
+  }
+
+  .cartWrapper {
+    display: flex;
+    position: relative;
+    width: 960px;
+    margin: 0 auto;
+
+    .cartContent {
+      position: relative;
+      flex: 0 0 auto;
+      width: 70%;
+      margin: 0 40px 0 0;
+      padding: 0 40px 0 0;
+
+      .selectText {
+        width: 100%;
+        border-bottom: 1px solid lightgray;
+        color: rgb(180, 180, 180);
+        font-size: 13px;
+      }
+      .cartBorder {
+        border-bottom: 1px solid lightgray;
+      }
+      .dataNone {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        .title {
+          font-size: 54px;
+          font-weight: 700;
+          letter-spacing: -1px;
+          line-height: 60px;
+        }
+        .text {
+          margin-top: 20px;
+          font-size: 18px;
+          line-height: 27px;
+        }
+      }
+    }
+  }
+}
+
+.paymentArea {
+  position: absolute;
+  z-index: 1;
+  top: 49%;
+  right: 20%;
+  width: 240px;
+  padding-top: 3px;
+  transition: 0.1s ease bottom;
+
+  .paymentBorder {
+    padding-top: 60px;
+    border-top: 1px solid lightgray;
+  }
+
+  .price {
+    display: inline-block;
+    margin-right: 59%;
+  }
+
+  .priceNum {
+    display: inline-block;
+    padding-bottom: 5%;
+  }
+
+  .priceText {
+    display: inline-block;
+    margin-right: 69%;
+    padding-bottom: 20%;
+  }
+
+  .deliveryNum {
+    display: inline-block;
+  }
+
+  .pay {
+    padding-top: 20%;
+    padding-bottom: 20%;
+    border-top: 1px solid lightgray;
+  }
+
+  .payMoney {
+    display: inline-block;
+    margin-right: 55%;
+    color: #2ac1bc;
+    font-weight: 500;
+  }
+
+  .lastNum {
+    display: inline-block;
+    color: #2ac1bc;
+    font-weight: 500;
+  }
+
+  .paymentButton {
+    width: 243px;
+    height: 40px;
+    border: none;
+    border-radius: 15px;
+    background-color: #2ac1bc;
+    color: white;
+  }
+
+  .paymentButton.disabled {
+    background-color: lightgray;
+  }
+}
+
+.quantityContainer {
+  display: flex;
+  align-items: center;
+  .quantityButton {
+    width: 30px;
+    height: 20px;
+    border: 1px solid lightgray;
+    background-color: white;
+    font-size: 15px;
+  }
+}
+
+.selectCheckbox {
+  display: flex;
+  position: relative;
+  top: 10;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  transition: top 0.3s;
+
+  .checkboxHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 10px;
+
+    .selectText {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+
+      .selectAll {
+        margin-right: 6px;
+      }
+    }
+
+    .delete {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      .deleteText {
+        width: 111px;
+        border: none;
+        background-color: white;
+        color: rgb(180, 180, 180);
+        font-size: 13px;
+        cursor: pointer;
+
+        &:hover {
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+.cartImg {
+  width: 100px;
+  height: 100px;
+}
+.checkboxInput {
+  margin: 1%;
+}
