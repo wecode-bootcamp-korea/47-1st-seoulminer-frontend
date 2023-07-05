@@ -20,7 +20,7 @@ const Login = () => {
   };
 
   const postUserData = () => {
-    fetch('http://10.58.52.88:3000/users/signin', {
+    fetch('http://10.58.52.154:3000/users/signin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ const Login = () => {
       .then(data => {
         if (data.accessToken) {
           localStorage.setItem('token', data.accessToken);
-          navigate('/Main');
+          navigate('/');
         } else {
           setIsModalOpen(true);
         }
@@ -56,6 +56,7 @@ const Login = () => {
       <p className="title">로그인</p>
       <div className="inputContainer">
         <SignInput
+          className="id"
           name="id"
           placeholder="아이디"
           type="text"
@@ -65,6 +66,7 @@ const Login = () => {
           }}
         />
         <SignInput
+          className="pw"
           name="pw"
           placeholder="비밀번호"
           type="password"
@@ -93,7 +95,7 @@ const Login = () => {
         로그인
       </button>
       <div className="buttonContainer">
-        <Link to="./SignIn.js">
+        <Link to="/signUp">
           <button className="admition">회원가입</button>
         </Link>
         <p>|</p>

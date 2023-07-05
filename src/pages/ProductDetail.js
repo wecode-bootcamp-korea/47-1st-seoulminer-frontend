@@ -3,7 +3,7 @@ import Product from '../components/Product/Product';
 import RegularInfo from '../components/RegularInfo';
 import Count from '../components/Count/Count';
 import ProductInfo from '../components/ProductInfo';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './ProductDetail.scss';
 
 const ProductDetail = () => {
@@ -16,7 +16,7 @@ const ProductDetail = () => {
   const params = useParams();
   const productID = params.id;
 
-  const token = localStorage.getItem('accessToken');
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     fetch('/data/MainData.json')
@@ -28,7 +28,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     fetch('/data/DetailData.json')
-      // fetch(`http://10.58.52.154:3000/products/${productID}`)
+      // fetch(`http://10.58.52.154:3000/products/${4}`)
       .then(response => response.json())
       .then(result => setProduct(result));
     // .then(result => setProduct(result.data));
@@ -36,11 +36,11 @@ const ProductDetail = () => {
   // }, [productID]);
 
   const goToCart = () => {
-    fetch('./carts', {
+    fetch('http://10.58.52.154:3000/carts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: token,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         productId: product.productId,
@@ -66,11 +66,11 @@ const ProductDetail = () => {
   };
 
   const goToBuy = () => {
-    fetch('./carts', {
+    fetch('http://10.58.52.163:3000/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: localStorage.getItem('accessToken'),
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         productId: product.productId,
@@ -79,8 +79,10 @@ const ProductDetail = () => {
     })
       .then(response => response.json())
       .then(data => {
-        if (data.message === '구매성공') {
-          alert('상품 구매 성공');
+        if (data.message === 'CREATE_ORDER_SUCCESS') {
+          <Link to="/purchase" />;
+        } else if (data.message === 'KEY_ERROR') {
+          alert('구매 실패');
         }
       });
   };
@@ -88,32 +90,39 @@ const ProductDetail = () => {
   let totalPrice = 0;
   let price = 0;
 
-  if (product.length > 0) {
-    totalPrice = Math.floor(product[0].productPrice * number).toLocaleString();
-    price = Math.floor(product[0].productPrice).toLocaleString();
+  if (product) {
+    totalPrice = Math.floor(product.productPrice * number).toLocaleString();
+    price = Math.floor(product.productPrice).toLocaleString();
   }
 
   return (
     <div className="productDetail">
       <div className="top">
         <div className="title">
-          <p className="titleName">{product[0]?.productName}</p>
+          <p className="titleName">{product?.productName}</p>
           <p>{price}원</p>
         </div>
         <div className="fullImage">
-          <button className="next">next</button>
+          <button
+            className="next"
+            onClick={() => {
+              setImgChange(!imgChange);
+            }}
+          >
+            next
+          </button>
           <div className="image">
             <div className="allImage">
               <img
                 className="tumbnailImg"
                 alt="product1"
-                src={product[0]?.productThumbnailImage}
+                src={product?.productThumbnailImage}
               />
               <img
                 className="hoverImg"
                 style={{ opacity: imgChange ? 1 : 0 }}
                 alt="product2"
-                src={product[0]?.productHoverImage}
+                src={product?.productHoverImage}
               />
             </div>
           </div>
@@ -135,7 +144,7 @@ const ProductDetail = () => {
           </div>
           <div className="border" />
           <div className="box">
-            <p>{product[0].productName}</p>
+            <p>{product?.productName}</p>
             <div className="price">
               <div className="countButton">
                 <Count number={number} setNumber={setNumber} />

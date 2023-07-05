@@ -32,7 +32,7 @@ const SignUpSecond = () => {
   };
 
   const postUserSignUpData = () => {
-    fetch('http://10.58.52.88:3000/users/signup', {
+    fetch('http://10.58.52.154:3000/users/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,9 +44,9 @@ const SignUpSecond = () => {
       })
       .then(data => {
         if (data.message === 'CREATE_USER_SUCCESS!') {
-          navigate('/Main');
           setIsModalOpen(true);
           setTimeout(() => setIsModalOpen(false), 3000);
+          setTimeout(() => navigate('/'), 3000);
         } else if (data.message === 'INVALID_EMAIL') {
           alert('이메일 형식에 맞지 않는 이메일입니다. 다시 확인해주세요.');
         } else if (data.message === 'INVALID_PASSWORD') {
