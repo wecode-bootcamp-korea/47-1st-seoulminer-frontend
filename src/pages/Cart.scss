@@ -126,7 +126,12 @@
     height: 40px;
     border: none;
     border-radius: 15px;
+    background-color: #2ac1bc;
     color: white;
+  }
+
+  .paymentButton.disabled {
+    background-color: lightgray;
   }
 }
 
