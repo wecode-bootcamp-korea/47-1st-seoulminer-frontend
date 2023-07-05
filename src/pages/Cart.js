@@ -8,7 +8,7 @@ const Cart = () => {
   const price = 10000;
 
   const handleIncrease = () => {
-    setQuantity(quantity + 1);
+    setQuantity(quantity => quantity + 1);
   };
 
   const handleDecrease = () => {
