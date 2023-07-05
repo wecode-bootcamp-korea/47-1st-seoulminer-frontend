@@ -8,7 +8,7 @@ import './ProductDetail.scss';
 
 const ProductDetail = () => {
   const [carouselDatas, setCarouselData] = useState([]);
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
   const [currentTab, setCurrentTab] = useState('First');
   const [imgChange, setImgChange] = useState(false);
   const [number, setNumber] = useState(1);
@@ -44,6 +44,7 @@ const ProductDetail = () => {
       },
       body: JSON.stringify({
         productId: product.productId,
+        productOptionId: product.productOptions[0].optionId,
         quantity: number,
       }),
     })
@@ -74,6 +75,7 @@ const ProductDetail = () => {
       },
       body: JSON.stringify({
         productId: product.productId,
+        productOptionId: product.productOptions[0].optionId,
         quantity: number,
       }),
     })
@@ -89,10 +91,12 @@ const ProductDetail = () => {
 
   let totalPrice = 0;
   let price = 0;
+  let noItem = false;
 
-  if (product) {
+  if (product.productPrice) {
     totalPrice = Math.floor(product.productPrice * number).toLocaleString();
     price = Math.floor(product.productPrice).toLocaleString();
+    noItem = number > product.productOptions[0].optionInventory;
   }
 
   return (
@@ -157,11 +161,18 @@ const ProductDetail = () => {
             <p className="total">{totalPrice}원</p>
           </div>
           <div className="getButton">
-            <button className="cart" onClick={() => goToCart()}>
+            <button
+              className="cart"
+              disabled={noItem}
+              style={{ opacity: noItem ? 0.5 : 1 }}
+              onClick={() => goToCart()}
+            >
               장바구니
             </button>
             <button
               className="get"
+              disabled={noItem}
+              style={{ opacity: noItem ? 0.5 : 1 }}
               onClick={() => {
                 goToBuy();
               }}
@@ -169,6 +180,14 @@ const ProductDetail = () => {
               바로 구매하기
             </button>
           </div>
+          <p
+            className="outOfStock"
+            style={{
+              opacity: noItem ? '1' : '0',
+            }}
+          >
+            재고가 부족합니다.
+          </p>
         </div>
       </div>
       <div className="border" />

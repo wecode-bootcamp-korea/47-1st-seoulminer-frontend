@@ -75,7 +75,7 @@
       flex-direction: column;
       justify-content: center;
       width: 350px;
-      gap: 15px;
+      gap: 12px;
 
       .delivery {
         display: flex;
@@ -143,6 +143,10 @@
             color: #2ac1bc;
           }
         }
+      }
+      .outOfStock {
+        color: red;
+        text-align: center;
       }
     }
   }
