@@ -18,38 +18,40 @@ const Cart = () => {
   };
 
   const totalPrice = price * quantity;
+
   return (
     <div className="cartContainer">
-      <div className="orderStep">
-        <p className="cartText">장바구니</p>
+      <div className="cartHeader">
+        <div className="orderStep">
+          <p className="cartText">장바구니</p>
+        </div>
       </div>
       <div className="cartWrapper">
         <div className="cartContent">
-          <div className="cartHeader">
-            {arr.length > 0 && (
-              <div className="checkboxCompo">
-                <CartCheckBox />
-              </div>
-            )}
-            {arr.length === 0 && (
+          <div className="checkboxHeader">
+            {arr.length === 0 ? (
               <div className="dataNone">
                 <h2 className="title">앗!</h2>
                 <div className="text">장바구니가 텅~</div>
               </div>
+            ) : (
+              <div className="countContainer">
+                <div className="quantityContainer">
+                  <button
+                    className="quantityButton"
+                    onClick={handleDecrease}
+                    disabled={quantity === 0}
+                  >
+                    -
+                  </button>
+                  <span className="quantityText">{quantity}</span>
+                  <button className="quantityButton" onClick={handleIncrease}>
+                    +
+                  </button>
+                </div>
+                <CartCheckBox />
+              </div>
             )}
-            <div className="quantityContainer">
-              <button
-                className="quantityButton"
-                onClick={handleDecrease}
-                disabled={quantity === 0}
-              >
-                -
-              </button>
-              <span className="quantityText">{quantity}</span>
-              <button className="quantityButton" onClick={handleIncrease}>
-                +
-              </button>
-            </div>
           </div>
         </div>
       </div>

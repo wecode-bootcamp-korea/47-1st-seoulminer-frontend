@@ -37,14 +37,13 @@
         align-items: center;
         height: 500px;
         padding-bottom: 15px;
-        border-top: 1px solid lightgray;
         border-bottom: 1px solid lightgray;
-        .checkboxCompo {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-around;
-          height: 100%;
-        }
+      }
+      .selectText {
+        width: 100%;
+        border-bottom: 1px solid lightgray;
+        color: rgb(180, 180, 180);
+        font-size: 13px;
       }
       .dataNone {
         display: flex;
@@ -71,14 +70,14 @@
 .paymentArea {
   position: absolute;
   z-index: 1;
-  top: 20%;
+  top: 27%;
   right: 20%;
   width: 240px;
-  padding-top: 36px;
+  padding-top: 3px;
   transition: 0.1s ease bottom;
 
   .paymentBorder {
-    padding-top: 70px;
+    padding-top: 60px;
     border-top: 1px solid lightgray;
   }
 
@@ -135,33 +134,66 @@
   }
 }
 
-.selectCheckbox {
-  position: relative;
-  bottom: 15%;
-}
-
-.deleteText {
-  position: absolute;
-  bottom: 101%;
-  left: 85%;
-  border: none;
-  background-color: white;
-  color: rgb(180, 180, 180);
-  font-size: 13px;
-  cursor: pointer;
-  &:hover {
-    color: black;
-  }
-}
-.selectText {
-  position: relative;
-  top: 50%;
-  left: 35%;
-  color: rgb(180, 180, 180);
-  font-size: 13px;
-}
-
 .quantityContainer {
   display: flex;
   align-items: center;
+  .quantityButton {
+    width: 30px;
+    height: 20px;
+    border: 1px solid lightgray;
+    background-color: white;
+    font-size: 15px;
+  }
+}
+
+.selectCheckbox {
+  display: flex;
+  position: relative;
+  top: 10;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  transition: top 0.3s;
+
+  .checkboxHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 10px;
+
+    .selectText {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+
+      .selectAll {
+        margin-right: 6px;
+      }
+    }
+
+    .delete {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      .deleteText {
+        width: 111px;
+        border: none;
+        background-color: white;
+        color: rgb(180, 180, 180);
+        font-size: 13px;
+        cursor: pointer;
+
+        &:hover {
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+.cartImg {
+  width: 100px;
+  height: 100px;
 }
