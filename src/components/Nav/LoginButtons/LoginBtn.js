@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const LoginBtn = ({ isLoggedIn, onLogin, onLogout }) => {
-  return isLoggedIn ? (
-    <button className="logoutBtn" onClick={onLogout}>
+const LoginBtn = ({ onLogin }) => {
+  return localStorage.getItem('token') ? (
+    <button className="logoutBtn" onClick={onLogin}>
       로그아웃
     </button>
   ) : (

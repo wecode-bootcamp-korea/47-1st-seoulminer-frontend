@@ -15,28 +15,19 @@ const Purchase = () => {
   const conditon = localStorage.getItem('number') === null;
 
   useEffect(() => {
-    if (conditon) {
-      fetch('/data/OrderData.json')
-        .then(response => response.json())
-        .then(result => setProductData(result));
-    }
+    fetch('/data/OrderData.json')
+      .then(response => response.json())
+      .then(result => setProductData(result));
   }, []);
 
   useEffect(() => {
     const a = JSON.parse(localStorage.getItem('name'));
     const b = JSON.parse(localStorage.getItem('number'));
-    const c = JSON.parse(localStorage.getItem('totalPrice'));
+    const c = JSON.parse(localStorage.getItem('price'));
     setLocalStorageItem(a);
     setLocalStorageCount(b);
     setLocalStoragePrice(c);
-    console.log(a);
-    console.log(b);
-    console.log(c);
   }, []);
-
-  console.log(localStorageItem);
-  console.log(localStorageCount);
-  console.log(localStoragePrice);
 
   const handleInput = e => {
     const { name, value } = e.target;
@@ -87,19 +78,24 @@ const Purchase = () => {
     return total;
   };
 
-  const payPrice = (Number(lastPrice()) + 3000).toLocaleString();
+  const beforePrice = conditon
+    ? Number(lastPrice()).toLocaleString()
+    : localStoragePrice.toLocaleString();
+  const payPrice = conditon
+    ? (Number(lastPrice()) + 3000).toLocaleString()
+    : (localStoragePrice + 3000).toLocaleString();
 
   const goToPay = () => {
     localStorage.removeItem('name');
     localStorage.removeItem('number');
-    localStorage.removeItem('totalPrice');
+    localStorage.removeItem('price');
     setIsModalOpen(true);
   };
 
   return (
     <div className="purchase">
       <div className="left">
-        <p className="title">주문서</p>
+        <p className="purchaseTitle">주문서</p>
         <div className="address">
           <p className="subtitle">배송지</p>
           <div className="border" />
@@ -114,18 +110,25 @@ const Purchase = () => {
             );
           })}
         </div>
-        <div className="products">
+        <div className="purchaseProducts">
           <p className="subtitle">주문상품</p>
           <div className="border" />
-          {productDatas.map(productData => {
-            const { productId, productName, productCount } = productData;
-            return (
-              <div className="product" key={productId}>
-                <p>{conditon ? productName : localStorageItem}</p>
-                <p>{conditon ? productCount : localStorageCount}개</p>
-              </div>
-            );
-          })}
+          {conditon ? (
+            productDatas.map(productData => {
+              const { productId, productName, productCount } = productData;
+              return (
+                <div className="purchaseProduct" key={productId}>
+                  <p>{conditon ? productName : localStorageItem}</p>
+                  <p>{conditon ? productCount : localStorageCount}개</p>
+                </div>
+              );
+            })
+          ) : (
+            <div className="purchaseProduct">
+              <p>{localStorageItem}</p>
+              <p>{localStorageCount}개</p>
+            </div>
+          )}
         </div>
         <div className="buy">
           <p className="subtitle">결제수단</p>
@@ -146,10 +149,10 @@ const Purchase = () => {
           })}
         </div>
       </div>
-      <div className="rightBox">
+      <div className="purchaseRightBox">
         <div className="price">
           <p>주문 금액</p>
-          <p> {Number(lastPrice()).toLocaleString()}원</p>
+          <p> {beforePrice}원</p>
         </div>
         <div className="price">
           <p>배송비</p>
@@ -198,8 +201,8 @@ const Purchase = () => {
       </div>
       {isModalOpen && (
         <div className="modalBlack">
-          <div className="modal">
-            <div className="text">
+          <div className="purchaseModal">
+            <div className="purchaseModalText">
               <p>상품 주문이 완료되었습니다.</p>
               <p>주문페이지로 넘어갑니다.</p>
             </div>

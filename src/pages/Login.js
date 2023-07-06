@@ -20,7 +20,7 @@ const Login = () => {
   };
 
   const postUserData = () => {
-    fetch('http://10.58.52.154:3000/users/signin', {
+    fetch('http://10.58.52.175:3000/users/signin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ const Login = () => {
         if (data.accessToken) {
           localStorage.setItem('token', data.accessToken);
           navigate('/');
-        } else {
+        } else if (data.message === 'USER_IS_NOT_VALID') {
           setIsModalOpen(true);
         }
       });

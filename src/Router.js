@@ -10,6 +10,7 @@ import SignUpSecond from './pages/SignUpSecond';
 import NotFound from './pages/NotFound';
 import Purchase from './pages/Purchase';
 import Cart from './pages/Cart';
+import ProductList from './pages/productList/ProductList';
 
 const Router = () => {
   return (
@@ -20,8 +21,9 @@ const Router = () => {
           <Route path="productDetail/:id" element={<ProductDetail />} />
           <Route path="login" element={<Login />} />
           <Route path="signUp" element={<SignUp />} />
-          <Route path="signUpSecond" element={<SignUpSecond />} />
           <Route path="purchase" element={<Purchase />} />
+          <Route path="productList" element={<ProductList />} />
+          <Route path="cart" element={<Cart />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

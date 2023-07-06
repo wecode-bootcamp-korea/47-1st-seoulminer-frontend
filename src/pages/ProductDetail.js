@@ -8,7 +8,7 @@ import './ProductDetail.scss';
 
 const ProductDetail = () => {
   const [carouselDatas, setCarouselData] = useState([]);
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
   const [currentTab, setCurrentTab] = useState('First');
   const [imgChange, setImgChange] = useState(false);
   const [number, setNumber] = useState(1);
@@ -20,24 +20,27 @@ const ProductDetail = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch('/data/MainData.json')
-      // fetch('http://10.58.52.154:3000/products/list')
-      .then(response => response.json())
-      .then(result => setCarouselData(result));
-    // .then(result => setCarouselData(result.data));
-  }, []);
-
-  useEffect(() => {
     fetch('/data/DetailData.json')
-      // fetch(`http://10.58.52.154:3000/products/${4}`)
+      // fetch(`http://10.58.52.175:3000/products/${productID}`)
       .then(response => response.json())
       .then(result => setProduct(result));
     // .then(result => setProduct(result.data));
   }, []);
   // }, [productID]);
 
+  useEffect(() => {
+    fetch('/data/MainData.json')
+      // fetch(
+      //   `http://10.58.52.175:3000/products/list?offset=0&limit=4&category=${product.productCategoryId}`
+      // )
+      .then(response => response.json())
+      .then(results => setCarouselData(results));
+    // .then(result => setCarouselData(result.data));
+    // }, [product]);
+  }, []);
+
   const goToCart = () => {
-    fetch('http://10.58.52.154:3000/carts', {
+    fetch('http://10.58.52.175:3000/carts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -45,12 +48,13 @@ const ProductDetail = () => {
       },
       body: JSON.stringify({
         productId: product.productId,
+        productOptionId: product.productOptions[0].optionId,
         quantity: number,
       }),
     })
       .then(response => response.json())
       .then(data => {
-        if (data.message === 'Product Added to Cart') {
+        if (data.message === 'CART_ADD_SUCCESS') {
           alert('상품 추가 성공');
         } else if (data.message === 'TOKEN_NOT_FOUND') {
           alert('토큰값이 request안에 없음');
@@ -58,10 +62,16 @@ const ProductDetail = () => {
           alert('토큰값에 해당하는 유저가 존재하지 않음');
         } else if (data.message === 'INVALID_TOKEN') {
           alert('토큰값이 올바르지 않음');
-        } else if (data.message === 'FAILED_TO_UPDATE_CART') {
-          alert('상품 추가 실패 시');
         } else if (data.message === 'KEY_ERROR') {
           alert('키에러');
+        } else if (data.message === 'INVALID_PRODUCT') {
+          alert('상품 추가 실패 시 (없는 상품)');
+        } else if (data.message === 'PRODUCT_OUT_OF_STOCK') {
+          alert('상품 추가 실패 시 (inventory = 0)');
+        } else if (data.message === 'QUANTITY_EXCEEDS_INVENTORY') {
+          alert('상품 추가 실패 시 (quantity > inventory)');
+        } else if (data.message === 'QUANTITY_CANNOT_BE_0') {
+          alert('상품 추가 실패 시 (quantity < 0)');
         }
       });
   };
@@ -69,22 +79,24 @@ const ProductDetail = () => {
   const goToBuy = () => {
     localStorage.setItem('name', JSON.stringify(product.productName));
     localStorage.setItem('number', JSON.stringify(number));
-    localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
+    localStorage.setItem('price', JSON.stringify(product.productPrice));
     navigate('/purchase');
   };
 
   let totalPrice = 0;
   let price = 0;
+  let noItem = false;
 
-  if (product) {
+  if (product.productPrice) {
     totalPrice = Math.floor(product.productPrice * number).toLocaleString();
     price = Math.floor(product.productPrice).toLocaleString();
+    noItem = number > product.productOptions[0].optionInventory;
   }
 
   return (
     <div className="productDetail">
       <div className="top">
-        <div className="title">
+        <div className="productDetailTitle">
           <p className="titleName">{product?.productName}</p>
           <p>{price}원</p>
         </div>
@@ -143,11 +155,18 @@ const ProductDetail = () => {
             <p className="total">{totalPrice}원</p>
           </div>
           <div className="getButton">
-            <button className="cart" onClick={() => goToCart()}>
+            <button
+              className="cartBtn"
+              disabled={noItem}
+              style={{ opacity: noItem ? 0.5 : 1 }}
+              onClick={() => goToCart()}
+            >
               장바구니
             </button>
             <button
-              className="get"
+              className="buyBtn"
+              disabled={noItem}
+              style={{ opacity: noItem ? 0.5 : 1 }}
               onClick={() => {
                 goToBuy();
               }}
@@ -155,13 +174,21 @@ const ProductDetail = () => {
               바로 구매하기
             </button>
           </div>
+          <p
+            className="outOfStock"
+            style={{
+              opacity: noItem ? '1' : '0',
+            }}
+          >
+            재고가 부족합니다.
+          </p>
         </div>
       </div>
       <div className="border" />
       <div className="recommendProducts">
         <h3 className="recommend">이건 어때요?</h3>
         <div className="products">
-          {carouselDatas.length > 0 &&
+          {carouselDatas?.length > 0 &&
             carouselDatas.slice(0, 4).map(ele => {
               return (
                 <Product key={ele.id} data={ele} width={200} height={200} />
