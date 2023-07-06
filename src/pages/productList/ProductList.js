@@ -40,7 +40,6 @@ const ProductList = () => {
     // .then(data => setProductListData(data.data));
     // }, [queryString]);
   }, []);
-  console.log(productListData);
 
   return (
     <div>
