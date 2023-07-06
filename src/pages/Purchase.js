@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './Purchase.scss';
 
 const Purchase = () => {
+  const a = localStorage.getItem('item');
   const [inputValue, setInputValue] = useState({});
   const [checkboxValue, setCheckboxValue] = useState({});
   const [isAllValue, setIsAllValue] = useState({});
@@ -9,12 +10,14 @@ const Purchase = () => {
   const [productDatas, setProductData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const parsedA = JSON.parse(a);
+  const conditon = a === null;
+
   useEffect(() => {
     fetch('/data/OrderData.json')
       .then(response => response.json())
       .then(result => setProductData(result));
   }, []);
-
   const handleInput = e => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
@@ -64,7 +67,20 @@ const Purchase = () => {
     return total;
   };
 
-  const payPrice = (Number(lastPrice()) + 3000).toLocaleString();
+  const beforePrice = conditon
+    ? Number(lastPrice()).toLocaleString()
+    : (parsedA.price * parsedA.number).toLocaleString();
+  const payPrice = conditon
+    ? (Number(lastPrice()) + 3000).toLocaleString()
+    : (parsedA.price * parsedA.number + 3000).toLocaleString();
+
+  const goToPay = () => {
+    localStorage.removeItem('item');
+    // localStorage.removeItem('name');
+    // localStorage.removeItem('number');
+    // localStorage.removeItem('price');
+    setIsModalOpen(true);
+  };
 
   return (
     <div className="purchase">
@@ -73,12 +89,12 @@ const Purchase = () => {
         <div className="address">
           <p className="subtitle">배송지</p>
           <div className="border" />
-          {DELIVARY_INFO.map(delivatyData => {
+          {DELIVARY_INFO.map(delivaryData => {
             return (
               <input
-                key={delivatyData.id}
-                name={delivatyData.name}
-                placeholder={delivatyData.placeholder}
+                key={delivaryData.id}
+                name={delivaryData.name}
+                placeholder={delivaryData.placeholder}
                 onChange={handleInput}
               />
             );
@@ -87,15 +103,22 @@ const Purchase = () => {
         <div className="purchaseProducts">
           <p className="subtitle">주문상품</p>
           <div className="border" />
-          {productDatas.map(productData => {
-            const { productId, productName, productCount } = productData;
-            return (
-              <div className="purchaseProduct" key={productId}>
-                <p>{productName}</p>
-                <p>{productCount}개</p>
-              </div>
-            );
-          })}
+          {conditon ? (
+            productDatas.map(productData => {
+              const { productId, productName, productCount } = productData;
+              return (
+                <div className="purchaseProduct" key={productId}>
+                  <p>{conditon ? productName : parsedA.name}</p>
+                  <p>{conditon ? productCount : parsedA.number}개</p>
+                </div>
+              );
+            })
+          ) : (
+            <div className="purchaseProduct">
+              <p>{parsedA.name}</p>
+              <p>{parsedA.number}개</p>
+            </div>
+          )}
         </div>
         <div className="buy">
           <p className="subtitle">결제수단</p>
@@ -119,7 +142,7 @@ const Purchase = () => {
       <div className="purchaseRightBox">
         <div className="price">
           <p>주문 금액</p>
-          <p> {Number(lastPrice()).toLocaleString()}원</p>
+          <p> {beforePrice}원</p>
         </div>
         <div className="price">
           <p>배송비</p>
@@ -161,7 +184,7 @@ const Purchase = () => {
           className="button"
           disabled={!isValid}
           style={{ opacity: `${isValid ? 1 : 0.5}` }}
-          onClick={() => setIsModalOpen(true)}
+          onClick={goToPay}
         >
           결제하기
         </button>
