@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import CartCheckBox from './CartCheckBox';
-import Count from './Count';
 import './Cart.scss';
 
 const Cart = () => {
   const [cartData, setCartData] = useState([]);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch(`http://10.58.52.175:3000/carts/list`, {
+    fetch(`http://10.58.52.145:3000/carts`, {
       method: 'GET',
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: token },
     })
       .then(response => response.json())
-      .then(result => setCartData(result.data[0]));
+      .then(result => {
+        console.log('>>>>>>>', result);
+        setCartData(result.data[0]);
+      })
+      .catch(error => console.error(error));
   }, []);
-
-  const token = localStorage.getItem('token');
-  console.log(cartData);
 
   return (
     <div className="cartContainer">
@@ -31,14 +31,12 @@ const Cart = () => {
           <div className="checkboxHeader">
             {cartData.length === 0 ? (
               <div className="dataNone">
-                <h2 className="title">앗!</h2>
-                <div className="text">장바구니가 텅~</div>
+                <h2 className="cartTitle">앗!</h2>
+                <div className="cartText">장바구니가 텅~</div>
               </div>
             ) : (
               <div className="cartCheckboxComponent">
-                <CartCheckBox />
-                <Count />
-                <div className="cartBorder" />
+                <CartCheckBox cartData={cartData} setCartData={setCartData} />
               </div>
             )}
           </div>

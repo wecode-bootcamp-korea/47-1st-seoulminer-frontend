@@ -48,16 +48,16 @@
         align-items: center;
         justify-content: center;
         height: 100%;
-        .title {
-          font-size: 54px;
+        .cartTitle {
+          font-size: 66px;
           font-weight: 700;
           letter-spacing: -1px;
           line-height: 60px;
         }
-        .text {
-          margin-top: 20px;
-          font-size: 18px;
-          line-height: 27px;
+        .cartText {
+          margin-top: 100px;
+          font-size: 30px;
+          font-weight: 400;
         }
       }
     }
@@ -67,8 +67,8 @@
 .paymentArea {
   position: absolute;
   z-index: 1;
-  top: 49%;
-  right: 20%;
+  bottom: 0px;
+  left: 700px;
   width: 240px;
   padding-top: 3px;
   transition: 0.1s ease bottom;
@@ -170,9 +170,9 @@
     }
 
     .delete {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
+      // display: flex;
+      // align-items: center;
+      // justify-content: flex-end;
 
       .deleteText {
         width: 111px;

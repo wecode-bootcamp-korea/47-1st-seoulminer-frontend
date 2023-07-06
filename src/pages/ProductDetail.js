@@ -19,11 +19,11 @@ const ProductDetail = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch('/data/DetailData.json')
-      // fetch(`http://10.58.52.175:3000/products/${productID}`)
+    fetch('/data/DetailData.json');
+    fetch(`http://10.58.52.145:3000/products/${productID}`)
       .then(response => response.json())
-      .then(result => setProduct(result));
-    // .then(result => setProduct(result.data));
+      // .then(result => setProduct(result));
+      .then(result => setProduct(result.data));
   }, []);
   // }, [productID]);
 
@@ -39,7 +39,7 @@ const ProductDetail = () => {
   }, []);
 
   const goToCart = () => {
-    fetch('http://10.58.52.175:3000/carts', {
+    fetch('http://10.58.52.145:3000/carts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

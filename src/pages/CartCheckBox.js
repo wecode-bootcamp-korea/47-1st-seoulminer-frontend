@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './CartCheckBox.scss';
-const CartCheckBox = () => {
+import CartCount from './CartCount';
+
+const CartCheckBox = ({ cartData, setCartData }) => {
   const [selectAll, setSelectAll] = useState(false);
-  const [checkBoxes, setCheckBoxes] = useState([false, false, false, false]);
+  const [checkBoxes, setCheckBoxes] = useState([false]);
 
   useEffect(() => {
     const allSelected = checkBoxes.every(checked => checked);
@@ -21,10 +23,34 @@ const CartCheckBox = () => {
   };
 
   const handleDeleteSelected = () => {
-    const updatedCheckBoxes = checkBoxes.filter(
-      (_, index) => !checkBoxes[index]
-    );
-    setCheckBoxes(updatedCheckBoxes);
+    // 선택된 상품의 id 목록을 가져옴
+    const selectedProductIds = checkBoxes
+      .map((checked, index) => (checked ? cartData[index].id : null))
+      .filter(productId => productId !== null);
+
+    // 선택된 상품 삭제 요청 보냄
+    fetch(``, {
+      method: 'DELETE',
+      headers: {
+        headers: { Authorization: 'token' },
+      },
+      body: JSON.stringify({ productIds: selectedProductIds }),
+    })
+      .then(response => response.json())
+      .then(result => {
+        if (result.success) {
+          const updatedCartData = cartData.filter(
+            item => !selectedProductIds.includes(item.id)
+          );
+          setCartData(updatedCartData);
+          setCheckBoxes(Array(updatedCartData.length).fill(false));
+        } else {
+          console.error('상품 삭제 실패');
+        }
+      })
+      .catch(error => {
+        console.error('상품 삭제 요청 실패:', error);
+      });
   };
 
   return (
@@ -57,13 +83,14 @@ const CartCheckBox = () => {
               checked={checked}
               onChange={() => handleCheckBoxChange(index)}
             />
+            <p className="productName">1</p>
             <img
               className="cartImg"
               src="/images/IMG_7632.jpg"
               alt="productImg"
             />
+            <CartCount />
           </div>
-          <p>qqqqwwwweeee1112233</p>
         </div>
       ))}
     </div>

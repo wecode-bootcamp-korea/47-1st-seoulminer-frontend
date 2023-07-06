@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 
-const Count = () => {
-  const [products, setProducts] = useState([
-    { id: 1, name: 'Product 1', quantity: 0 },
-    { id: 2, name: 'Product 2', quantity: 0 },
-    { id: 3, name: 'Product 3', quantity: 0 },
-    { id: 4, name: 'Product 4', quantity: 0 },
-  ]);
-  const price = 10000;
+const CartCount = () => {
+  const [products, setProducts] = useState([]);
+
+  const price = 1; // 임의의 가격 설정
 
   const handleIncrease = productId => {
     setProducts(prevProducts =>
@@ -17,6 +13,7 @@ const Count = () => {
           : product
       )
     );
+    sendQuantityUpdate(productId, 1); // 수량 변경 시 서버 요청 보냄
   };
 
   const handleDecrease = productId => {
@@ -27,6 +24,25 @@ const Count = () => {
           : product
       )
     );
+    sendQuantityUpdate(productId, -1); // 수량 변경 시 서버 요청 보냄
+  };
+
+  const sendQuantityUpdate = (productId, quantityChange) => {
+    const updatedProduct = products.find(product => product.id === productId);
+    if (updatedProduct) {
+      const updatedQuantity = updatedProduct.quantity + quantityChange;
+
+      fetch(`/api/cart/${productId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ quantity: updatedQuantity }),
+      })
+        .then(response => response.json())
+        .then(result => {
+          const updatedCartData = result.data;
+          setProducts(updatedCartData);
+        });
+    }
   };
 
   const getTotalPrice = () => {
@@ -92,4 +108,4 @@ const Count = () => {
   );
 };
 
-export default Count;
+export default CartCount;
