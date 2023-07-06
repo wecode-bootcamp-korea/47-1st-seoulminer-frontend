@@ -23,16 +23,20 @@ const Nav = () => {
   };
 
   const handleLogin = () => {
-    // if (!localStorage.getItem('token')) {
-    setIsLoggedIn(true);
-    // }
-  };
-
-  const handleLogout = () => {
     if (localStorage.getItem('token')) {
       setIsLoggedIn(false);
       localStorage.removeItem('token');
       navigate('');
+    } else {
+      setIsLoggedIn(true);
+    }
+  };
+
+  const goToCart = () => {
+    if (localStorage.getItem('token')) {
+      navigate('/cart');
+    } else {
+      navigate('/login');
     }
   };
 
@@ -51,14 +55,12 @@ const Nav = () => {
         </div>
         <div className="icons">
           <FontAwesomeIcon icon={faMagnifyingGlass} className="leadingGlass" />
-          <Link to="/cart">
-            <FontAwesomeIcon icon={faCartShopping} className="cart" />
-          </Link>
-          <LoginButtons
-            isLoggedIn={isLoggedIn}
-            onLogin={handleLogin}
-            onLogout={handleLogout}
+          <FontAwesomeIcon
+            icon={faCartShopping}
+            className="cart"
+            onClick={goToCart}
           />
+          <LoginButtons isLoggedIn={isLoggedIn} onLogin={handleLogin} />
           <button className="menuBtn" onClick={handleOpen}>
             <FontAwesomeIcon icon={faBars} className="bar" />
           </button>
