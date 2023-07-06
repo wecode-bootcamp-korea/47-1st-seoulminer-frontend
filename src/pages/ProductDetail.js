@@ -17,27 +17,29 @@ const ProductDetail = () => {
   const params = useParams();
   const productID = params.id;
 
+  const string = product?.productCategoryId;
+
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch('/data/DetailData.json')
-      // fetch(`http://10.58.52.175:3000/products/${productID}`)
+    // fetch('/data/DetailData.json')
+    fetch(`http://10.58.52.175:3000/products/${productID}`)
       .then(response => response.json())
-      .then(result => setProduct(result));
-    // .then(result => setProduct(result.data));
-  }, []);
-  // }, [productID]);
+      // .then(result => setProduct(result));
+      .then(result => setProduct(result.data));
+    // }, []);
+  }, [productID]);
 
   useEffect(() => {
-    fetch('/data/MainData.json')
-      // fetch(
-      //   `http://10.58.52.175:3000/products/list?offset=0&limit=4&category=${product.productCategoryId}`
-      // )
+    // fetch('/data/MainData.json')
+    fetch(
+      `http://10.58.52.175:3000/products/list?offset=0&limit=4&category=${string}`
+    )
       .then(response => response.json())
-      .then(results => setCarouselData(results));
-    // .then(result => setCarouselData(result.data));
-    // }, [product]);
-  }, []);
+      // .then(results => setCarouselData(results));
+      .then(result => setCarouselData(result.data));
+  }, [product]);
+  // }, []);
 
   const goToCart = () => {
     fetch('http://10.58.52.175:3000/carts', {
@@ -92,7 +94,7 @@ const ProductDetail = () => {
   let price = 0;
   let noItem = false;
 
-  if (product.productPrice) {
+  if (product?.productPrice) {
     totalPrice = Math.floor(product.productPrice * number).toLocaleString();
     price = Math.floor(product.productPrice).toLocaleString();
     noItem = number > product.productOptions[0].optionInventory;
