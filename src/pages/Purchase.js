@@ -2,33 +2,22 @@ import { useEffect, useState } from 'react';
 import './Purchase.scss';
 
 const Purchase = () => {
+  const a = localStorage.getItem('item');
   const [inputValue, setInputValue] = useState({});
   const [checkboxValue, setCheckboxValue] = useState({});
   const [isAllValue, setIsAllValue] = useState({});
   const [isAll, setIsAll] = useState(false);
   const [productDatas, setProductData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [localStorageItem, setLocalStorageItem] = useState('');
-  const [localStorageCount, setLocalStorageCount] = useState(0);
-  const [localStoragePrice, setLocalStoragePrice] = useState(0);
 
-  const conditon = localStorage.getItem('number') === null;
+  const parsedA = JSON.parse(a);
+  const conditon = a === null;
 
   useEffect(() => {
     fetch('/data/OrderData.json')
       .then(response => response.json())
       .then(result => setProductData(result));
   }, []);
-
-  useEffect(() => {
-    const a = JSON.parse(localStorage.getItem('name'));
-    const b = JSON.parse(localStorage.getItem('number'));
-    const c = JSON.parse(localStorage.getItem('price'));
-    setLocalStorageItem(a);
-    setLocalStorageCount(b);
-    setLocalStoragePrice(c);
-  }, []);
-
   const handleInput = e => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
@@ -80,15 +69,16 @@ const Purchase = () => {
 
   const beforePrice = conditon
     ? Number(lastPrice()).toLocaleString()
-    : localStoragePrice.toLocaleString();
+    : (parsedA.price * parsedA.number).toLocaleString();
   const payPrice = conditon
     ? (Number(lastPrice()) + 3000).toLocaleString()
-    : (localStoragePrice + 3000).toLocaleString();
+    : (parsedA.price * parsedA.number + 3000).toLocaleString();
 
   const goToPay = () => {
-    localStorage.removeItem('name');
-    localStorage.removeItem('number');
-    localStorage.removeItem('price');
+    localStorage.removeItem('item');
+    // localStorage.removeItem('name');
+    // localStorage.removeItem('number');
+    // localStorage.removeItem('price');
     setIsModalOpen(true);
   };
 
@@ -99,12 +89,12 @@ const Purchase = () => {
         <div className="address">
           <p className="subtitle">배송지</p>
           <div className="border" />
-          {DELIVARY_INFO.map(delivatyData => {
+          {DELIVARY_INFO.map(delivaryData => {
             return (
               <input
-                key={delivatyData.id}
-                name={delivatyData.name}
-                placeholder={delivatyData.placeholder}
+                key={delivaryData.id}
+                name={delivaryData.name}
+                placeholder={delivaryData.placeholder}
                 onChange={handleInput}
               />
             );
@@ -118,15 +108,15 @@ const Purchase = () => {
               const { productId, productName, productCount } = productData;
               return (
                 <div className="purchaseProduct" key={productId}>
-                  <p>{conditon ? productName : localStorageItem}</p>
-                  <p>{conditon ? productCount : localStorageCount}개</p>
+                  <p>{conditon ? productName : parsedA.name}</p>
+                  <p>{conditon ? productCount : parsedA.number}개</p>
                 </div>
               );
             })
           ) : (
             <div className="purchaseProduct">
-              <p>{localStorageItem}</p>
-              <p>{localStorageCount}개</p>
+              <p>{parsedA.name}</p>
+              <p>{parsedA.number}개</p>
             </div>
           )}
         </div>

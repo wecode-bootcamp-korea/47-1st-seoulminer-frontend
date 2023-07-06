@@ -77,9 +77,14 @@ const ProductDetail = () => {
   };
 
   const goToBuy = () => {
-    localStorage.setItem('name', JSON.stringify(product.productName));
-    localStorage.setItem('number', JSON.stringify(number));
-    localStorage.setItem('price', JSON.stringify(product.productPrice));
+    localStorage.setItem(
+      'item',
+      JSON.stringify({
+        name: product.productName,
+        number: number,
+        price: product.productPrice,
+      })
+    );
     navigate('/purchase');
   };
 
