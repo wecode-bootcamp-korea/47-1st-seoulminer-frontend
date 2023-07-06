@@ -15,14 +15,13 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/cart" element={<Cart />} />
         <Route path="/" element={<Layout />}>
           <Route path="" element={<Main />} />
           <Route path="productDetail/:id" element={<ProductDetail />} />
           <Route path="login" element={<Login />} />
-          <Route path="/signUp" element={<SignUp />} />
+          <Route path="signUp" element={<SignUp />} />
           <Route path="signUpSecond" element={<SignUpSecond />} />
-          <Route path="/purchase" element={<Purchase />} />
+          <Route path="purchase" element={<Purchase />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

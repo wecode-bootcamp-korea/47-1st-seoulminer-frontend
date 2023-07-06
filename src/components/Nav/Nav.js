@@ -51,7 +51,7 @@ const Nav = () => {
                 className="leadingGlass"
               />
             </Link>
-            <Link to="">
+            <Link to="cart">
               <FontAwesomeIcon icon={faCartShopping} className="cart" />
             </Link>
             <LoginButtons

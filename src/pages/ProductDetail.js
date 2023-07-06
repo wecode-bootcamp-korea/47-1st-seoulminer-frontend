@@ -3,7 +3,7 @@ import Product from '../components/Product/Product';
 import RegularInfo from '../components/RegularInfo';
 import Count from '../components/Count/Count';
 import ProductInfo from '../components/ProductInfo';
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './ProductDetail.scss';
 
 const ProductDetail = () => {
@@ -12,6 +12,7 @@ const ProductDetail = () => {
   const [currentTab, setCurrentTab] = useState('First');
   const [imgChange, setImgChange] = useState(false);
   const [number, setNumber] = useState(1);
+  const navigate = useNavigate();
 
   const params = useParams();
   const productID = params.id;
@@ -66,25 +67,10 @@ const ProductDetail = () => {
   };
 
   const goToBuy = () => {
-    fetch('http://10.58.52.163:3000/orders', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        productId: product.productId,
-        quantity: number,
-      }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.message === 'CREATE_ORDER_SUCCESS') {
-          <Link to="/purchase" />;
-        } else if (data.message === 'KEY_ERROR') {
-          alert('구매 실패');
-        }
-      });
+    localStorage.setItem('name', JSON.stringify(product.productName));
+    localStorage.setItem('number', JSON.stringify(number));
+    localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
+    navigate('/purchase');
   };
 
   let totalPrice = 0;

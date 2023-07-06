@@ -8,12 +8,35 @@ const Purchase = () => {
   const [isAll, setIsAll] = useState(false);
   const [productDatas, setProductData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [localStorageItem, setLocalStorageItem] = useState('');
+  const [localStorageCount, setLocalStorageCount] = useState(0);
+  const [localStoragePrice, setLocalStoragePrice] = useState(0);
+
+  const conditon = localStorage.getItem('number') === null;
 
   useEffect(() => {
-    fetch('/data/OrderData.json')
-      .then(response => response.json())
-      .then(result => setProductData(result));
+    if (conditon) {
+      fetch('/data/OrderData.json')
+        .then(response => response.json())
+        .then(result => setProductData(result));
+    }
   }, []);
+
+  useEffect(() => {
+    const a = JSON.parse(localStorage.getItem('name'));
+    const b = JSON.parse(localStorage.getItem('number'));
+    const c = JSON.parse(localStorage.getItem('totalPrice'));
+    setLocalStorageItem(a);
+    setLocalStorageCount(b);
+    setLocalStoragePrice(c);
+    console.log(a);
+    console.log(b);
+    console.log(c);
+  }, []);
+
+  console.log(localStorageItem);
+  console.log(localStorageCount);
+  console.log(localStoragePrice);
 
   const handleInput = e => {
     const { name, value } = e.target;
@@ -66,6 +89,13 @@ const Purchase = () => {
 
   const payPrice = (Number(lastPrice()) + 3000).toLocaleString();
 
+  const goToPay = () => {
+    localStorage.removeItem('name');
+    localStorage.removeItem('number');
+    localStorage.removeItem('totalPrice');
+    setIsModalOpen(true);
+  };
+
   return (
     <div className="purchase">
       <div className="left">
@@ -91,8 +121,8 @@ const Purchase = () => {
             const { productId, productName, productCount } = productData;
             return (
               <div className="product" key={productId}>
-                <p>{productName}</p>
-                <p>{productCount}개</p>
+                <p>{conditon ? productName : localStorageItem}</p>
+                <p>{conditon ? productCount : localStorageCount}개</p>
               </div>
             );
           })}
@@ -161,7 +191,7 @@ const Purchase = () => {
           className="button"
           disabled={!isValid}
           style={{ opacity: `${isValid ? 1 : 0.5}` }}
-          onClick={() => setIsModalOpen(true)}
+          onClick={goToPay}
         >
           결제하기
         </button>
