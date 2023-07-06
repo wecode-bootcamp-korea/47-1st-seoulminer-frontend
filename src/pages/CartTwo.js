@@ -6,6 +6,8 @@ const CartTwo = () => {
   const [cartDatas, setCartData] = useState([]);
   const [checkBoxes, setCheckBoxes] = useState([]);
   const [checkedAll, setCheckedAll] = useState(false);
+  const [number, setNumber] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     fetch('/data/OrderData.json')
@@ -30,8 +32,17 @@ const CartTwo = () => {
   };
 
   const handleCheckAll = () => {
-    setCheckedAll(!checkedAll);
-    setCheckBoxes(Array(cartDatas.length).fill(!checkedAll));
+    const allChecked = checkBoxes.every(checked => checked);
+    setCheckedAll(!allChecked);
+    setCheckBoxes(Array(cartDatas.length).fill(!allChecked));
+  };
+
+  const handleIncrease = () => {
+    setTotalPrice(prevPrice => prevPrice + 10000); // 가격을 10000원씩 증가
+  };
+
+  const handleDecrease = () => {
+    setTotalPrice(prevPrice => prevPrice - 10000); // 가격을 10000원씩 감소
   };
 
   return (
@@ -62,6 +73,8 @@ const CartTwo = () => {
               <div className="cartMapData">
                 {cartDatas?.map((cartData, index) => (
                   <CartComponent
+                    number={number}
+                    setNumber={setNumber}
                     key={cartData.productId}
                     cartData={cartData}
                     checked={checkBoxes[index]}
@@ -69,6 +82,9 @@ const CartTwo = () => {
                       const updatedCheckBoxes = [...checkBoxes];
                       updatedCheckBoxes[index] = isChecked;
                       setCheckBoxes(updatedCheckBoxes);
+                      setCheckedAll(
+                        updatedCheckBoxes.every(checked => checked)
+                      );
                     }}
                   />
                 ))}
@@ -79,7 +95,7 @@ const CartTwo = () => {
           <div className="purchaseRightBox">
             <div className="price">
               <p>주문 금액</p>
-              <p> 원</p>
+              <p>{totalPrice}원</p>
             </div>
             <div className="price">
               <p>배송비</p>
@@ -88,7 +104,7 @@ const CartTwo = () => {
             <div className="border" />
             <div className="price">
               <p>총 결제금액</p>
-              <p>원</p>
+              <p>{totalPrice + 3000}원</p>
             </div>
             <button className="button">결제하기</button>
           </div>

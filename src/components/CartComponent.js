@@ -18,6 +18,7 @@ const CartComponent = ({
           checked={checked}
           onChange={() => setChecked(!checked)}
         />
+
         <p>{cartData.productName}</p>
       </div>
       <div className="right ">
