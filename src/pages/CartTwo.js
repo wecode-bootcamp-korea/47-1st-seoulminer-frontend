@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CartComponent from '../components/CartComponent';
 import './CartTwo.scss';
 
@@ -6,7 +6,6 @@ const CartTwo = () => {
   const [cartDatas, setCartData] = useState([]);
   const [checkBoxes, setCheckBoxes] = useState([]);
   const [checkedAll, setCheckedAll] = useState(false);
-  const [number, setNumber] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
@@ -37,14 +36,6 @@ const CartTwo = () => {
     setCheckBoxes(Array(cartDatas.length).fill(!allChecked));
   };
 
-  const handleIncrease = () => {
-    setTotalPrice(prevPrice => prevPrice + 10000); // 가격을 10000원씩 증가
-  };
-
-  const handleDecrease = () => {
-    setTotalPrice(prevPrice => prevPrice - 10000); // 가격을 10000원씩 감소
-  };
-
   return (
     <div className="cartTwo">
       {cartDatas.length === 0 ? (
@@ -73,8 +64,6 @@ const CartTwo = () => {
               <div className="cartMapData">
                 {cartDatas?.map((cartData, index) => (
                   <CartComponent
-                    number={number}
-                    setNumber={setNumber}
                     key={cartData.productId}
                     cartData={cartData}
                     checked={checkBoxes[index]}

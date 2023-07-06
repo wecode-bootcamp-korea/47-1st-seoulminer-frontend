@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const CartCount = () => {
+const CartCount = ({ onQuantityChange }) => {
   const [quantity, setQuantity] = useState(0);
+
+  useEffect(() => {
+    if (onQuantityChange) {
+      onQuantityChange(quantity);
+    }
+  }, [quantity, onQuantityChange]);
 
   const handleIncrease = () => {
     setQuantity(quantity + 1);
