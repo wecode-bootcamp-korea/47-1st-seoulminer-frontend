@@ -3,28 +3,128 @@
     "productId": 1,
     "productThumbnailImage": "/images/IMG_7632.jpg",
     "productHoverImage": "/images/IMG_7631.jpg",
-    "productName": "상품1",
-    "productPrice": 3000
+    "productName": "상품1제목엄청길게써봐야지아아이아아아아아아아아아",
+    "productPrice": 3000,
+    "productCategoryId": 1
   },
   {
     "productId": 2,
     "productThumbnailImage": "/images/IMG_7632.jpg",
     "productHoverImage": "/images/IMG_7631.jpg",
     "productName": "상품2",
-    "productPrice": 30000
+    "productPrice": 30000,
+    "productCategoryId": 1
   },
   {
     "productId": 3,
     "productThumbnailImage": "/images/IMG_7632.jpg",
     "productHoverImage": "/images/IMG_7631.jpg",
     "productName": "상품3",
-    "productPrice": 300000
+    "productPrice": 300000,
+    "productCategoryId": 1
   },
   {
     "productId": 4,
     "productThumbnailImage": "/images/IMG_7632.jpg",
     "productHoverImage": "/images/IMG_7631.jpg",
     "productName": "상품4",
-    "productPrice": 100000
+    "productPrice": 100000,
+    "productCategoryId": 1
+  },
+  {
+    "productId": 5,
+    "productThumbnailImage": "/images/IMG_7632.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
+    "productName": "상품5",
+    "productPrice": 3000,
+    "productCategoryId": 2
+  },
+  {
+    "productId": 6,
+    "productThumbnailImage": "/images/IMG_7632.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
+    "productName": "상품6",
+    "productPrice": 30000,
+    "productCategoryId": 2
+  },
+  {
+    "productId": 7,
+    "productThumbnailImage": "/images/IMG_7632.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
+    "productName": "상품7",
+    "productPrice": 300000,
+    "productCategoryId": 2
+  },
+  {
+    "productId": 8,
+    "productThumbnailImage": "/images/IMG_7632.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
+    "productName": "상품8",
+    "productPrice": 100000,
+    "productCategoryId": 2
+  },
+  {
+    "productId": 9,
+    "productThumbnailImage": "/images/IMG_7632.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
+    "productName": "상품9",
+    "productPrice": 3000,
+    "productCategoryId": 3
+  },
+  {
+    "productId": 10,
+    "productThumbnailImage": "/images/IMG_7632.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
+    "productName": "상품10",
+    "productPrice": 30000,
+    "productCategoryId": 3
+  },
+  {
+    "productId": 11,
+    "productThumbnailImage": "/images/IMG_7632.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
+    "productName": "상품11제목엄청길게써봐야지아아이아아아아아아아아아",
+    "productPrice": 300000,
+    "productCategoryId": 3
+  },
+  {
+    "productId": 12,
+    "productThumbnailImage": "/images/IMG_7632.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
+    "productName": "상품12",
+    "productPrice": 100000,
+    "productCategoryId": 3
+  },
+  {
+    "productId": 13,
+    "productThumbnailImage": "/images/IMG_7632.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
+    "productName": "상품13",
+    "productPrice": 3000,
+    "productCategoryId": 4
+  },
+  {
+    "productId": 14,
+    "productThumbnailImage": "/images/IMG_7632.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
+    "productName": "상품14",
+    "productPrice": 30000,
+    "productCategoryId": 4
+  },
+  {
+    "productId": 15,
+    "productThumbnailImage": "/images/IMG_7632.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
+    "productName": "상품15",
+    "productPrice": 300000,
+    "productCategoryId": 4
+  },
+  {
+    "productId": 16,
+    "productThumbnailImage": "/images/IMG_7632.jpg",
+    "productHoverImage": "/images/IMG_7631.jpg",
+    "productName": "상품16",
+    "productPrice": 100000,
+    "productCategoryId": 4
   }
 ]

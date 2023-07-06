@@ -1,48 +1,39 @@
-.navContainer {
-  display: flex;
+.nav {
   position: sticky;
-  z-index: 1;
-  align-items: center;
-  width: 100%;
-  height: 100px;
-  border-bottom: 1px solid lightgray;
-  background-color: white;
-  line-height: 100px;
+  z-index: 10;
+  top: 0px;
 
-  .mainLogo {
-    width: 500px;
-    margin-top: 60px;
-    cursor: pointer;
-  }
-  .menuBtn {
-    border: none;
-    background-color: white;
-    font-size: 30px;
-    cursor: pointer;
-  }
-  .loginBtn,
-  .logoutBtn {
-    position: relative;
-    bottom: 5px;
-    width: 80px;
-    height: 40px;
-    border: 2px solid black;
-    border-radius: 30px;
-    background-color: white;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
-  }
-
-  .navMenu {
+  .navContainer {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100vw;
-    padding-right: 35px;
+    justify-content: space-around;
+    height: 100px;
+    border-bottom: 1px solid lightgray;
+    background-color: white;
 
-    .link {
-      margin-left: 60px;
+    .mainLogo {
+      width: 450px;
+      cursor: pointer;
+    }
+
+    .loginBtn,
+    .logoutBtn {
+      position: relative;
+      bottom: 5px;
+      width: 80px;
+      height: 40px;
+      border: 2px solid black;
+      border-radius: 30px;
+      background-color: white;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .navMenu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
 
       .menuLink {
         border: none;
@@ -58,20 +49,28 @@
     .icons {
       display: flex;
       align-items: center;
-      justify-content: space-between;
       gap: 10px;
-    }
-    .cart {
-      padding-right: 10px;
-      color: black;
-      font-size: 22px;
-      cursor: pointer;
-    }
-    .leadingGlass {
-      padding-right: 10px;
-      color: black;
-      font-size: 22px;
-      cursor: pointer;
+
+      .cart {
+        margin: 0;
+        padding-right: 10px;
+        color: black;
+        font-size: 22px;
+        cursor: pointer;
+      }
+
+      .leadingGlass {
+        padding-right: 10px;
+        color: black;
+        font-size: 22px;
+        cursor: pointer;
+      }
+      .menuBtn {
+        border: none;
+        background-color: white;
+        font-size: 30px;
+        cursor: pointer;
+      }
     }
   }
 }
