@@ -103,18 +103,18 @@ const Login = () => {
         <p>|</p>
         <button className="findPw">비밀번호 찾기</button>
       </div>
-      {isModalOpen && (
-        <div className="modalBlack">
-          <div className="modal">
-            <div className="text">
-              <p className="auch">앗!</p>
-              <p className="notFound">회원정보를 찾을 수 없습니다.</p>
-              <p className="notFound">아이디/비밀번호를 다시 확인해주세요.</p>
-            </div>
-            <button onClick={() => setIsModalOpen(false)}>확인</button>
+      {/* {isModalOpen && ( */}
+      <div className="modalBlack">
+        <div className="modal">
+          <div className="text">
+            <p className="auch">앗!</p>
+            <p className="notFound">회원정보를 찾을 수 없습니다.</p>
+            <p className="notFound">아이디/비밀번호를 다시 확인해주세요.</p>
           </div>
+          <button onClick={() => setIsModalOpen(false)}>확인</button>
         </div>
-      )}
+      </div>
+      {/* )} */}
     </div>
   );
 };
