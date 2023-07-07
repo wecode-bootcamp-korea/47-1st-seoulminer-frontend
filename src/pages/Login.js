@@ -10,8 +10,6 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  // const localSaveId = localStorage.getItem('ID')?.length > 0 ||
-
   const conditon = inputValue.id?.length > 0 && inputValue.pw?.length > 0;
 
   const handleInput = e => {
@@ -20,7 +18,7 @@ const Login = () => {
   };
 
   const postUserData = () => {
-    fetch('http://10.58.52.175:3000/users/signin', {
+    fetch('http://10.58.52.243:3000/users/signin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

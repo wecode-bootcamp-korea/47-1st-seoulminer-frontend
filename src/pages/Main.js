@@ -9,7 +9,7 @@ const Main = () => {
 
   useEffect(() => {
     // fetch('/data/MainData.json')
-    fetch('http://10.58.52.175:3000/products/list?limit=20')
+    fetch('http://10.58.52.243:3000/products/list?limit=20')
       .then(response => response.json())
       // .then(data => setMainData(data));
       .then(data => setMainData(data.data));
