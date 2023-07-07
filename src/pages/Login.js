@@ -10,8 +10,6 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  // const localSaveId = localStorage.getItem('ID')?.length > 0 ||
-
   const conditon = inputValue.id?.length > 0 && inputValue.pw?.length > 0;
 
   const handleInput = e => {

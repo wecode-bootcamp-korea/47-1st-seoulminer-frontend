@@ -17,7 +17,6 @@ const Cart = () => {
   }, []);
 
   const token = localStorage.getItem('token');
-  console.log(cartData);
 
   return (
     <div className="cartContainer">
