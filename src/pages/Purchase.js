@@ -76,9 +76,6 @@ const Purchase = () => {
 
   const goToPay = () => {
     localStorage.removeItem('item');
-    // localStorage.removeItem('name');
-    // localStorage.removeItem('number');
-    // localStorage.removeItem('price');
     setIsModalOpen(true);
   };
 

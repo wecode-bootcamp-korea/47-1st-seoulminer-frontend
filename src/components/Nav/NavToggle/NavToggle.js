@@ -4,10 +4,9 @@ import NavData from '../NavData';
 import NavToggleData from './NavToggleData';
 import './NavToggle.scss';
 
-const NavToggle = ({ isNavOpen, onClose, isLoggedIn }) => {
-  const firstText = isLoggedIn ? (
+const NavToggle = ({ isNavOpen, onClose }) => {
+  const firstText = localStorage.getItem('token') ? (
     <h2 className="firstText">
-      {/* O O O 님 */}
       <br />
       반갑습니다 !
     </h2>
