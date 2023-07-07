@@ -4,31 +4,31 @@
     "thumbnail_image": "/images/IMG_7632.jpg",
     "hover_image": "/images/IMG_7631 2.jpg",
     "productName": "닭고기로 만든 오리불고기 지우개",
-    "productPrice": 3000,
-    "productCount": 1
+    "price": 3000,
+    "quantity": 1
   },
   {
     "productId": 2,
     "thumbnail_image": "/images/IMG_7632.jpg",
     "hover_image": "/images/IMG_7631 2.jpg",
     "productName": "검정화면만 보이는 모니터",
-    "productPrice": 5000,
-    "productCount": 1
+    "price": 5000,
+    "quantity": 1
   },
   {
     "productId": 3,
     "thumbnail_image": "/images/IMG_7632.jpg",
     "hover_image": "/images/IMG_7631 2.jpg",
     "productName": "액체 고양이",
-    "productPrice": 6000,
-    "productCount": 2
+    "price": 6000,
+    "quantity": 1
   },
   {
     "productId": 4,
     "thumbnail_image": "/images/IMG_7632.jpg",
     "hover_image": "/images/IMG_7631 2.jpg",
     "productName": "구멍뚫린 컵",
-    "productPrice": 2000,
-    "productCount": 4
+    "price": 2000,
+    "quantity": 1
   }
 ]
