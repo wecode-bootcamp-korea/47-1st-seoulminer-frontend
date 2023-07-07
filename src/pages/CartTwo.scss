@@ -1,0 +1,97 @@
+.cartTwo {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  padding: 50px;
+
+  .left {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    .cartTitle {
+      font-size: 30px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .top {
+      display: flex;
+      align-items: center;
+      gap: 500px;
+      .all {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+    }
+    .allBorder {
+      display: flex;
+      flex-direction: column;
+      .border {
+        border-top: 1px solid lightgray;
+      }
+    }
+  }
+
+  .purchaseRightBox {
+    display: flex;
+    position: sticky;
+    top: 15px;
+    right: 10px;
+    flex-direction: column;
+    width: 300px;
+    height: 280px;
+    padding: 40px;
+    border-radius: 7px;
+    background-color: rgb(237, 237, 237);
+    gap: 25px;
+
+    .price {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .agremment {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 10px;
+
+        .checkbox {
+          margin: 0;
+        }
+      }
+    }
+  }
+  .cartTwoDeleteBtn {
+    border: none;
+    background-color: white;
+    color: gray;
+    font-size: 12px;
+    &:hover {
+      color: #2ac1bc;
+    }
+  }
+  .checkedAll {
+    color: gray;
+    font-size: 12px;
+  }
+  .button {
+    width: 220px;
+    height: 50px;
+    border: 0;
+    border-radius: 7px;
+    background-color: #2ac1bc;
+    color: white;
+
+    &:hover {
+      border: solid 1px #2ac1bc;
+      background-color: white;
+      color: #2ac1bc;
+    }
+  }
+}

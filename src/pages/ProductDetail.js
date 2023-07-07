@@ -3,7 +3,7 @@ import Product from '../components/Product/Product';
 import RegularInfo from '../components/RegularInfo';
 import Count from '../components/Count/Count';
 import ProductInfo from '../components/ProductInfo';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './ProductDetail.scss';
 
 const ProductDetail = () => {
@@ -12,7 +12,6 @@ const ProductDetail = () => {
   const [currentTab, setCurrentTab] = useState('First');
   const [imgChange, setImgChange] = useState(false);
   const [number, setNumber] = useState(1);
-  const navigate = useNavigate();
 
   const params = useParams();
   const productID = params.id;
@@ -20,27 +19,21 @@ const ProductDetail = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch('/data/DetailData.json')
-      // fetch(`http://10.58.52.175:3000/products/${productID}`)
+    fetch(`http://10.58.52.243:3000/products/${productID}`)
       .then(response => response.json())
-      .then(result => setProduct(result));
-    // .then(result => setProduct(result.data));
-  }, []);
-  // }, [productID]);
+      .then(result => setProduct(result.data));
+  }, [productID]);
 
   useEffect(() => {
-    fetch('/data/MainData.json')
-      // fetch(
-      //   `http://10.58.52.175:3000/products/list?offset=0&limit=4&category=${product.productCategoryId}`
-      // )
+    fetch(
+      `http://10.58.52.243:3000/products/list?offset=0&limit=4&category=${product.productCategoryId}`
+    )
       .then(response => response.json())
-      .then(results => setCarouselData(results));
-    // .then(result => setCarouselData(result.data));
-    // }, [product]);
-  }, []);
+      .then(result => setCarouselData(result.data));
+  }, [product]);
 
   const goToCart = () => {
-    fetch('http://10.58.52.175:3000/carts', {
+    fetch('http://10.58.52.243:3000/carts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -77,15 +70,26 @@ const ProductDetail = () => {
   };
 
   const goToBuy = () => {
-    localStorage.setItem(
-      'item',
-      JSON.stringify({
-        name: product.productName,
-        number: number,
-        price: product.productPrice,
-      })
-    );
-    navigate('/purchase');
+    fetch('http://10.58.52.243:3000/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        productId: product.productId,
+        productOptionId: product.productOptions[0].optionId,
+        quantity: number,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === 'CREATE_ORDER_SUCCESS') {
+          <Link to="/purchase" />;
+        } else if (data.message === 'KEY_ERROR') {
+          alert('구매 실패');
+        }
+      });
   };
 
   let totalPrice = 0;
