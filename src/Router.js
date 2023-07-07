@@ -9,8 +9,8 @@ import SignUp from './pages/SignUp';
 import SignUpSecond from './pages/SignUpSecond';
 import NotFound from './pages/NotFound';
 import Purchase from './pages/Purchase';
-import Cart from './pages/Cart';
 import ProductList from './pages/productList/ProductList';
+import CartTwo from './pages/CartTwo';
 
 const Router = () => {
   return (
@@ -24,7 +24,7 @@ const Router = () => {
           <Route path="signUpSecond" element={<SignUpSecond />} />
           <Route path="purchase" element={<Purchase />} />
           <Route path="productList" element={<ProductList />} />
-          <Route path="cart" element={<Cart />} />
+          {/* <Route path="cart" element={<CartTwo />} /> */}
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

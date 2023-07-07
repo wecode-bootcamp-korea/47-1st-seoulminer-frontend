@@ -14,7 +14,7 @@ const SortProducts = ({ productListData }) => {
   const sortProducts = sortBy => {
     setSelectedButton(sortBy);
 
-    // let sortedProducts = [...productListData];
+    let sortedProducts = [...productListData];
 
     // if (sortBy === '높은 가격순') {
     //   sortedProducts.sort((a, b) => b.price - a.price);
