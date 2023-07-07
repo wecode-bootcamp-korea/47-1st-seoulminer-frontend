@@ -8,6 +8,10 @@ const CartComponent = ({
   setNumber,
   checked,
   setChecked,
+  onQuantityChange,
+  id,
+  patchCart,
+  cartId,
 }) => {
   return (
     <div className="cartComponent">
@@ -18,12 +22,20 @@ const CartComponent = ({
           checked={checked}
           onChange={() => setChecked(!checked)}
         />
-
         <p>{cartData.productName}</p>
       </div>
       <div className="right ">
-        <CartCount number={number} setNumber={setNumber} />
-        <p>{cartData.productPrice}</p>
+        <CartCount
+          number={number}
+          setNumber={setNumber}
+          onQuantityChange={onQuantityChange}
+          price={cartData.price}
+          id={id}
+          patchCart={patchCart}
+          cartId={cartId}
+          quantity={cartData.quantity}
+        />
+        <p>{Math.floor(cartData.price).toLocaleString()}</p>
       </div>
     </div>
   );

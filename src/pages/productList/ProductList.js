@@ -34,13 +34,12 @@ const ProductList = () => {
 
   useEffect(() => {
     // fetch('/data/MainData.json')
-    fetch(`http://10.58.52.145:3000/products/list${queryString}&limit=50`)
+    fetch(`http://10.58.52.243:3000/products/list${queryString}&limit=50`)
       .then(response => response.json())
       // .then(data => setProductListData(data));
       .then(data => setProductListData(data.data));
   }, [queryString]);
   // }, []);
-  console.log(productListData);
 
   return (
     <div>

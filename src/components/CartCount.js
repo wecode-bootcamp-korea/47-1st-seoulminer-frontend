@@ -1,21 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-const CartCount = ({ onQuantityChange }) => {
-  const [quantity, setQuantity] = useState(0);
-
-  useEffect(() => {
-    if (onQuantityChange) {
-      onQuantityChange(quantity);
-    }
-  }, [quantity, onQuantityChange]);
-
+const CartCount = ({
+  onQuantityChange,
+  price,
+  id,
+  patchCart,
+  cartId,
+  quantity,
+}) => {
+  const [productQuantity, setProductQuantity] = useState(quantity);
   const handleIncrease = () => {
-    setQuantity(quantity + 1);
+    setProductQuantity(productQuantity + 1);
+    onQuantityChange(productQuantity + 1, price, id);
+    patchCart(cartId, productQuantity + 1);
   };
 
   const handleDecrease = () => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
+    if (productQuantity > 0) {
+      setProductQuantity(productQuantity - 1);
+      onQuantityChange(productQuantity - 1, price, id);
+      patchCart(cartId, productQuantity - 1);
     }
   };
 
@@ -25,11 +29,11 @@ const CartCount = ({ onQuantityChange }) => {
         <button
           className="countBtn"
           onClick={handleDecrease}
-          disabled={quantity === 0}
+          disabled={productQuantity === 0}
         >
           -
         </button>
-        <span className="countInputText">{quantity}</span>
+        <span className="countInputText">{productQuantity}</span>
         <button className="countBtn" onClick={handleIncrease}>
           +
         </button>
