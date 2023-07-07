@@ -21,6 +21,7 @@ const ProductDetail = () => {
 
   const token = localStorage.getItem('token');
 
+  // 주석 : 목데이터
   useEffect(() => {
     // fetch('/data/DetailData.json')
     fetch(`http://10.58.52.175:3000/products/${productID}`)
