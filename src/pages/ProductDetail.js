@@ -3,7 +3,7 @@ import Product from '../components/Product/Product';
 import RegularInfo from '../components/RegularInfo';
 import Count from '../components/Count/Count';
 import ProductInfo from '../components/ProductInfo';
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './ProductDetail.scss';
 
 const ProductDetail = () => {
@@ -19,6 +19,8 @@ const ProductDetail = () => {
   const string = product?.productCategoryId;
 
   const token = localStorage.getItem('token');
+
+  const navigate = useNavigate();
 
   // 주석 : 목데이터
   useEffect(() => {
@@ -73,26 +75,15 @@ const ProductDetail = () => {
   };
 
   const goToBuy = () => {
-    fetch('http://10.58.52.243:3000/orders', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        productId: product.productId,
-        productOptionId: product.productOptions[0].optionId,
-        quantity: number,
-      }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.message === 'CREATE_ORDER_SUCCESS') {
-          <Link to="/purchase" />;
-        } else if (data.message === 'KEY_ERROR') {
-          alert('구매 실패');
-        }
-      });
+    localStorage.setItem(
+      'item',
+      JSON.stringify({
+        name: product.productName,
+        number: number,
+        price: product.productPrice,
+      })
+    );
+    navigate('/purchase');
   };
 
   let totalPrice = 0;
