@@ -70,7 +70,7 @@ const ProductDetail = () => {
   };
 
   const goToBuy = () => {
-    fetch('http://10.58.52.175:3000/orders', {
+    fetch('http://10.58.52.243:3000/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

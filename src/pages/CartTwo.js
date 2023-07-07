@@ -36,7 +36,7 @@ const CartTwo = () => {
   }, []);
 
   const postUserData = () => {
-    fetch('http://10.58.52.175:3000/orders/cart', {
+    fetch('http://10.58.52.243:3000/orders/cart', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
