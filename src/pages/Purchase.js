@@ -14,7 +14,7 @@ const Purchase = () => {
   const conditon = a === null;
 
   useEffect(() => {
-    fetch('/data/OrderData.json')
+    fetch('http://10.58.52.243:3000/carts/list')
       .then(response => response.json())
       .then(result => setProductData(result));
   }, []);
