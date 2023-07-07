@@ -14,10 +14,28 @@ const Purchase = () => {
   const conditon = a === null;
 
   useEffect(() => {
-    fetch('http://10.58.52.243:3000/carts/list')
-      .then(response => response.json())
-      .then(result => setProductData(result));
+    const fetchCartData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch('http://10.58.52.243:3000/carts/list', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const result = await response.json();
+        if (Array.isArray(result.data)) {
+          setProductData(result.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchCartData();
   }, []);
+
   const handleInput = e => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
@@ -60,8 +78,8 @@ const Purchase = () => {
 
   const lastPrice = () => {
     let total = 0;
-    for (let i = 0; i < productDatas.length; i++) {
-      let price = productDatas[i].productPrice * productDatas[i].productCount;
+    for (let i = 0; i < productDatas?.length; i++) {
+      let price = productDatas[i].price * productDatas[i].quantity;
       total = price + total;
     }
     return total;
@@ -101,12 +119,12 @@ const Purchase = () => {
           <p className="subtitle">주문상품</p>
           <div className="border" />
           {conditon ? (
-            productDatas.map(productData => {
-              const { productId, productName, productCount } = productData;
+            productDatas?.map(productData => {
+              const { cartId, productName, quantity } = productData;
               return (
-                <div className="purchaseProduct" key={productId}>
+                <div className="purchaseProduct" key={cartId}>
                   <p>{conditon ? productName : parsedA.name}</p>
-                  <p>{conditon ? productCount : parsedA.number}개</p>
+                  <p>{conditon ? quantity : parsedA.number}개</p>
                 </div>
               );
             })
