@@ -6,11 +6,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const slideImages = [
-  '/images/MainSlide1.png',
-  '/images/MainSlide2.png',
-  '/images/MainSlide3.png',
-  '/images/MainSlide4.png',
-  '/images/MainSlide5.png',
+  '/images/mainSlide1.png',
+  '/images/mainSlide2.png',
+  '/images/mainSlide3.png',
+  '/images/mainSlide4.png',
+  '/images/mainSlide5.png',
 ];
 
 const MainSlide = () => {

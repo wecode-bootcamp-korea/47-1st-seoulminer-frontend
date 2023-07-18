@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import Product from '../../components/Product/Product';
+// import Product from '../../components/Product/Product';
 import './SortProducts.scss';
 
 const SortProducts = ({ productListData }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedButton, setSelectedButton] = useState('최신순');
-  const [sortedData, setSortedData] = useState([]);
+  // const [sortedData, setSortedData] = useState([]);
 
   const toggleContent = () => {
     setIsOpen(isOpen => !isOpen);
@@ -14,7 +14,7 @@ const SortProducts = ({ productListData }) => {
   const sortProducts = sortBy => {
     setSelectedButton(sortBy);
 
-    let sortedProducts = [...productListData];
+    // let sortedProducts = [...productListData];
 
     // if (sortBy === '높은 가격순') {
     //   sortedProducts.sort((a, b) => b.price - a.price);

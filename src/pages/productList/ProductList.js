@@ -10,6 +10,7 @@ const ProductList = () => {
 
   const location = useLocation();
   const queryString = location.search;
+  console.log(queryString);
 
   const titleText = () => {
     if (productListData.length > 0) {
@@ -33,13 +34,10 @@ const ProductList = () => {
   };
 
   useEffect(() => {
-    // fetch('/data/MainData.json')
-    fetch(`http://10.58.52.243:3000/products/list${queryString}&limit=50`)
+    fetch(`http://52.78.25.104:3000/products/list${queryString}&limit=50`)
       .then(response => response.json())
-      // .then(data => setProductListData(data));
       .then(data => setProductListData(data.data));
   }, [queryString]);
-  // }, []);
 
   return (
     <div>

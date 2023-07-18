@@ -3,6 +3,7 @@ import './Purchase.scss';
 
 const Purchase = () => {
   const a = localStorage.getItem('item');
+
   const [inputValue, setInputValue] = useState({});
   const [checkboxValue, setCheckboxValue] = useState({});
   const [isAllValue, setIsAllValue] = useState({});
@@ -14,10 +15,11 @@ const Purchase = () => {
   const conditon = a === null;
 
   useEffect(() => {
-    fetch('http://10.58.52.243:3000/carts/list')
+    fetch('http://52.78.25.104:3000/carts/list')
       .then(response => response.json())
       .then(result => setProductData(result));
   }, []);
+
   const handleInput = e => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
