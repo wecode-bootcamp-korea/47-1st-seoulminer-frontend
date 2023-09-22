@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './Purchase.scss';
 
 const Purchase = () => {
-  const a = localStorage.getItem('item');
+  const getItemInfo = localStorage.getItem('item');
 
   const [inputValue, setInputValue] = useState({});
   const [checkboxValue, setCheckboxValue] = useState({});
@@ -11,8 +11,8 @@ const Purchase = () => {
   const [productDatas, setProductData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const parsedA = JSON.parse(a);
-  const conditon = a === null;
+  const parsedA = JSON.parse(getItemInfo);
+  const conditon = getItemInfo === null;
 
   useEffect(() => {
     fetch('http://52.78.25.104:3000/carts/list')
