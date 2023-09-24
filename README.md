@@ -110,7 +110,7 @@ eCommerce를 운영하기 위해서는, 최소한 아래의 기능을 가지고 
 ![miner 로그인](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/230cd4d1-b66f-4929-abb9-383a4747366f)
 
 
-4. main page
+3. main page
    1. nav
       1. JWT 토큰의 local storage 저장 유무에 따라 로그인/로그아웃 버튼 및 nav toggle ui 변화
       2. 비로그인 시 장바구니 버튼 클릭 시 로그인 페이지로 이동해 로그인 유도
@@ -125,7 +125,7 @@ eCommerce를 운영하기 위해서는, 최소한 아래의 기능을 가지고 
 ![리스트노출gif](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/90b3507a-9eed-4c3d-832e-a87110d5ba99)
 
 
-5. 상품 상세 page
+4. 상품 상세 page
    1. 레이아웃
    2. 수량 올리면 총 금액 바뀌도록 구현
    3. 수량이 1이상이며 재고수량과 같거나 적을 때 장바구니, 바로구매 버튼 활성화 및 재고수량보다 많을 시 버튼 비활성화, 재고부족 글 보여줌
@@ -139,21 +139,15 @@ eCommerce를 운영하기 위해서는, 최소한 아래의 기능을 가지고 
 ![재고관리](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/75da1aec-7b67-47ea-ae2e-4f1dbbe130ab)
 
 
-7. 404 page
-   1. 레이아웃
-   2. 라우터 통해서 404페이지에는 nav, footer 안보이도록 구현
-
-![404페이지](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/de0f9a0b-a2c0-4812-8430-9bd58500b518)
-
-
-4. Cart
+5. Cart
     1. 레이아웃
     2. 결제하기 버튼 클릭 시 장바구니에 있는 상품 정보 POST 요청
   
 ![장바구니로이동](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/765ff39c-4bc5-43f9-9483-9a837986fcbe)
 ![비회원장바구니](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/b1b84752-4eb9-4552-b443-4f2a1a757005)
 
-5. Order
+
+6. Order
    1. 모든 입력창 입력해야 버튼 활성화
    2. 상태관리를 통해 결제수단 및 전체동의 체크박스 구현
    3. 장바구니에서 결제창으로 오는 경우와 바로구매로 오는 경우에 따라 다른 정보 불러옴
@@ -163,6 +157,12 @@ eCommerce를 운영하기 위해서는, 최소한 아래의 기능을 가지고 
 
 ![바로구매](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/679c9038-48a0-41fd-82aa-5832650f986c)
 
+
+7. 404 page
+   1. 레이아웃
+   2. 라우터 통해서 404페이지에는 nav, footer 안보이도록 구현
+
+![404페이지](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/de0f9a0b-a2c0-4812-8430-9bd58500b518)
 
 
 ---
