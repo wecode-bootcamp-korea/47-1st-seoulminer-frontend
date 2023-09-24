@@ -38,14 +38,6 @@
     2. 가격대도 높은 편이 아님. 부담없이 구매할 수 있는 수준.
     3. 예컨대, 친구에게 장난으로 선물하면 좋을 물건.
 
-1. eCommerce service: the selling and purchasing of goods through the Internet
-    1. The decision to purchase goods is not made through the direct interaction with the physical goods, but rather through the descriptions displayed on the web page. Thus, it is important to provide detailed information within the given limits. 
-    2. Since it is not possible to receive the goods right after the purchase is complete, it is crucial to keep track of the necessary information for the delivery of the goods.
-2. Main genre of the goods: fun items
-    1. unique, hand-picked, non-mass-produced items
-    2. relatively low prices; can be purchased without a burden
-    3. items that would be good to give to a friend for fun purposes
-
 ### End-user: 우리의 프로덕트는 어떤 사람이 사용하게 될까? / Who are the users of our product?
 
 1. 재미있는 소품을 사용할 만한 사람들
@@ -55,15 +47,6 @@
     
     → 그렇기 때문에, 프로덕트의 접근성은 약간의 희생이 있어도 괜찮다.
     
-
-1. People who find interest in fun items
-    1. Users who enjoy collecting unique items / enjoy gifting fun presents
-    2. Accordingly, we assume that the general age of our users would be max 30 years of age.
-    3. It differs from everyday purchases such as grocery shopping
-    
-    → Because of this, the accessibility of the website can be sacrificed for the sake of highlighting other fun features
-    
-
 ### Feature: 우리의 프로덕트는 어떤 기능을 가지고 있어야할까?
 
 eCommerce를 운영하기 위해서는, 최소한 아래의 기능을 가지고 있어야 한다고 판단된다.
@@ -108,56 +91,79 @@ eCommerce를 운영하기 위해서는, 최소한 아래의 기능을 가지고 
 1. SignUp
     1. 첫번째 페이지
         1. 레이아웃
-        2. 약관동의 - 전체 동의 및 부분 동의
-        3. 필수 체크 박스 누르면 버튼 활성화
-        4. 백엔드에게 유저 정보 POST
+        2. 상태관리를 통한 약관 전체 동의 및 부분 동의
     2. 두번째 페이지
         1. 레이아웃
         2. 정규표현식에 따라 유저정보 입력할 수 있으며 조건에 맞으면 버튼 활성화
-        3. 회원가입 성공 시 축하 모달 띄워주고 3초 뒤에 자동으로 main 페이지로 이동
-        4. 백엔드에게 유저 정보 POST
+        3. 회원가입 성공 시 축하 모달 띄워주고 setTimeOut 이용해 3초 뒤에 main 페이지로 이동
+        4. 가입한 유저의 정보 POST 요청
+      
+![miner 회원가입](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/01aafcb9-fbd5-4227-9836-6d809da9e68a)
+![miner 회원가입 약관동의](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/5b49e18e-1cc6-420f-bc9d-e2a9d7fd0dde)
+
+
 2. SignIn
     1. 레이아웃
-    2. 입력창에 입력하면 버튼 활성화
-    3. 백엔드에게 유저 정보 POST
-3. main page
+    2. 모든 입력창에 입력 시 로그인 버튼 활성화
+    3. 로그인한 유저의 정보 POST 요청
+
+![miner 로그인](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/230cd4d1-b66f-4929-abb9-383a4747366f)
+
+
+4. main page
    1. nav
-      1. 토큰 유무에 따른 로그인/ 로그아웃 버튼 변화
-      2. nav toggle에서 토큰 유무에 따른 로그인/ 로그아웃 UI 변화
-      3. 비로그인 시 장바구니 버튼 클릭 시 로그인 페이지로 이동
-      4. 쿼리스트링 이용해 카테고리 버튼 클릭 시 상품리스트페이지에 그에 맞는 정보 보여줌 GET
+      1. JWT 토큰의 local storage 저장 유무에 따라 로그인/로그아웃 버튼 및 nav toggle ui 변화
+      2. 비로그인 시 장바구니 버튼 클릭 시 로그인 페이지로 이동해 로그인 유도
    2. main
-      1. 백엔드에게 정보 받아옴 GET
-      2. hover 시 이미지 및 글자 색 바뀌도록 구현
+      1. GET 요청을 통해 상품 정보 받아옴
+      2. event handler 이용해 상품 이미지 hover 시 이미지 및 글자 색 바뀌도록 구현
    3. 상품 리스트 page
-      1. 쿼리스트링을 이용해 백엔드에게 카테고리에 맞는 정보 받아옴 GET
+      1. 쿼리스트링 이용해 카테고리 버튼 클릭 시 상품리스트페이지에 그에 맞는 정보 노출
       2. 카테고리 ID에 따라 카테고리 제목 바뀌는 UI 구현
-      3. hover 시 이미지 및 글자 색 바뀌도록 구현
-4. 상품 상세 page
+
+![상세페이지이동](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/1a15b9a5-9e9f-4ac8-9953-bdfdebd9f24a)
+![리스트노출gif](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/90b3507a-9eed-4c3d-832e-a87110d5ba99)
+
+
+5. 상품 상세 page
    1. 레이아웃
    2. 수량 올리면 총 금액 바뀌도록 구현
-   3. 수량이 1이상이며 재고수량과 같거나 적을 때 장바구니, 바로구매 버튼 활성화
-   4. 재고수량보다 많을 시 버튼 비활성화 되면서 재고부족 글 보여줌
-   5. 장바구니 버튼 클릭 시 백엔드에게 해당 상품의 정보 보내줌 POST
-   6. 장바구니 버튼 클릭 시 장바구니에 추가되었다는 alert 창 보여줌
-   7. 바로구매 버튼 클릭 시 localStorage에 저장 후 구매 페이지로 넘어가서 정보 불러옴
-   8. 현재 상품의 카테고리에 맞는 추천 상품 리스트 보여줌
-   9. 상품정보/구매후기/상세정보 버튼에 따라 다른 UI 구현
-   10. useParams 사용해 상품 별 정보 바뀌는 정보 받아옴 GET
-5. 404 page
+   3. 수량이 1이상이며 재고수량과 같거나 적을 때 장바구니, 바로구매 버튼 활성화 및 재고수량보다 많을 시 버튼 비활성화, 재고부족 글 보여줌
+   5. 장바구니 버튼 클릭 시 상품의 정보에 대한 POST 요청 및 장바구니에 추가되었다는 alert 창 노출
+   7. 바로구매 버튼 클릭 시 localStorage에 저장 후 구매 페이지로 넘어가서 localStorage에 저장된 정보 불러옴
+   8. 쿼리스트링 이용해 현재 상품의 카테고리에 맞는 추천 상품 리스트 보여줌
+   9. 상태관리를 통해 상품정보/구매후기/상세정보 버튼에 따라 다른 UI 구현
+   10. useParams 사용해 상품에 대한 정보 GET 요청
+
+![상품기본후기정보](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/7204bbc0-33d5-4cc2-8b11-33a11715dc60)
+![재고관리](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/75da1aec-7b67-47ea-ae2e-4f1dbbe130ab)
+
+
+7. 404 page
    1. 레이아웃
    2. 라우터 통해서 404페이지에는 nav, footer 안보이도록 구현
+
+![404페이지](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/de0f9a0b-a2c0-4812-8430-9bd58500b518)
+
+
 4. Cart
     1. 레이아웃
-    2. 결제하기 버튼 클릭 시 백엔드에게 데이터 보내줌 POST
-    3. 아이템 전제삭제 버튼 클릭 시 백엔드에게 수정 요청 PATCH
+    2. 결제하기 버튼 클릭 시 장바구니에 있는 상품 정보 POST 요청
+  
+![장바구니로이동](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/765ff39c-4bc5-43f9-9483-9a837986fcbe)
+![비회원장바구니](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/b1b84752-4eb9-4552-b443-4f2a1a757005)
+
 5. Order
    1. 모든 입력창 입력해야 버튼 활성화
-   2. 결제수단 및 전체동의 체크박스 구현
+   2. 상태관리를 통해 결제수단 및 전체동의 체크박스 구현
    3. 장바구니에서 결제창으로 오는 경우와 바로구매로 오는 경우에 따라 다른 정보 불러옴
-      1. 장바구니 : 백엔드에게 장바구니에 있는 상품 목록 받아옴
-      2. 바로구매 : localStorage에 있는 상품 정보 꺼내서 보여주고 결제버튼 누르면 삭제됨
-   4. 장바구니에 있던 물품 결제 시에는 구매 성공 모달 창 띄워줌
+      1. 장바구니 : 장바구니에 있는 상품 목록 get 요청
+      2. 바로구매 : localStorage에 있는 상품 정보 불러오고 결제버튼 클릭 시 삭제
+   4. 물품 결제 성공 시 구매 성공 모달 창 오픈
+
+![바로구매](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/679c9038-48a0-41fd-82aa-5832650f986c)
+
+
 
 ---
 
@@ -194,12 +200,12 @@ eCommerce를 운영하기 위해서는, 최소한 아래의 기능을 가지고 
 
 ## 추가적으로 구현해보고 싶었던 것들
 
-- 소셜로그인
-- 외부 API 이용한 주소 조회
-- point 차감 방식의 결제
-- 로그인 페이지에서 아이디 저장 체크박스를 클릭하면 local storage에 저장해 페이지에 계속 보이도록 구현하고 싶었는데 구현해 낸 결과로는 백엔드에게 data가 가지 않아서
+- [x] 소셜로그인 (다음 프로젝트에서 구현함)
+- [ ] 외부 API 이용한 주소 조회
+- [ ] point 차감 방식의 결제
+- [x] 로그인 페이지에서 아이디 저장 체크박스를 클릭하면 local storage에 저장해 페이지에 계속 보이도록 구현하고 싶었는데 구현해 낸 결과로는 백엔드에게 data가 가지 않아서
   어쩔 수 없이 이번 프로젝트에는 진행을 못했다.
-- 장바구니에서 상품 선택삭제 기능
+- [ ] 장바구니에서 상품 선택삭제 및 전체삭제 기능
   
 ---
 
