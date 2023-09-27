@@ -14,7 +14,7 @@ const Purchase = () => {
   const parsedA = JSON.parse(getItemInfo);
   const conditon = getItemInfo === null;
 
-  //백엔드용
+  // 백엔드용
   // useEffect(() => {
   //   fetch('http://52.78.25.104:3000/carts/list')
   //     .then(response => response.json())
