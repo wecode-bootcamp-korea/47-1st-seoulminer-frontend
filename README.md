@@ -3,94 +3,67 @@
 - FrontEnd: [양회진](https://github.com/hjyang369)(project manager), [이지원](https://github.com/jiwon614118)
 - BackEnd: [신동현](https://github.com/donghyeun02), [최리나](https://github.com/lchoe24), [하준수](https://github.com/joonsooha123)(product manager)
 - 개발기간: 2023.06.23 ~ 2023.07.07
-- 깃헙 링크
-    - [FrontEnd](https://github.com/wecode-bootcamp-korea/47-1st-seoulminer-frontend)
-    - [BackEnd](https://github.com/wecode-bootcamp-korea/47-1st-seoulminer-backend)
+- 깃헙 링크 : [FrontEnd](https://github.com/wecode-bootcamp-korea/47-1st-seoulminer-frontend) , [BackEnd](https://github.com/wecode-bootcamp-korea/47-1st-seoulminer-backend)
     
 
 ---
 
 ## Clone Coding project - 배민문방구
 
-- 웹 개발의 첫 걸음을 뗀 seoulminers는 사람들이 가장 일상적으로 영위하는 행동 중 하나인 상거래를 웹페이지로 구현해 보기로 했다.
-- 그러던 중 우리의 눈에 발견된 우아한형제들의 우아한 브랜드, [배민문방구](https://brandstore.baemin.com/)
-- 우리에게 주어진 시간은 단 2주. 2번만의 스프린트 안에 최대한 클론 할 수 있는 범위 내에서 우당탕탕 이나마 굴러가는 프로덕트를 만들어 내야 한다.
+웹 개발의 첫 걸음을 뗀 seoulminers는 사람들이 가장 일상적으로 영위하는 행동 중 하나인 상거래를 웹페이지로 구현해 보기로 했다.
 
 ---
 
 ## 우리가 구현해야 할 행위 - 전자상거래
 
-인터넷이 우리 생활에 보급된 이래, 사람들이 현실세계에서 영위하는 행동들 중 많은 수가 온라인의 세계로 이식되었다. 특히 상거래는 단언컨대 유사 이래 가장 많이 수행된 사람과 사람 사이의 상호작용일 것이다. 인류의 근간을 이루는 상거래 행위부터 차근차근 구현해 보기로 했다.
+인터넷이 우리 생활에 보급된 이래, 사람들이 현실세계에서 영위하는 행동들 중 많은 수가 온라인의 세계로 이식되었다. 
 
-구현에 앞서, PEFT 분석을 통해 개발 청사진을 그리고 방향성을 잡고자 한다.
+특히 상거래는 단언컨대 유사 이래 가장 많이 수행된 사람과 사람 사이의 상호작용일 것이다.
 
 ---
 
 ## PEFT 분석
 
-### Product: 우리의 프로덕트가 커버하는 제품과 서비스는 어떤 종류의 것일까? / What types of goods and services do our product provide?
+### Product: 우리의 프로덕트가 커버하는 제품과 서비스는 어떤 종류의 것일까? 
 
 1. eCommerce를 영위: 네트워크 상에서 이루어지는 제품의 거래
-    1. 실제로 제품을 보고 구매의사결정을 내리는 것이 아닌, 웹페이지에 게시된 정보를 바탕으로 구매의사결정을 내리게 됨. 따라서 제공 가능한 선에서 상품에 대한 상세 정보를 제공할 수 있어야 함.
-    2. 구매의사 결정 및 지불이 끝났다고 해서 바로 상품을 수령할 수 있지 않으므로, 상품의 인도에 있어 필요한 정보가 잘 관리되어야 함.
+   - 실제로 제품을 보고 구매의사결정을 내리는 것이 아닌, 웹페이지에 게시된 정보를 바탕으로 구매의사결정을 내리게 됨. 따라서 제공 가능한 선에서 상품에 대한 상세 정보를 제공할 수 있어야 함.
+   - 구매의사 결정 및 지불이 끝났다고 해서 바로 상품을 수령할 수 있지 않으므로, 상품의 인도에 있어 필요한 정보가 잘 관리되어야 함.
 2. 취급품목: 재미있는 소품
-    1. 특이하고 기성품이 아닌 이벤트성 상품을 판매함.
-    2. 가격대도 높은 편이 아님. 부담없이 구매할 수 있는 수준.
-    3. 예컨대, 친구에게 장난으로 선물하면 좋을 물건.
+   - 특이하고 기성품이 아닌 이벤트성 상품을 판매함.
+   - 가격대도 높은 편이 아님. 부담없이 구매할 수 있는 수준.
+   - 친구에게 장난으로 선물하면 좋을 물건.
 
-1. eCommerce service: the selling and purchasing of goods through the Internet
-    1. The decision to purchase goods is not made through the direct interaction with the physical goods, but rather through the descriptions displayed on the web page. Thus, it is important to provide detailed information within the given limits. 
-    2. Since it is not possible to receive the goods right after the purchase is complete, it is crucial to keep track of the necessary information for the delivery of the goods.
-2. Main genre of the goods: fun items
-    1. unique, hand-picked, non-mass-produced items
-    2. relatively low prices; can be purchased without a burden
-    3. items that would be good to give to a friend for fun purposes
+### End-user: 우리의 프로덕트는 어떤 사람이 사용하게 될까? 
 
-### End-user: 우리의 프로덕트는 어떤 사람이 사용하게 될까? / Who are the users of our product?
-
-1. 재미있는 소품을 사용할 만한 사람들
-    1. 이 사람들은 특이한 물건을 사용하는 것을 / 특이한 선물을 하는 것을 좋아한다. 
-    2. 따라서 주 이용 연령층은 max 30대 정도로 추정된다.
-    3. 또한 일상적인 구매(식자재 구매와 같은)가 이뤄지는 것은 아니다.
+- 재미있는 소품을 사용할 만한 사람들
+- 이 사람들은 특이한 물건을 사용하는 것을 / 특이한 선물을 하는 것을 좋아한다. 
+- 또한 일상적인 구매(식자재 구매와 같은)가 이뤄지는 것은 아니다.
     
-    → 그렇기 때문에, 프로덕트의 접근성은 약간의 희생이 있어도 괜찮다.
-    
-
-1. People who find interest in fun items
-    1. Users who enjoy collecting unique items / enjoy gifting fun presents
-    2. Accordingly, we assume that the general age of our users would be max 30 years of age.
-    3. It differs from everyday purchases such as grocery shopping
-    
-    → Because of this, the accessibility of the website can be sacrificed for the sake of highlighting other fun features
-    
-
 ### Feature: 우리의 프로덕트는 어떤 기능을 가지고 있어야할까?
 
-eCommerce를 운영하기 위해서는, 최소한 아래의 기능을 가지고 있어야 한다고 판단된다.
-
 1. SignUp: 엔드유저를 인지하는 회원가입 기능.
-    1. 어떤 사람이 어떤 품목을 얼마만큼 구매했는지를 알 수 있어야 한다. 이를 위해서는 해당하는 엔드유저를 특정할 수 있어야 하며, 회원가입을 통해 웹페이지 내의 활동에 대해 엔드유저를 특정할 수 있다.
-    2. 아울러 특정 엔드유저의 주소지 등에 대한 정보도 관리해야 구매건에 대해 배송등의 사후처리도 수행할 수 있다.
-    3. 따라서 회원가입 기능 및 엔드유저 정보 관리 기능은 이커머스에 있어 근간이 되는 기능이다.
+   - 어떤 사람이 어떤 품목을 얼마만큼 구매했는지를 알 수 있어야 한다. 이를 위해서는 해당하는 엔드유저를 특정할 수 있어야 하며, 회원가입을 통해 웹페이지 내의 활동에 대해 엔드유저를 특정할 수 있다.
+   - 아울러 특정 엔드유저의 주소지 등에 대한 정보도 관리해야 구매건에 대해 배송등의 사후처리도 수행할 수 있다.
 2. SignIn: 엔드유저의 구매행위를 지원하고 분석하는 로그인 기능.
-    1. 로그인 기능을 통해, 어떤 엔드유저가 웹페이지 상에서 어떤 행동을 취했는지 파악할 수 있다.
-    2. 특히 eCommerce는 거래가 메인이 되는 만큼, 거래의 주체를 정확히 특정하고 파악할 수 있어야 한다. 이를 위해서는 로그인 기능은 필수다.
+   - 로그인 기능을 통해, 어떤 엔드유저가 웹페이지 상에서 어떤 행동을 취했는지 파악할 수 있다.
+   - 특히 eCommerce는 거래가 메인이 되는 만큼, 거래의 주체를 정확히 특정하고 파악할 수 있어야 한다.
 3. ProductView: 엔드유저에게 상품의 정보를 제공하는 상품조회 기능.
-    1. 상품을 팔기 위해서는, 구매자가 해당 상품에 대한 정보를 제공받을 수 있어야 한다.
-    2. 상품의 물리적 실체를 관찰하고 구매의사를 내릴 수 있는 것이 아니다 보니, 매체 안에서 제공할 수 있는 한도 안에서 최대한 상세한 정보를 전달해야 한다. 
-    3. 상품의 리스트도 볼 수 있어야 하고, 개별상품에 대한 접근도 가능해야 한다.
+   - 상품을 팔기 위해서는, 구매자가 해당 상품에 대한 정보를 제공받을 수 있어야 한다.
+   - 상품의 물리적 실체를 관찰하고 구매의사를 내릴 수 있는 것이 아니다 보니, 매체 안에서 제공할 수 있는 한도 안에서 최대한 상세한 정보를 전달해야 한다. 
+   - 상품의 리스트도 볼 수 있어야 하고, 개별상품에 대한 접근도 가능해야 한다.
 4. Cart: 엔드유저가 구매의사가 있는 상품의 데이터를 저장하는 장바구니 기능.
-    1. 엔드유저의 구매 편의성을 위해, 장바구니 기능을 제공해야 한다.
-    2. 엔드유저는 로그인한 상태에서 본인이 구매하고자 하는 상품들을 담아두었다가 한번에 구매를 할 수 있어야 한다.
+   - 엔드유저의 구매 편의성을 위해, 장바구니 기능을 제공해야 한다.
+   - 엔드유저는 로그인한 상태에서 본인이 구매하고자 하는 상품들을 담아두었다가 한번에 구매를 할 수 있어야 한다.
 5. Order: 엔드유저의 구매이력을 확인, 확정하는 주문서 기능.
-    1. 엔드유저가 구매한 상품에 대해, 판매자도 그 내역을 확인해야 상품의 배송 등의 사후절차를 진행할 수 있다.
-    2. 아울러 관계법령 상 거래에 대한 정보는 일정 기간 보관되어야 한다.
+   - 엔드유저가 구매한 상품에 대해, 판매자도 그 내역을 확인해야 상품의 배송 등의 사후절차를 진행할 수 있다.
+   - 아울러 관계법령 상 거래에 대한 정보는 일정 기간 보관되어야 한다.
 
 ### Tech: 우리가 사용할 기술스택
 
 - 기술스택
     - Front End : 자바스크립트, 리액트, SCSS
-        - <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" /><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /><img src="https://techstack-generator.vercel.app/sass-icon.svg" alt="icon" width="65" height="65" /></div>
+      <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/js-icon.svg" alt="icon" width="65" height="65" /><img src="https://techstack-generator.vercel.app/react-icon.svg" alt="icon" width="65" height="65" /><img src="https://techstack-generator.vercel.app/sass-icon.svg" alt="icon" width="65" height="65" /></div>
 
 - 협업툴
 <div>
@@ -101,63 +74,87 @@ eCommerce를 운영하기 위해서는, 최소한 아래의 기능을 가지고 
 <img src="https://img.shields.io/badge/Notion-000000?style=flat&logo=Notion&logoColor=white"/>
 <img src="https://img.shields.io/badge/VSCode-007ACC?style=flat&logo=Visual Studio Code&logoColor=white"/>
 </div>
+
 ---
 
 ## 구현 기능 상세
 
-1. SignUp
-    1. 첫번째 페이지
-        1. 레이아웃
-        2. 약관동의 - 전체 동의 및 부분 동의
-        3. 필수 체크 박스 누르면 버튼 활성화
-        4. 백엔드에게 유저 정보 POST
-    2. 두번째 페이지
-        1. 레이아웃
-        2. 정규표현식에 따라 유저정보 입력할 수 있으며 조건에 맞으면 버튼 활성화
-        3. 회원가입 성공 시 축하 모달 띄워주고 3초 뒤에 자동으로 main 페이지로 이동
-        4. 백엔드에게 유저 정보 POST
-2. SignIn
-    1. 레이아웃
-    2. 입력창에 입력하면 버튼 활성화
-    3. 백엔드에게 유저 정보 POST
-3. main page
-   1. nav
-      1. 토큰 유무에 따른 로그인/ 로그아웃 버튼 변화
-      2. nav toggle에서 토큰 유무에 따른 로그인/ 로그아웃 UI 변화
-      3. 비로그인 시 장바구니 버튼 클릭 시 로그인 페이지로 이동
-      4. 쿼리스트링 이용해 카테고리 버튼 클릭 시 상품리스트페이지에 그에 맞는 정보 보여줌 GET
-   2. main
-      1. 백엔드에게 정보 받아옴 GET
-      2. hover 시 이미지 및 글자 색 바뀌도록 구현
-   3. 상품 리스트 page
-      1. 쿼리스트링을 이용해 백엔드에게 카테고리에 맞는 정보 받아옴 GET
-      2. 카테고리 ID에 따라 카테고리 제목 바뀌는 UI 구현
-      3. hover 시 이미지 및 글자 색 바뀌도록 구현
-4. 상품 상세 page
-   1. 레이아웃
-   2. 수량 올리면 총 금액 바뀌도록 구현
-   3. 수량이 1이상이며 재고수량과 같거나 적을 때 장바구니, 바로구매 버튼 활성화
-   4. 재고수량보다 많을 시 버튼 비활성화 되면서 재고부족 글 보여줌
-   5. 장바구니 버튼 클릭 시 백엔드에게 해당 상품의 정보 보내줌 POST
-   6. 장바구니 버튼 클릭 시 장바구니에 추가되었다는 alert 창 보여줌
-   7. 바로구매 버튼 클릭 시 localStorage에 저장 후 구매 페이지로 넘어가서 정보 불러옴
-   8. 현재 상품의 카테고리에 맞는 추천 상품 리스트 보여줌
-   9. 상품정보/구매후기/상세정보 버튼에 따라 다른 UI 구현
-   10. useParams 사용해 상품 별 정보 바뀌는 정보 받아옴 GET
-5. 404 page
-   1. 레이아웃
-   2. 라우터 통해서 404페이지에는 nav, footer 안보이도록 구현
-4. Cart
-    1. 레이아웃
-    2. 결제하기 버튼 클릭 시 백엔드에게 데이터 보내줌 POST
-    3. 아이템 전제삭제 버튼 클릭 시 백엔드에게 수정 요청 PATCH
-5. Order
-   1. 모든 입력창 입력해야 버튼 활성화
-   2. 결제수단 및 전체동의 체크박스 구현
-   3. 장바구니에서 결제창으로 오는 경우와 바로구매로 오는 경우에 따라 다른 정보 불러옴
-      1. 장바구니 : 백엔드에게 장바구니에 있는 상품 목록 받아옴
-      2. 바로구매 : localStorage에 있는 상품 정보 꺼내서 보여주고 결제버튼 누르면 삭제됨
-   4. 장바구니에 있던 물품 결제 시에는 구매 성공 모달 창 띄워줌
+#### 1. SignUp
+- 첫번째 페이지
+   - 레이아웃
+   - 상태관리를 통한 약관 전체 동의 및 부분 동의
+- 두번째 페이지
+   - 레이아웃
+   - 정규표현식에 따라 유저정보 입력할 수 있으며 조건에 맞으면 버튼 활성화
+   - 회원가입 성공 시 축하 모달 띄워주고 setTimeOut 이용해 3초 뒤에 main 페이지로 이동
+   - 가입한 유저의 정보 POST 요청
+      
+![miner 회원가입](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/01aafcb9-fbd5-4227-9836-6d809da9e68a)
+![miner 회원가입 약관동의](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/5b49e18e-1cc6-420f-bc9d-e2a9d7fd0dde)
+
+
+#### 2. SignIn
+- 레이아웃
+- 모든 입력창에 입력 시 로그인 버튼 활성화
+- 로그인한 유저의 정보 POST 요청
+
+![miner 로그인](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/230cd4d1-b66f-4929-abb9-383a4747366f)
+
+
+#### 3. main page
+- nav
+  - JWT 토큰의 local storage 저장 유무에 따라 로그인/로그아웃 버튼 및 nav toggle ui 변화
+  - 비로그인 시 장바구니 버튼 클릭 시 로그인 페이지로 이동해 로그인 유도
+- main
+  - GET 요청을 통해 상품 정보 받아옴
+  - event handler 이용해 상품 이미지 hover 시 이미지 및 글자 색 바뀌도록 구현
+- 상품 리스트 page
+  - 쿼리스트링 이용해 카테고리 버튼 클릭 시 상품리스트페이지에 그에 맞는 정보 노출
+  - 카테고리 ID에 따라 카테고리 제목 바뀌는 UI 구현
+
+![상세페이지이동](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/1a15b9a5-9e9f-4ac8-9953-bdfdebd9f24a)
+![리스트노출gif](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/90b3507a-9eed-4c3d-832e-a87110d5ba99)
+
+
+#### 4. 상품 상세 page
+- 레이아웃
+- 수량 올리면 총 금액 바뀌도록 구현
+- 수량이 1이상이며 재고수량과 같거나 적을 때 장바구니, 바로구매 버튼 활성화 및 재고수량보다 많을 시 버튼 비활성화, 재고부족 글 보여줌
+- 장바구니 버튼 클릭 시 상품의 정보에 대한 POST 요청 및 장바구니에 추가되었다는 alert 창 노출
+- 바로구매 버튼 클릭 시 localStorage에 저장 후 구매 페이지로 넘어가서 localStorage에 저장된 정보 불러옴
+- 쿼리스트링 이용해 현재 상품의 카테고리에 맞는 추천 상품 리스트 보여줌
+- 상태관리를 통해 상품정보/구매후기/상세정보 버튼에 따라 다른 UI 구현
+- useParams 사용해 상품에 대한 정보 GET 요청
+
+![상품기본후기정보](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/7204bbc0-33d5-4cc2-8b11-33a11715dc60)
+![재고관리](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/75da1aec-7b67-47ea-ae2e-4f1dbbe130ab)
+
+
+#### 5. Cart
+- 레이아웃
+- 결제하기 버튼 클릭 시 장바구니에 있는 상품 정보 POST 요청
+  
+![장바구니로이동](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/765ff39c-4bc5-43f9-9483-9a837986fcbe)
+![비회원장바구니](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/b1b84752-4eb9-4552-b443-4f2a1a757005)
+
+
+#### 6. Order
+- 모든 입력창 입력해야 버튼 활성화
+- 상태관리를 통해 결제수단 및 전체동의 체크박스 구현
+- 장바구니에서 결제창으로 오는 경우와 바로구매로 오는 경우에 따라 다른 정보 불러옴
+  - 장바구니 : 장바구니에 있는 상품 목록 get 요청
+  - 바로구매 : localStorage에 있는 상품 정보 불러오고 결제버튼 클릭 시 삭제
+- 물품 결제 성공 시 구매 성공 모달 창 오픈
+
+![바로구매](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/679c9038-48a0-41fd-82aa-5832650f986c)
+
+
+#### 7. 404 page
+- 레이아웃
+- 라우터 통해서 404페이지에는 nav, footer 안보이도록 구현
+
+![404페이지](https://github.com/hjyang369/seoulminer-frontend/assets/125977702/de0f9a0b-a2c0-4812-8430-9bd58500b518)
+
 
 ---
 
@@ -194,12 +191,11 @@ eCommerce를 운영하기 위해서는, 최소한 아래의 기능을 가지고 
 
 ## 추가적으로 구현해보고 싶었던 것들
 
-- 소셜로그인
-- 외부 API 이용한 주소 조회
-- point 차감 방식의 결제
-- 로그인 페이지에서 아이디 저장 체크박스를 클릭하면 local storage에 저장해 페이지에 계속 보이도록 구현하고 싶었는데 구현해 낸 결과로는 백엔드에게 data가 가지 않아서
-  어쩔 수 없이 이번 프로젝트에는 진행을 못했다.
-- 장바구니에서 상품 선택삭제 기능
+- [ ] 외부 API 이용한 주소 조회
+- [x] sns login (다음 프로젝트에서 구현함)
+- [ ] point 차감 방식의 결제
+- [x] 로그인 페이지에서 아이디 저장
+- [ ] 장바구니에서 상품 선택삭제 및 전체삭제 기능
   
 ---
 
