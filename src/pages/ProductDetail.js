@@ -14,31 +14,40 @@ const ProductDetail = () => {
   const [number, setNumber] = useState(1);
 
   const params = useParams();
-  const productID = params.id;
-
-  const string = product?.productCategoryId;
+  const productId = params.id;
 
   const token = localStorage.getItem('token');
 
   const navigate = useNavigate();
 
-  // 주석 : 목데이터
-  useEffect(() => {
-    fetch(`http://10.58.52.243:3000/products/${productID}`)
-      .then(response => response.json())
-      .then(result => setProduct(result.data));
-  }, [productID]);
+  // 백엠드용
+  // useEffect(() => {
+  //   fetch(`http://52.78.25.104:3000/products/${productId}`)
+  //     .then(response => response.json())
+  //     .then(result => setProduct(result.data));
+  // }, [productId]);
+
+  // useEffect(() => {
+  //   fetch(
+  //     `http://52.78.25.104:3000/products/list?offset=0&limit=4&category=${product.productCategoryId}`
+  //   )
+  //     .then(response => response.json())
+  //     .then(result => setCarouselData(result.data));
+  // }, [product]);
 
   useEffect(() => {
-    fetch(
-      `http://10.58.52.243:3000/products/list?offset=0&limit=4&category=${product.productCategoryId}`
-    )
+    fetch('/data/DetailData.json')
       .then(response => response.json())
-      .then(result => setCarouselData(result.data));
-  }, [product]);
+      .then(result => setProduct(result));
+  }, []);
+  useEffect(() => {
+    fetch('/data/MainData.json')
+      .then(response => response.json())
+      .then(result => setCarouselData(result));
+  }, []);
 
   const goToCart = () => {
-    fetch('http://10.58.52.243:3000/carts', {
+    fetch('http://52.78.25.104:3000/carts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -192,9 +201,14 @@ const ProductDetail = () => {
         <h3 className="recommend">이건 어때요?</h3>
         <div className="products">
           {carouselDatas?.length > 0 &&
-            carouselDatas.slice(0, 4).map(ele => {
+            carouselDatas.slice(0, 4).map(carousel => {
               return (
-                <Product key={ele.id} data={ele} width={200} height={200} />
+                <Product
+                  key={carousel.productId}
+                  data={carousel}
+                  width={200}
+                  height={200}
+                />
               );
             })}
         </div>

@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SignInput from '../components/SignInput';
 import './Login.scss';
 
 const Login = () => {
   const [inputValue, setInputValue] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
   const navigate = useNavigate();
 
@@ -18,7 +19,7 @@ const Login = () => {
   };
 
   const postUserData = () => {
-    fetch('http://10.58.52.243:3000/users/signin', {
+    fetch('http://52.78.25.104:3000/users/signin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,13 +42,26 @@ const Login = () => {
       });
   };
 
-  // const saveIdLocal = e => {
-  //   if (e.target.checked === true) {
-  //     localStorage.setItem('ID', inputValue.id);
-  //   } else if (e.target.checked === false) {
-  //     localStorage.removeItem('ID');
-  //   }
-  // };
+  const saveIdLocal = e => {
+    if (e.target.checked === true) {
+      setIsChecked(true);
+      localStorage.setItem('ID', inputValue.id);
+    } else if (e.target.checked === false) {
+      setIsChecked(false);
+      localStorage.removeItem('ID');
+    }
+  };
+
+  useEffect(() => {
+    localStorage.getItem('ID') !== null &&
+      setInputValue({ ...inputValue, id: localStorage.getItem('ID') });
+  }, []);
+
+  useEffect(() => {
+    localStorage.getItem('ID') === inputValue.id
+      ? setIsChecked(true)
+      : setIsChecked(false);
+  }, [inputValue.id, isChecked]);
 
   return (
     <div className="login">
@@ -59,31 +73,27 @@ const Login = () => {
           placeholder="아이디"
           type="text"
           defaultValue={localStorage.getItem('ID')}
-          handle={e => {
-            return handleInput(e);
-          }}
+          handle={e => handleInput(e)}
         />
         <SignInput
           className="pw"
           name="pw"
           placeholder="비밀번호"
           type="password"
-          handle={e => {
-            return handleInput(e);
-          }}
+          handle={e => handleInput(e)}
         />
 
-        {/* <div className="saveContainer">
+        <div className="saveContainer">
           <input
             className="checkbox"
             type="checkbox"
             onClick={e => saveIdLocal(e)}
-            checked={localStorage.getItem('ID')}
+            checked={isChecked}
           />
           <p className="saveId" name="checkbox">
             아이디 저장
           </p>
-        </div> */}
+        </div>
       </div>
       <button
         className={`loginButton ${conditon ? 'greenButton' : ''}`}

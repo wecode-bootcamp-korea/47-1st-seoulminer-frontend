@@ -10,11 +10,37 @@ const CartTwo = () => {
   const [orderPrice, setOrderPrice] = useState([]);
   const token = localStorage.getItem('token');
 
+  // 백엔드용
+  // useEffect(() => {
+  //   const fetchCartData = async () => {
+  //     try {
+  //       const token = localStorage.getItem('token');
+  //       const response = await fetch('http://52.78.25.104:3000/carts/list', {
+  //         method: 'GET',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
+  //       const result = await response.json();
+  //       if (Array.isArray(result.data)) {
+  //         setCartData(result.data);
+  //         setCheckBoxes(Array(result.data.length).fill(false));
+  //         setOrderPrice(Array(result.data.length).fill(0));
+  //       }
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+
+  //   fetchCartData();
+  // }, []);
+
   useEffect(() => {
     const fetchCartData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://10.58.52.243:3000/carts/list', {
+        const response = await fetch('/data/OrderData.json', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -23,7 +49,7 @@ const CartTwo = () => {
         });
         const result = await response.json();
         if (Array.isArray(result.data)) {
-          setCartData(result.data);
+          setCartData(result);
           setCheckBoxes(Array(result.data.length).fill(false));
           setOrderPrice(Array(result.data.length).fill(0));
         }
@@ -36,7 +62,7 @@ const CartTwo = () => {
   }, []);
 
   const postUserData = () => {
-    fetch('http://10.58.52.243:3000/orders/cart', {
+    fetch('http://52.78.25.104:3000/orders/cart', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -59,7 +85,7 @@ const CartTwo = () => {
   };
 
   const deleteAll = () => {
-    fetch('http://10.58.52.175:3000/carts/all', {
+    fetch('http://52.78.25.104:3000/carts/all', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -83,7 +109,7 @@ const CartTwo = () => {
   };
 
   const deleteItem = () => {
-    fetch(`http://10.58.52.243:3000/carts/item/${'cartId'}`, {
+    fetch(`http://52.78.25.104:3000/carts/item/${'cartId'}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -103,7 +129,7 @@ const CartTwo = () => {
   };
 
   const patchCart = (cartId, quantity) => {
-    fetch('http://10.58.52.243:3000/carts', {
+    fetch('http://52.78.25.104:3000/carts', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

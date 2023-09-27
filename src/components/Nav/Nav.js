@@ -48,7 +48,8 @@ const Nav = () => {
         </Link>
         <div className="navMenu">
           {NavData.map((link, index) => (
-            <Link to={link.path} key={index}>
+            // <Link to={link.path} key={index}>
+            <Link to="/productList" key={index}>
               <button className="menuLink">{link.text}</button>
             </Link>
           ))}

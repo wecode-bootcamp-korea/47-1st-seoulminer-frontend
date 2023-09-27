@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import './Purchase.scss';
 
 const Purchase = () => {
-  const a = localStorage.getItem('item');
+  const getItemInfo = localStorage.getItem('item');
+
   const [inputValue, setInputValue] = useState({});
   const [checkboxValue, setCheckboxValue] = useState({});
   const [isAllValue, setIsAllValue] = useState({});
@@ -10,14 +11,22 @@ const Purchase = () => {
   const [productDatas, setProductData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const parsedA = JSON.parse(a);
-  const conditon = a === null;
+  const parsedA = JSON.parse(getItemInfo);
+  const conditon = getItemInfo === null;
+
+  // 백엔드용
+  // useEffect(() => {
+  //   fetch('http://52.78.25.104:3000/carts/list')
+  //     .then(response => response.json())
+  //     .then(result => setProductData(result));
+  // }, []);
 
   useEffect(() => {
-    fetch('http://10.58.52.243:3000/carts/list')
+    fetch('/data/OrderData.json')
       .then(response => response.json())
-      .then(result => setProductData(result));
+      .then(data => setProductData(data));
   }, []);
+
   const handleInput = e => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
