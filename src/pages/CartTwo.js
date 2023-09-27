@@ -10,11 +10,36 @@ const CartTwo = () => {
   const [orderPrice, setOrderPrice] = useState([]);
   const token = localStorage.getItem('token');
 
+  // useEffect(() => {
+  //   const fetchCartData = async () => {
+  //     try {
+  //       const token = localStorage.getItem('token');
+  //       const response = await fetch('http://52.78.25.104:3000/carts/list', {
+  //         method: 'GET',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
+  //       const result = await response.json();
+  //       if (Array.isArray(result.data)) {
+  //         setCartData(result.data);
+  //         setCheckBoxes(Array(result.data.length).fill(false));
+  //         setOrderPrice(Array(result.data.length).fill(0));
+  //       }
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+
+  //   fetchCartData();
+  // }, []);
+
   useEffect(() => {
     const fetchCartData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://52.78.25.104:3000/carts/list', {
+        const response = await fetch('/data/OrderData.json', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -23,7 +48,7 @@ const CartTwo = () => {
         });
         const result = await response.json();
         if (Array.isArray(result.data)) {
-          setCartData(result.data);
+          setCartData(result);
           setCheckBoxes(Array(result.data.length).fill(false));
           setOrderPrice(Array(result.data.length).fill(0));
         }

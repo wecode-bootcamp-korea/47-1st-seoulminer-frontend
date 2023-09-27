@@ -14,10 +14,17 @@ const Purchase = () => {
   const parsedA = JSON.parse(getItemInfo);
   const conditon = getItemInfo === null;
 
+  //백엔드용
+  // useEffect(() => {
+  //   fetch('http://52.78.25.104:3000/carts/list')
+  //     .then(response => response.json())
+  //     .then(result => setProductData(result));
+  // }, []);
+
   useEffect(() => {
-    fetch('http://52.78.25.104:3000/carts/list')
+    fetch('/data/OrderData.json')
       .then(response => response.json())
-      .then(result => setProductData(result));
+      .then(data => setProductData(data));
   }, []);
 
   const handleInput = e => {

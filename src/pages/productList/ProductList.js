@@ -10,7 +10,6 @@ const ProductList = () => {
 
   const location = useLocation();
   const queryString = location.search;
-  console.log(queryString);
 
   const titleText = () => {
     if (productListData.length > 0) {
@@ -33,11 +32,18 @@ const ProductList = () => {
     }
   };
 
+  //백엔드용
+  // useEffect(() => {
+  //   fetch(`http://52.78.25.104:3000/products/list${queryString}&limit=50`)
+  //     .then(response => response.json())
+  //     .then(data => setProductListData(data.data));
+  // }, [queryString]);
+
   useEffect(() => {
-    fetch(`http://52.78.25.104:3000/products/list${queryString}&limit=50`)
+    fetch('/data/MainData.json')
       .then(response => response.json())
-      .then(data => setProductListData(data.data));
-  }, [queryString]);
+      .then(data => setProductListData(data));
+  }, []);
 
   return (
     <div>
@@ -50,7 +56,7 @@ const ProductList = () => {
         <div className="sortProductsList">
           {productListData.map(productData => (
             <Product
-              key={productData.id}
+              key={productData.productId}
               data={productData}
               width={250}
               height={250}
