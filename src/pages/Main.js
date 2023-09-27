@@ -7,7 +7,7 @@ import './Main.scss';
 const Main = () => {
   const [mainData, setMainData] = useState([]);
 
-  //백엔드용
+  // 백엔드용
   // useEffect(() => {
   //   fetch('http://52.78.25.104:3000/products/list?limit=20')
   //     .then(response => response.json())
