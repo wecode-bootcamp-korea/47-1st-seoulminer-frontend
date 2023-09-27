@@ -16,29 +16,27 @@ const ProductDetail = () => {
   const params = useParams();
   const productID = params.id;
 
-  const string = product?.productCategoryId;
-
   const token = localStorage.getItem('token');
 
   const navigate = useNavigate();
 
   // 주석 : 목데이터
   useEffect(() => {
-    fetch(`http://10.58.52.243:3000/products/${productID}`)
+    fetch(`http://52.78.25.104:3000/products/${productID}`)
       .then(response => response.json())
       .then(result => setProduct(result.data));
   }, [productID]);
 
   useEffect(() => {
     fetch(
-      `http://10.58.52.243:3000/products/list?offset=0&limit=4&category=${product.productCategoryId}`
+      `http://52.78.25.104:3000/products/list?offset=0&limit=4&category=${product.productCategoryId}`
     )
       .then(response => response.json())
       .then(result => setCarouselData(result.data));
   }, [product]);
 
   const goToCart = () => {
-    fetch('http://10.58.52.243:3000/carts', {
+    fetch('http://52.78.25.104:3000/carts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

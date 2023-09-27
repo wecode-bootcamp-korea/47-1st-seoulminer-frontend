@@ -18,7 +18,7 @@ const Login = () => {
   };
 
   const postUserData = () => {
-    fetch('http://10.58.52.243:3000/users/signin', {
+    fetch('http://52.78.25.104:3000/users/signin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
